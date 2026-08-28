@@ -1,33 +1,49 @@
+<div align="center">
+
 # Lost & Found Intelligent Matching Platform
 
-失物智能匹配平台。核心问题不是「两个描述像不像」，而是
-**「Lost Record 和 Found Record 是否描述的是同一件物品」**——这是 Entity Matching /
-Record Linkage，不是搜索。
+**English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-> Embedding 负责「找得出来」，结构化属性负责「比得准」，Hard Constraint 负责「排错」，
-> Ranking 负责「排顺序」，人工确认负责「最终归属」。
+An AI matching engine for lost-and-found operations — built as **entity matching**, not as search.
 
-完整设计见 [docs/DESIGN.md](docs/DESIGN.md)。
+</div>
 
 ---
 
-## 快速开始
+The question this system answers is **not** "do these two descriptions look alike?"
+It is:
 
-### 用 Docker（含 PostgreSQL + pgvector）
+> Do a **LOST** record and a **FOUND** record refer to **the same physical object**?
+
+That is entity matching / record linkage. Getting it wrong in the confident direction means
+handing someone else's iPhone to the wrong person, so the architecture is built around
+one principle:
+
+> **Embeddings decide what gets *retrieved*. Structured attributes decide what *matches*.
+> Hard constraints decide what gets *rejected*. Ranking decides the *order*.
+> A human decides who *gets the item back*.**
+>
+> Embedding = Retrieval, never Decision.
+
+Full technical design: [docs/DESIGN.md](docs/DESIGN.md) (Chinese).
+
+---
+
+## Quick start
+
+### Docker (includes PostgreSQL + pgvector)
 
 ```bash
 docker compose up -d --build
 ```
 
-打开 http://localhost:8080 （API 文档 http://localhost:8080/docs ）。
-
-灌入演示数据：
+Open http://localhost:8080 (API docs at `/docs`). Seed demo data:
 
 ```bash
 docker compose exec api python -m scripts.bootstrap --demo
 ```
 
-### 本地跑（需要一个带 pgvector 的 PostgreSQL）
+### Local (requires a PostgreSQL with pgvector)
 
 ```bash
 pip install -r backend/requirements-dev.txt
@@ -36,7 +52,7 @@ python -m scripts.bootstrap --demo
 uvicorn app.main:app --app-dir backend --reload
 ```
 
-### 跑测试（不需要数据库）
+### Tests (no database required)
 
 ```bash
 cd backend && python -m pytest tests -q
@@ -44,172 +60,214 @@ cd backend && python -m pytest tests -q
 
 ---
 
-## 系统构成
+## Pipeline
 
 ```
-用户/工作人员描述
+User / staff description
    │
-   ▼  ① AI Understanding（LLM Extraction + 属性标准化）
-item_records（raw_description 永不被覆盖）+ item_attributes（带 source / confidence）
+   ▼  1. AI Understanding — extraction + attribute normalization
+item_records (raw_description is never overwritten)
+   + item_attributes (every value carries source / confidence)
    │
-   ▼  ② Embedding（TEXT / ATTRIBUTES / IMAGE，独立 embeddings 表 + content_hash 去重）
-   ▼  ③ Hybrid Retrieval（Structured 过滤 → BM25 ∪ pgvector → RRF 融合）
-   ▼  ④ Hard Constraint（IMEI/序列号/型号冲突直接淘汰）
-   ▼  ⑤ Feature Matching（八维打分，category-aware 权重）
-   ▼  ⑥ Scoring（可靠性加权 + 冲突惩罚 + 证据奖励）
-   ▼  ⑦ Re-ranking + Explanation（LLM 分析证据，但不得改分数）
-   ▼  ⑧ Human Confirmation（match_decisions = AI Feedback Loop 训练数据）
+   ▼  2. Embedding — TEXT / ATTRIBUTES / IMAGE, separate table, content_hash dedup
+   ▼  3. Hybrid Retrieval — structured ∪ BM25/trigram ∪ pgvector, fused with RRF
+   ▼  4. Hard Constraints — IMEI / serial / model conflicts eliminate outright
+   ▼  5. Feature Matching — eight dimensions, category-aware weights
+   ▼  6. Scoring — reliability weighting + conflict penalty + evidence bonus
+   ▼  7. Re-ranking + Explanation — the LLM analyses evidence but never edits the score
+   ▼  8. Human Confirmation — match_decisions doubles as AI feedback-loop training data
 ```
 
-### 评分公式
+### The scoring formula
 
 ```
-S_final = clip( sum(w_i * r_i * s_i) / sum(w_i * r_i) - P_conflict + B_evidence, 0, 100 )
+S_final = clip( Σ(wᵢ · rᵢ · sᵢ) / Σ(wᵢ · rᵢ)  −  P_conflict  +  B_evidence,  0, 100 )
 ```
 
-| 符号 | 含义 | 来源 |
+| Symbol | Meaning | Source |
 |---|---|---|
-| `w_i` | 业务重要性权重（category-aware） | `config/matching_weights.json` |
-| `r_i` | 证据可靠性（Serial 1.0 → LLM 推断 0.7 → 模糊推测 0.5） | 同上 `reliability` |
-| `s_i` | 实际匹配程度 0~100 | `backend/app/matching/features.py` |
-| `P_conflict` | 冲突惩罚（CRITICAL / MAJOR / MINOR） | `config/conflict_rules.json` |
-| `B_evidence` | 额外证据奖励，封顶 10 分 | `matching/scoring.py` |
+| `wᵢ` | Business importance, category-aware | `config/matching_weights.json` |
+| `rᵢ` | Evidence reliability (serial 1.0 → LLM-inferred 0.7 → vague guess 0.5) | same file, `reliability` |
+| `sᵢ` | Actual match degree, 0–100 | `backend/app/matching/features.py` |
+| `P_conflict` | Conflict penalty (CRITICAL / MAJOR / MINOR) | `config/conflict_rules.json` |
+| `B_evidence` | Corroborating-evidence bonus, hard-capped at 10 | `matching/scoring.py` |
 
-分母只统计**可用证据**——任一侧缺失的维度不参与评分，而不是记 0 分。
+The denominator counts **available evidence only**. A dimension missing on either side is
+excluded from the average rather than scored as zero.
+
+> **Missing ≠ Mismatch.** `UNKNOWN` is neither a match nor a conflict.
 
 ---
 
-## 「说法完全不同」怎么保证能找到
+## The hard part: the same object, described completely differently
 
-这是失物系统最核心的问题：登记的人和找东西的人几乎不会用同一个词。
-日语尤其严重——同一个包可以是 かばん / 鞄 / カバン / バッグ / リュック / デイパック / 背嚢。
+The person who files the report and the person who logs the item almost never pick the
+same word. Japanese makes this brutal — one bag can be
+かばん / 鞄 / カバン / バッグ / リュック / デイパック / 背嚢, before you even add
+Chinese, English, or rōmaji.
 
-系统用**四层**解决，缺一层都会静默漏召：
+Four layers handle it. Drop any one and you get **silent** recall failures:
 
-| 层 | 作用 | 覆盖什么 | 代码 |
+| Layer | Job | Covers | Code |
 |---|---|---|---|
-| ① 同义词标准化 | 已知词 100% 准确 | かばん/鞄/バッグ/背包/backpack → `bag` | `config/synonyms.json` + `ai/normalize.py` |
-| ② 零样本类别分类 | 词典没有的词 | コインケース / マグボトル / ボストンバッグ | `ai/classify.py` |
-| ③ 多语言句向量 | 描述性表达、跨语言 | 「雨の日にさすやつ」「黑色双肩包」 | `ai/embedding_provider.py`（ONNX 本机推理） |
-| ④ 三路 RRF 融合 | 任一层失手仍能召回 | structured ∪ BM25/trigram ∪ vector | `matching/retrieval.py` |
+| 1. Synonym normalization | 100% precision on known words | かばん / 鞄 / バッグ / 背包 / backpack → `bag` | `config/synonyms.json`, `ai/normalize.py` |
+| 2. Zero-shot classification | Words the dictionary has never seen | コインケース, マグボトル, ボストンバッグ | `ai/classify.py` |
+| 3. Multilingual sentence vectors | Paraphrase and cross-language | 「雨の日にさすやつ」, 「黑色双肩包」 | `ai/embedding_provider.py` (local ONNX) |
+| 4. Three-channel RRF fusion | Survives any single layer failing | structured ∪ BM25/trigram ∪ vector | `matching/retrieval.py` |
 
-**关键：类别绝不能做检索门禁。** 类别是推断出来的，会错。
-`left a bottle of sake` 里 `bottle` 比 `sake` 长，会被判成水壶——
-一旦拿它当过滤条件，那瓶清酒就永远召回不到，而且完全静默。
-所以 `base_pool` 只按 `record_type + status` 收缩，类别只作为 RRF 的一路 + 评分维度。
+**Category must never gate retrieval.** Category is *inferred*, so it is sometimes wrong.
+In `left a bottle of sake`, "bottle" is longer than "sake" and wins the dictionary match —
+the record becomes a water bottle. Use that as a filter and the sake is unreachable
+forever, silently. So `base_pool` narrows only by `record_type + status`; category is one
+RRF channel and one scoring dimension, never a gate.
 
-### 实测
+### Measured, not asserted
 
 ```bash
-python -m scripts.seed_corpus --count 240     # 灌 240 条同类同色干扰项
-python -m scripts.eval_synonyms               # 53 条对抗查询：日/中/英 × 汉字/平假名/片假名/罗马字/口语/古语
+python -m scripts.seed_corpus --count 240   # 240 same-category, same-colour distractors
+python -m scripts.eval_synonyms             # 53 adversarial queries
 ```
 
-247 条记录、53 条**说法完全不同**的查询：
+53 queries across ja / zh / en × kanji, hiragana, katakana, rōmaji, colloquial, archaic —
+against 247 records:
 
-| 阶段 | Recall@1 | Recall@3 |
+| Stage | Recall@1 | Recall@3 |
 |---|---|---|
-| 初版（词典残缺 + 哈希占位向量） | 77.4% | 83.0% |
-| 修完词典与检索架构 | 88.7% | 88.7% |
-| 换真实多语言向量 + 零样本分类 + 证据厚度修正 | **96.2%** | **96.2%** |
+| First cut (incomplete dictionary + placeholder hash vectors) | 77.4% | 83.0% |
+| After fixing the dictionary and the retrieval architecture | 88.7% | 88.7% |
+| With real multilingual vectors + zero-shot + evidence-thickness correction | **96.2%** | **96.2%** |
 
-剩余 2 条失败，都如实记录、不做粉饰：
+Two queries still fail, reported as-is rather than tuned away:
 
-- `しろいみみにつけるやつをなくした`（纯描述、无任何名词）→ 排 31
-- `left a bottle of sake`（英文 bottle 天然歧义）→ 排 8
+- `しろいみみにつけるやつをなくした` ("lost the white thing you put on your ears") — pure
+  paraphrase, no noun at all → rank 31
+- `left a bottle of sake` — "bottle" is genuinely ambiguous in English → rank 8
 
-小模型（384 维 MiniLM）在纯描述性表达上就是弱；换 `multilingual-e5-large`
-或企业向量网关可继续提升，接口已抽象好，只改环境变量。
+A 384-dim MiniLM is simply weak on pure paraphrase. Switching to `multilingual-e5-large`
+or an enterprise embedding gateway is an environment-variable change; the provider
+interface is already abstracted.
 
-### 换向量模型不要覆盖
+### Changing embedding models without destroying history
 
 ```bash
-python -m scripts.reembed --activate     # 新模型并存写入，验证后旧向量置 DEPRECATED
-python -m scripts.reextract              # 词典/抽取规则改动后重跑 AI 理解层
+python -m scripts.reembed --activate   # write the new model alongside, then DEPRECATE the old
+python -m scripts.reextract            # re-run the AI understanding layer after dictionary changes
 ```
+
+Never `UPDATE` an embedding in place. Vectors from different models are not comparable, and
+mixing them degrades retrieval silently.
 
 ---
 
-## 三条被测试锁死的铁律
+## Invariants locked down by tests
 
-| 铁律 | 测试 |
+| Invariant | Test |
 |---|---|
-| 语义 0.97 也压不过型号冲突（iPhone 15 Pro vs Pro Max） | `test_model_conflict_beats_high_semantic` |
-| 黑色 vs 深灰色不是冲突；缺失不是冲突 | `test_black_vs_dark_gray_is_not_a_conflict` / `test_unknown_is_not_conflict` |
-| Semantic 单独存在时不得进入自动推荐档 | `test_semantic_never_alone_decides` |
+| A 0.97 semantic score cannot beat a model conflict (iPhone 15 Pro vs Pro Max) | `test_model_conflict_beats_high_semantic` |
+| Black vs dark grey is not a conflict; missing data is not a conflict | `test_black_vs_dark_gray_is_not_a_conflict`, `test_unknown_is_not_conflict` |
+| Semantic similarity alone never reaches the auto-recommend tier | `test_semantic_never_alone_decides` |
+| A single-character CJK alias must not match inside a compound (包 in 包装) | `test_single_kanji_alias_not_matched_inside_compound` |
+| …but must still match a real one-character noun (鞄 in 黒い鞄) | `test_single_kanji_alias_matched_between_kana` |
+| One matching colour is not full-confidence evidence | `test_single_attribute_match_is_not_full_confidence` |
 
-`cd backend && python -m pytest tests -q` → 53 passed（含 25 条来自实测踩坑的回归用例）。
+`cd backend && python -m pytest tests -q` → **53 passed**, 25 of them regressions for bugs
+found during the adversarial evaluation above.
 
 ---
 
-## 主要 API
+## API
 
-| 方法 | 路径 | 说明 |
+| Method | Path | Purpose |
 |---|---|---|
-| POST | `/api/lost` | 用户报失 → 抽取 → Embedding → 自动搜 FOUND |
-| POST | `/api/found` | 工作人员登记拾获 → 反查历史 LOST 并预警 |
-| POST | `/api/search` | 自然语言检索（Query Understanding + Hybrid Retrieval） |
-| POST | `/api/ai/extract` | 单独调用抽取，前端可让用户确认 AI 理解是否正确 |
-| GET | `/api/items/{id}/matches` | 已落库的候选 + 完整证据链（不重算） |
-| POST | `/api/items/{id}/rematch` | 调完权重后手动重跑 |
-| GET | `/api/matches/{id}/explanation` | 把证据转成人话 |
-| POST | `/api/matches/{id}/decision` | 人工 CONFIRMED / REJECTED |
-| GET | `/api/items/{id}/secret-questions` | 只返回该问什么，绝不返回答案 |
-| POST | `/api/items/{id}/verify-secret` | 核对 Secret Attribute |
-| POST | `/api/items/{id}/return` | 正式归还（AI 不参与授权） |
+| POST | `/api/lost` | File a loss → extract → embed → auto-search FOUND |
+| POST | `/api/found` | Log an item → back-search historical LOST and alert staff |
+| POST | `/api/search` | Natural-language search (query understanding + hybrid retrieval) |
+| POST | `/api/ai/extract` | Extraction only, so the UI can ask "did we understand you correctly?" |
+| GET | `/api/items/{id}/matches` | Persisted candidates with the full evidence chain (no recompute) |
+| POST | `/api/items/{id}/rematch` | Re-run after changing weights |
+| GET | `/api/matches/{id}/explanation` | Turn the evidence into plain language |
+| POST | `/api/matches/{id}/decision` | Human CONFIRMED / REJECTED |
+| GET | `/api/items/{id}/secret-questions` | Returns what to ask — never the answer |
+| POST | `/api/items/{id}/verify-secret` | Check a secret attribute during handover |
+| POST | `/api/items/{id}/return` | Record the return (AI never authorises) |
 | GET | `/api/admin/metrics` | AI Assist Recall / Wrong Recommendation Rate |
-| GET | `/api/admin/training-pairs` | 导出 Positive / Hard Negative 供 LTR 训练 |
-| POST | `/api/admin/config/reload` | 权重热更新，无需重启 |
+| GET | `/api/admin/training-pairs` | Export positives / hard negatives for learning-to-rank |
+| POST | `/api/admin/config/reload` | Hot-reload weights without a restart |
+
+Accuracy is deliberately **not** the headline metric. The failure that matters is the
+**false positive** — recommending the wrong person's property.
 
 ---
 
-## Provider 配置
+## Providers
 
-系统默认**零外部依赖**（`rule` + `hashing`），可离线、可在 CI 跑。
-生产切到企业自有网关即可，Matching Engine 不会被任何一家模型绑死。
+Everything runs with **no external API** by default: a rule-based extractor and a local
+ONNX multilingual embedding model baked into the image at build time.
 
 ```bash
-# LLM
+# LLM — swap in your own gateway or self-hosted model
 LF_LLM_PROVIDER=openai_compatible
 LF_LLM_BASE_URL=https://your-gateway.internal
 LF_LLM_MODEL=your-model
 LF_LLM_API_KEY=...
 
-# Embedding
-LF_EMBEDDING_PROVIDER=openai_compatible   # 或 local（本机 sentence-transformers）
-LF_EMBEDDING_BASE_URL=https://your-gateway.internal
-LF_EMBEDDING_MODEL=your-embedding-model
+# Embeddings — onnx (default) | local | openai_compatible | hashing (CI stub)
+LF_EMBEDDING_PROVIDER=onnx
+LF_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
 LF_EMBEDDING_DIM=1536
 ```
 
-换 Embedding 模型时**不要 UPDATE 覆盖**：新模型以新的 `model_name/model_version`
-并存写入，验证完再把旧向量置为 `DEPRECATED`（`GET /api/admin/embedding-status` 可查）。
+The matching engine is not bound to any vendor. The LLM is an *evidence analyst*: it
+classifies and explains, and it is structurally forbidden from overriding the algorithmic
+score.
 
 ---
 
-## 目录
+## PostgreSQL + pgvector, not Elasticsearch (for phase one)
+
+Not because Elasticsearch is worse, but because this workload is
+"structured filters + semantic recall + exact identity matching + transactional
+consistency", not "search engine". One transaction writes the item, its attributes, and its
+vectors. No outbox pattern, no Kafka, no indexer, no dead-letter queue.
+
+Elasticsearch/OpenSearch earns its place later — at millions of records, or when Japanese
+and Chinese tokenization, synonym dictionaries and fuzzy search become the bottleneck.
+Because `embeddings` / `match_candidates` / `match_evidences` already decouple retrieval
+from matching, swapping pgvector for OpenSearch vector search leaves the business layer
+untouched. Reasoning in [docs/DESIGN.md](docs/DESIGN.md) §8.
+
+---
+
+## Layout
 
 ```
 lostfound/
-├── docs/DESIGN.md          完整技术设计（架构/表/Embedding/pgvector vs ES/算法/公式/Prompt）
-├── db/schema.sql           五层表结构 + FTS 触发器 + HNSW 索引
-├── config/                 权重、冲突规则、同义词（绝不写死在代码里）
-├── scripts/bootstrap.py    建表 + 主数据 + 演示数据
+├── docs/DESIGN.md          Full technical design
+├── db/schema.sql           Five-layer schema + FTS trigger + HNSW index
+├── config/                 Weights, conflict rules, synonyms — never hard-coded
+├── scripts/
+│   ├── bootstrap.py        Schema + master data + demo data
+│   ├── seed_corpus.py      Generate distractor corpus for evaluation
+│   ├── eval_synonyms.py    Adversarial synonym evaluation
+│   ├── reembed.py          Embedding model migration
+│   └── reextract.py        Re-run the AI understanding layer
 └── backend/app/
-    ├── ai/                 抽取 / 标准化 / 三个 Prompt / LLM & Embedding Provider
+    ├── ai/                 Extraction, normalization, three prompts, providers
     ├── matching/           retrieval → conflicts → features → scoring → engine
     ├── api/                items / search / matches / admin
-    └── static/index.html   演示 UI（不只显示 94%，同时展示证据）
+    └── static/index.html   Demo UI — shows the evidence, not just "94%"
 ```
 
----
+## Roadmap
 
-## 版本路线
-
-| 版本 | 内容 | 状态 |
+| Version | Scope | Status |
 |---|---|---|
-| V1 | 登记 + 结构化属性 + 关键词 + Vector Search | 已实现 |
-| V1.5 | 零样本类别分类 + 多语言句向量 + 同义词对抗评测 | 已实现 |
-| V2 | Hybrid Retrieval + Matching Score + 自动推荐 + 匹配解释 | 已实现 |
-| V3 | 图片 / OCR / Image Embedding | 表结构与打分维度已预留，接入 Vision 模型即可 |
-| V4 | 反馈闭环 → Learning-to-Rank | `training-pairs` 已可导出，待数据量到 10k+ |
+| V1 | Registration, structured attributes, keyword + vector search | Done |
+| V1.5 | Zero-shot classification, multilingual vectors, adversarial evaluation | Done |
+| V2 | Hybrid retrieval, match scoring, auto-recommendation, explanations | Done |
+| V3 | Images / OCR / image embeddings | Schema and scoring dimension reserved |
+| V4 | Feedback loop → learning-to-rank | `training-pairs` exports today; needs ~10k confirmations |
+
+## License
+
+MIT
