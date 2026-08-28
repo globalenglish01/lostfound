@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 
 from ..ai.embedding_provider import get_embedding_provider
 from ..ai.extraction import query_understanding
-from ..ai.normalize import canonical_text_for_attributes
+from ..ai.normalize import canonical_text_for_attributes, strip_report_boilerplate
 from ..config import settings
 from ..db import get_session
 from ..matching.engine import match_pair
@@ -29,13 +29,16 @@ def search(payload: SearchIn, session: Session = Depends(get_session)):
     parsed = query_understanding(payload.query)
 
     provider = get_embedding_provider()
-    text_vec = provider.embed(parsed["normalized_text"])
-    attr_vec = provider.embed(canonical_text_for_attributes({
+    # 查询侧与记录侧必须用同一套预处理，否则向量不在同一个分布上
+    text_vec = provider.embed(strip_report_boilerplate(payload.query))
+    attr_text = canonical_text_for_attributes({
         "category": parsed.get("category"),
         "brand": parsed.get("brand"),
         "model": parsed.get("model"),
         **{a["attribute_code"]: a["value_text"] for a in parsed["attributes"]},
-    }))
+    })
+    attr_vec = (provider.embed(attr_text)
+                if len(attr_text.splitlines()) >= 2 else None)
 
     category_id = None
     if parsed.get("category"):
@@ -68,6 +71,8 @@ def search(payload: SearchIn, session: Session = Depends(get_session)):
     query_bundle = {
         "id": None,
         "category": parsed.get("category"),
+        "category_candidates": parsed.get("category_candidates") or [],
+        "category_uncertain": parsed.get("category_uncertain", False),
         "brand": parsed.get("brand"),
         "model": parsed.get("model"),
         "attributes": [a for a in parsed["attributes"]

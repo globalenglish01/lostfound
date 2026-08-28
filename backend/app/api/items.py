@@ -113,6 +113,19 @@ def _create_item(session: Session, *, record_type: str, description: str,
     return item_id, parsed
 
 
+def _finalize(session: Session, item_id: str) -> None:
+    """建档收尾：生成向量。
+
+    向量必须在**登记时**生成，不能挂在 run_matching 里——
+    否则 auto_match=false 的记录（批量导入、离线补录）永远没有向量，
+    以后谁也检索不到它，而且这种漏召是完全静默的。
+    """
+    session.flush()
+    bundle = repo.load_item_bundle(session, item_id)
+    if bundle is not None:
+        repo.build_embeddings(session, bundle)
+
+
 # ---------------------------------------------------------------------------
 # 路由
 # ---------------------------------------------------------------------------
@@ -138,7 +151,7 @@ def create_lost(payload: LostReportIn, session: Session = Depends(get_session)):
                                     payload.location_name or parsed.get("location_name")),
         "circ": payload.circumstances, "by": payload.reported_by,
     })
-    session.flush()
+    _finalize(session, item_id)
 
     match = run_matching(session, item_id, trigger="LOST_CREATED") if payload.auto_match else None
     repo.record_audit(session, actor_id=payload.reported_by, action="LOST_CREATED",
@@ -168,7 +181,7 @@ def create_found(payload: FoundReportIn, session: Session = Depends(get_session)
                                     payload.location_name or parsed.get("location_name")),
         "by": payload.found_by, "store": payload.storage_location,
     })
-    session.flush()
+    _finalize(session, item_id)
 
     match = run_matching(session, item_id, trigger="FOUND_CREATED") if payload.auto_match else None
     repo.record_audit(session, actor_id=payload.found_by, action="FOUND_CREATED",

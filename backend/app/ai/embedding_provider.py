@@ -101,6 +101,34 @@ class LocalSentenceTransformer:
         return _fit_dim(raw, self.dim)
 
 
+class OnnxMultilingualEmbedding:
+    """本机 ONNX 多语言句向量（fastembed + onnxruntime，无 torch、无外部 API）。
+
+    这是回答「随便换个说法能不能找到」的**唯一可靠手段**。
+    词典能覆盖你想得到的词，覆盖不了「しろいみみにつけるやつ」这种描述性表达，
+    也覆盖不了跨语言（黑色双肩包 <-> 黒いリュックサック）。
+
+    默认 paraphrase-multilingual-MiniLM-L12-v2：384 维、约 220MB，
+    支持 50+ 语言，日/中/英同义句相似度足够高。
+    首次使用会把模型下载到 LF_MODEL_CACHE（镜像构建时预下载，运行时不联网）。
+    """
+
+    name = "onnx"
+
+    def __init__(self) -> None:
+        from fastembed import TextEmbedding                       # 延迟导入
+
+        self.model = settings.embedding_model
+        self.version = settings.embedding_model_version
+        self.dim = settings.embedding_dim
+        self._m = TextEmbedding(model_name=self.model,
+                                cache_dir=settings.model_cache_dir or None)
+
+    def embed(self, text: str) -> list[float]:
+        vec = next(iter(self._m.embed([text or ""]))).tolist()
+        return _fit_dim(vec, self.dim)
+
+
 class OpenAICompatibleEmbedding:
     """企业自有网关 / 自托管模型（OpenAI 兼容 /v1/embeddings）。"""
 
@@ -139,6 +167,7 @@ def _fit_dim(vec: list[float], dim: int) -> list[float]:
 
 _PROVIDERS = {
     "hashing": HashingEmbedding,
+    "onnx": OnnxMultilingualEmbedding,
     "local": LocalSentenceTransformer,
     "openai_compatible": OpenAICompatibleEmbedding,
 }

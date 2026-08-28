@@ -5,3 +5,4 @@ SQLAlchemy>=2.0.25
 psycopg[binary]>=3.1
 httpx>=0.26
 python-multipart>=0.0.9
+fastembed>=0.4

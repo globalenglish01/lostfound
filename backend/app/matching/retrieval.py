@@ -45,22 +45,50 @@ def rrf_fuse(channels: dict[str, list[str]], k: int | None = None) -> list[Candi
 # 结构化过滤（作为其余两路的候选池）
 # ---------------------------------------------------------------------------
 
+_BASE_POOL_SQL = """
+SELECT r.id::text AS id
+FROM item_records r
+WHERE r.record_type = :target_type
+  AND r.status = 'ACTIVE'
+  AND r.id::text <> :source_id
+ORDER BY r.created_at DESC
+LIMIT :limit
+"""
+
 _STRUCTURED_SQL = """
 SELECT r.id::text AS id
 FROM item_records r
 WHERE r.record_type = :target_type
   AND r.status = 'ACTIVE'
   AND r.id::text <> :source_id
-  AND (CAST(:category_id AS bigint) IS NULL
-       OR r.category_id IS NULL
-       OR r.category_id = CAST(:category_id AS bigint))
+  AND r.category_id = CAST(:category_id AS bigint)
 ORDER BY r.created_at DESC
 LIMIT :limit
 """
 
 
+def base_pool(session: Session, source_id: str, target_type: str,
+              limit: int | None = None) -> list[str]:
+    """只施加「安全的硬过滤」：记录类型 + 状态。
+
+    category **不能**放进这里。类别是 AI 推断出来的，会错：
+    "left a bottle of sake" 里 bottle 比 sake 长，会被判成 water_bottle，
+    一旦拿它做门禁，那瓶清酒就永远不可能被召回——这是最危险的一类漏召。
+    类别的作用体现在下面的 structured 通道和 category_score 维度上，而不是生杀大权。
+    """
+    rows = session.execute(text(_BASE_POOL_SQL), {
+        "source_id": source_id,
+        "target_type": target_type,
+        "limit": limit or settings.structured_limit,
+    }).fetchall()
+    return [r[0] for r in rows]
+
+
 def structured_retrieval(session: Session, source_id: str, target_type: str,
                          category_id: int | None, limit: int | None = None) -> list[str]:
+    """高精度通道：类别命中的记录。作为 RRF 的一路，不是门禁。"""
+    if category_id is None:
+        return []
     rows = session.execute(text(_STRUCTURED_SQL), {
         "source_id": source_id,
         "target_type": target_type,
@@ -156,12 +184,19 @@ def hybrid_retrieve(session: Session, *, source_id: str, target_type: str,
                     attr_vector: list[float] | None = None,
                     image_vector: list[float] | None = None,
                     limit: int | None = None) -> list[Candidate]:
-    """三路召回 -> RRF -> Top N。返回带各通道原始分的候选。"""
-    pool = structured_retrieval(session, source_id, target_type, category_id)
+    """三路召回 -> RRF -> Top N。返回带各通道原始分的候选。
+
+    pool 只按 record_type + status 收缩；三路（structured / keyword / vector）
+    各自独立召回，再由 RRF 融合——同时被多路命中的自然排前。
+    """
+    pool = base_pool(session, source_id, target_type)
     if not pool:
         return []
 
-    channels: dict[str, list[str]] = {"structured": pool[: settings.keyword_limit]}
+    channels: dict[str, list[str]] = {}
+    structured = structured_retrieval(session, source_id, target_type, category_id)
+    if structured:
+        channels["structured"] = structured[: settings.keyword_limit]
 
     kw = keyword_retrieval(session, pool, query_text)
     channels["keyword"] = [i for i, _ in kw]
@@ -172,11 +207,13 @@ def hybrid_retrieve(session: Session, *, source_id: str, target_type: str,
     sem_map = dict(vec_text)
 
     if attr_vector:
+        # ATTRIBUTES 向量只参与**召回**，绝不并入 semantic 分数：
+        #  a) 属性稀疏时会退化——记录的 canonical text 就是 "color: black"，
+        #     和只抽到颜色的查询完全相同，余弦 = 1.0，语义直接满分；
+        #  b) 属性的相似度已经由 attribute 维度（25%~32% 权重）计过一次，
+        #     再算进 semantic 就是同一份证据计两遍。
         vec_attr = vector_retrieval(session, pool, attr_vector, "ATTRIBUTES")
         channels["vector_attr"] = [i for i, _ in vec_attr]
-        for item_id, sim in vec_attr:
-            # 属性向量与文本向量取较高者作为该候选的语义相似度
-            sem_map[item_id] = max(sem_map.get(item_id, 0.0), sim)
 
     img_map: dict[str, float] = {}
     if image_vector:

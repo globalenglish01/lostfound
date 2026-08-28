@@ -26,6 +26,7 @@ class Settings:
     )
 
     # --- Embedding ---
+    # onnx   : fastembed + onnxruntime 多语言句向量（本机推理，无外部调用，推荐）
     # local  : sentence-transformers（本机模型，无外部调用）
     # hashing: 确定性哈希投影，零依赖，用于开发/CI/离线
     # openai_compatible: 自建或企业网关（LF_EMBEDDING_BASE_URL）
@@ -33,6 +34,7 @@ class Settings:
     embedding_model: str = os.getenv("LF_EMBEDDING_MODEL", "hashing-1536-v1")
     embedding_model_version: str = os.getenv("LF_EMBEDDING_MODEL_VERSION", "v1")
     embedding_dim: int = int(os.getenv("LF_EMBEDDING_DIM", "1536"))
+    model_cache_dir: str = os.getenv("LF_MODEL_CACHE", "")
     embedding_base_url: str = os.getenv("LF_EMBEDDING_BASE_URL", "")
     embedding_api_key: str = os.getenv("LF_EMBEDDING_API_KEY", "")
 

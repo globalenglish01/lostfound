@@ -37,27 +37,33 @@ def _build_reverse(section: str) -> dict[str, str]:
     return table
 
 
-def canonical(section: str, value: str | None) -> str | None:
-    """把一个值归一到词典里的 canonical 形式；查不到则返回归一化文本。"""
+def canonical(section: str, value: str | None, strict: bool = False) -> str | None:
+    """把一个值归一到词典里的 canonical 形式。
+
+    strict=True 时词典未命中返回 None（用于 category / brand 这类必须落到主数据的字段）；
+    strict=False 时返回归一化文本（用于 color / material 这类允许自由值的属性）。
+    """
     n = norm_text(value)
     if not n:
         return None
     table = _build_reverse(section)
     if n in table:
         return table[n]
-    # 允许「黑色苹果手机」这种整句里包含关键词的情况
-    for alias, canon in table.items():
-        if alias and len(alias) >= 2 and alias in n:
-            return canon
-    return n
+    # 允许「黑色苹果手机」这种整句里包含关键词的情况；
+    # 单字别名不做子串匹配（「包装」不是「包」），最长别名优先
+    for alias in sorted((a for a in table if len(a) >= 2), key=len, reverse=True):
+        if alias in n:
+            return table[alias]
+    return None if strict else n
 
 
 def canonical_category(value: str | None) -> str | None:
-    return canonical("category", value)
+    """类别必须落到主数据里的 code，查不到就返回 None，不要污染字段。"""
+    return canonical("category", value, strict=True)
 
 
 def canonical_brand(value: str | None) -> str | None:
-    return canonical("brand", value)
+    return canonical("brand", value, strict=True)
 
 
 def canonical_color(value: str | None) -> str | None:
@@ -153,3 +159,44 @@ def text_overlap(a: str | None, b: str | None) -> float:
     tb = {t for t in norm_text(b or "").split() if t}
     token_ratio = (len(ta & tb) / min(len(ta), len(tb))) if ta and tb else 0.0
     return max(char_ratio, token_ratio)
+
+
+# ---------------------------------------------------------------------------
+# 报案套话剥离
+# ---------------------------------------------------------------------------
+# 「黒いリュックサックを拾いました」和「黒い鞄を紛失しました」的句向量里，
+# 「拾いました / 紛失しました」这类模板动词占了很大权重，把真正区分物品的名词稀释掉了。
+# 做 embedding 前先把这些套话剥掉，只留下**物品本身的描述**。
+_BOILERPLATE = [
+    # 日本語：拾得側
+    "の拾得物です", "の落とし物です", "の忘れ物です", "拾得物です", "落とし物です", "忘れ物です",
+    "を拾いました", "を拾得しました", "拾得しました", "を保管しています", "保管しています",
+    "を預かっています", "が届いています",
+    # 日本語：遺失側
+    "をなくしました", "を無くしました", "を失くしました", "なくしました", "無くしました",
+    "を落としました", "落としました", "落としちゃった", "落とした",
+    "を紛失しました", "紛失しました", "紛失", "を忘れました", "忘れました", "忘れてきた",
+    "を置き忘れました", "置き忘れました", "が見つかりません", "見つかりません",
+    "どっかいった", "をなくした", "なくした", "忘れた",
+    # 中文
+    "丢了一个", "丢了一台", "丢了一把", "丢了一部", "丢了", "丢失了", "丢失",
+    "不见了", "找不到了", "找不到", "落了一瓶", "落了", "掉了",
+    # English
+    "i lost a", "i lost", "lost a", "lost my", "lost", "left a", "left my", "left",
+    "missing a", "missing", "i cannot find", "cannot find",
+]
+
+
+def strip_report_boilerplate(text: str | None) -> str:
+    """剥掉「丢了 / なくしました / lost a」这类报案套话，只保留物品描述。"""
+    if not text:
+        return ""
+    s = str(text)
+    for phrase in sorted(_BOILERPLATE, key=len, reverse=True):
+        s = s.replace(phrase, " ")
+        s = s.replace(phrase.upper(), " ")
+        s = s.replace(phrase.title(), " ")
+    s = re.sub(r"[。．.、,，!！?？]+", " ", s)
+    s = _WS.sub(" ", s).strip()
+    # 全剥没了说明整句都是套话，退回原文，宁可噪声也不能变成空向量
+    return s or str(text).strip()

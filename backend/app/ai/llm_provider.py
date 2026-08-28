@@ -58,23 +58,75 @@ _CASE_MARKERS = ["手机壳", "手機殼", "手机套", "保护壳", "保护套"
                  "ケース", "カバー", "case", "cover"]
 
 
-def _find_first(text: str, table: dict[str, list[str]]) -> tuple[str | None, str | None]:
-    """在描述里找词典命中，返回 (canonical, 原文片段)。"""
+_ASCII_WORD = re.compile(r"[a-z0-9]+")
+# CJK 汉字（含扩展 A）。假名、拉丁字母、数字、标点都不算。
+_IDEOGRAPH = re.compile(r"[一-鿿㐀-䶿]")
+
+
+def _is_ideograph(ch: str) -> bool:
+    return bool(ch) and bool(_IDEOGRAPH.match(ch))
+
+
+def _alias_hit(haystack: str, alias: str) -> bool:
+    """带边界判断的别名命中。
+
+    三个坑：
+    1) 纯 ASCII 别名（bag / key / case）必须按词边界匹配，
+       否则 "bag" 命中 "baggage"、"key" 命中 "monkey"。
+    2) 单个汉字别名（鞄 / 傘 / 鍵 / 本 / 包）不能裸做子串匹配：
+       「紙で包装されています」里的「包」会把一瓶清酒判成包。
+       但也不能一刀切禁掉——日语里「黒い鞄を紛失」的「鞄」正是物品本身。
+       规则：单字汉字只有在**左右都不是汉字**时才算命中。
+           黒い鞄を   -> 左「い」右「を」都是假名 -> 命中
+           紙で包装   -> 右「装」是汉字（构成复合词）-> 不命中
+           日本酒     -> 「酒」左边「本」是汉字 -> 不命中（更长的别名「日本酒」会先命中）
+    3) 单个假名/字母别名歧义太大，只在整串相等时命中。
+    """
+    if _ASCII_WORD.fullmatch(alias):
+        return any(w == alias for w in _ASCII_WORD.findall(haystack))
+    if len(alias) == 1:
+        if not _is_ideograph(alias):
+            return haystack == alias
+        for i, ch in enumerate(haystack):
+            if ch != alias:
+                continue
+            left = haystack[i - 1] if i > 0 else ""
+            right = haystack[i + 1] if i + 1 < len(haystack) else ""
+            if not _is_ideograph(left) and not _is_ideograph(right):
+                return True
+        return False
+    return alias in haystack
+
+
+def _find_all(text: str, table: dict[str, list[str]]) -> list[tuple[str, str]]:
+    """在描述里找**所有**词典命中，按别名长度降序返回 [(canonical, 原文片段)]。
+
+    只取最长的一个会出事：「left a bottle of sake」里 bottle(6) 比 sake(4) 长，
+    直接判成 water_bottle，那瓶清酒就再也匹配不上了。
+    歧义必须原样保留，交给下游按「UNKNOWN != CONFLICT」处理。
+    """
     low = norm_text(text)
-    best: tuple[int, str, str] | None = None
+    pairs: list[tuple[int, str, str]] = []
     for canon, aliases in table.items():
         if canon.startswith("_"):
             continue
         for alias in [canon, *aliases]:
             a = norm_text(alias)
-            if not a:
-                continue
-            pos = low.find(a)
-            if pos >= 0 and (best is None or len(a) > len(best[2])):
-                best = (pos, canon, alias)
-    if best is None:
-        return None, None
-    return best[1], best[2]
+            if a:
+                pairs.append((len(a), canon, a))
+
+    out: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for _, canon, alias in sorted(pairs, key=lambda c: -c[0]):
+        if canon not in seen and _alias_hit(low, alias):
+            seen.add(canon)
+            out.append((canon, alias))
+    return out
+
+
+def _find_first(text: str, table: dict[str, list[str]]) -> tuple[str | None, str | None]:
+    hits = _find_all(text, table)
+    return hits[0] if hits else (None, None)
 
 
 def _window(text: str, marker: str, before: int = 8) -> str:
@@ -98,7 +150,21 @@ class RuleLLM:
         text = description or ""
         syn = synonyms()
 
-        cat, cat_src = _find_first(text, syn.get("category", {}))
+        cat_hits = _find_all(text, syn.get("category", {}))
+        cat, cat_src = cat_hits[0] if cat_hits else (None, None)
+
+        # 词典未命中 -> 用向量对类别原型做零样本分类兜底
+        inferred_cat = False
+        if not cat_hits:
+            from .classify import is_enabled, zero_shot_category
+
+            if is_enabled():
+                from .normalize import strip_report_boilerplate
+
+                guess, sim = zero_shot_category(strip_report_boilerplate(text))
+                if guess:
+                    cat, cat_src = guess, f"zero-shot({sim:.2f})"
+                    inferred_cat = True
         brand, brand_src = _find_first(text, syn.get("brand", {}))
         color, color_src = _find_first(text, syn.get("color", {}))
         material, material_src = _find_first(text, syn.get("material", {}))
@@ -157,8 +223,20 @@ class RuleLLM:
                 "source_type": stype if value else "UNCERTAIN",
             }
 
+        # 命中多个类别、或靠向量推断出来的 -> 标记为 UNCERTAIN，下游不得据此判冲突
+        if inferred_cat:
+            cat_candidates = [cat] if cat else []
+            cat_node = field(cat, cat_src, 0.6, "INFERRED")
+            cat_node["inferred"] = True
+        else:
+            cat_candidates = [canonical_category(c) or c for c, _ in cat_hits]
+            cat_node = field(canonical_category(cat) if cat else None, cat_src,
+                             0.9 if len(cat_hits) <= 1 else 0.5,
+                             "EXPLICIT" if len(cat_hits) <= 1 else "UNCERTAIN")
+        cat_node["candidates"] = cat_candidates
+
         return {
-            "category": field(canonical_category(cat) if cat else None, cat_src, 0.9),
+            "category": cat_node,
             "brand": field(canonical_brand(brand) if brand else None, brand_src, 0.9),
             "model": field(model_val, model_src, 0.88),
             "color": field(canonical_color(color) if color else None, color_src, 0.85),

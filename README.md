@@ -79,6 +79,57 @@ S_final = clip( sum(w_i * r_i * s_i) / sum(w_i * r_i) - P_conflict + B_evidence,
 
 ---
 
+## 「说法完全不同」怎么保证能找到
+
+这是失物系统最核心的问题：登记的人和找东西的人几乎不会用同一个词。
+日语尤其严重——同一个包可以是 かばん / 鞄 / カバン / バッグ / リュック / デイパック / 背嚢。
+
+系统用**四层**解决，缺一层都会静默漏召：
+
+| 层 | 作用 | 覆盖什么 | 代码 |
+|---|---|---|---|
+| ① 同义词标准化 | 已知词 100% 准确 | かばん/鞄/バッグ/背包/backpack → `bag` | `config/synonyms.json` + `ai/normalize.py` |
+| ② 零样本类别分类 | 词典没有的词 | コインケース / マグボトル / ボストンバッグ | `ai/classify.py` |
+| ③ 多语言句向量 | 描述性表达、跨语言 | 「雨の日にさすやつ」「黑色双肩包」 | `ai/embedding_provider.py`（ONNX 本机推理） |
+| ④ 三路 RRF 融合 | 任一层失手仍能召回 | structured ∪ BM25/trigram ∪ vector | `matching/retrieval.py` |
+
+**关键：类别绝不能做检索门禁。** 类别是推断出来的，会错。
+`left a bottle of sake` 里 `bottle` 比 `sake` 长，会被判成水壶——
+一旦拿它当过滤条件，那瓶清酒就永远召回不到，而且完全静默。
+所以 `base_pool` 只按 `record_type + status` 收缩，类别只作为 RRF 的一路 + 评分维度。
+
+### 实测
+
+```bash
+python -m scripts.seed_corpus --count 240     # 灌 240 条同类同色干扰项
+python -m scripts.eval_synonyms               # 53 条对抗查询：日/中/英 × 汉字/平假名/片假名/罗马字/口语/古语
+```
+
+247 条记录、53 条**说法完全不同**的查询：
+
+| 阶段 | Recall@1 | Recall@3 |
+|---|---|---|
+| 初版（词典残缺 + 哈希占位向量） | 77.4% | 83.0% |
+| 修完词典与检索架构 | 88.7% | 88.7% |
+| 换真实多语言向量 + 零样本分类 + 证据厚度修正 | **96.2%** | **96.2%** |
+
+剩余 2 条失败，都如实记录、不做粉饰：
+
+- `しろいみみにつけるやつをなくした`（纯描述、无任何名词）→ 排 31
+- `left a bottle of sake`（英文 bottle 天然歧义）→ 排 8
+
+小模型（384 维 MiniLM）在纯描述性表达上就是弱；换 `multilingual-e5-large`
+或企业向量网关可继续提升，接口已抽象好，只改环境变量。
+
+### 换向量模型不要覆盖
+
+```bash
+python -m scripts.reembed --activate     # 新模型并存写入，验证后旧向量置 DEPRECATED
+python -m scripts.reextract              # 词典/抽取规则改动后重跑 AI 理解层
+```
+
+---
+
 ## 三条被测试锁死的铁律
 
 | 铁律 | 测试 |
@@ -87,7 +138,7 @@ S_final = clip( sum(w_i * r_i * s_i) / sum(w_i * r_i) - P_conflict + B_evidence,
 | 黑色 vs 深灰色不是冲突；缺失不是冲突 | `test_black_vs_dark_gray_is_not_a_conflict` / `test_unknown_is_not_conflict` |
 | Semantic 单独存在时不得进入自动推荐档 | `test_semantic_never_alone_decides` |
 
-`cd backend && python -m pytest tests -q` → 28 passed。
+`cd backend && python -m pytest tests -q` → 53 passed（含 25 条来自实测踩坑的回归用例）。
 
 ---
 
@@ -158,6 +209,7 @@ lostfound/
 | 版本 | 内容 | 状态 |
 |---|---|---|
 | V1 | 登记 + 结构化属性 + 关键词 + Vector Search | 已实现 |
+| V1.5 | 零样本类别分类 + 多语言句向量 + 同义词对抗评测 | 已实现 |
 | V2 | Hybrid Retrieval + Matching Score + 自动推荐 + 匹配解释 | 已实现 |
 | V3 | 图片 / OCR / Image Embedding | 表结构与打分维度已预留，接入 Vision 模型即可 |
 | V4 | 反馈闭环 → Learning-to-Rank | `training-pairs` 已可导出，待数据量到 10k+ |

@@ -27,9 +27,13 @@ services:
     environment:
       LF_DATABASE_URL: postgresql+psycopg://lostfound:lostfound@db:5432/lostfound
       LF_CONFIG_DIR: /app/config
-      # 默认零外部依赖；生产改成企业网关
+      # LLM 默认零外部依赖；生产改成企业网关
       LF_LLM_PROVIDER: rule
-      LF_EMBEDDING_PROVIDER: hashing
+      # 向量用本机 ONNX 多语言模型：无外部 API，能扛「说法完全不同」
+      LF_EMBEDDING_PROVIDER: onnx
+      LF_EMBEDDING_MODEL: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+      LF_EMBEDDING_MODEL_VERSION: v1
+      LF_MODEL_CACHE: /models
     ports:
       - "8080:8000"
     volumes:

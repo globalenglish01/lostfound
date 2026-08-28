@@ -10,7 +10,11 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from .ai.embedding_provider import content_hash, get_embedding_provider
-from .ai.normalize import canonical_attribute_code, canonical_text_for_attributes
+from .ai.normalize import (
+    canonical_attribute_code,
+    canonical_text_for_attributes,
+    strip_report_boilerplate,
+)
 from .config import settings
 from .db import vector_literal
 
@@ -183,7 +187,11 @@ def upsert_embedding(session: Session, item_id: str, embedding_type: str,
 
 def build_embeddings(session: Session, bundle: dict[str, Any]) -> dict[str, bool]:
     """为一条记录生成 TEXT + ATTRIBUTES 两个向量。"""
-    text_content = bundle.get("normalized_text") or bundle.get("raw_description") or ""
+    # TEXT 向量喂**剥掉报案套话的原始描述**，不要喂 normalized_text：
+    # normalized_text 为了 FTS 追加了英文 canonical 词（black / bag），
+    # 会让查询侧和记录侧的文本分布不一致，反而拉低余弦相似度。
+    text_content = strip_report_boilerplate(
+        bundle.get("raw_description") or bundle.get("normalized_text") or "")
     attr_payload: dict[str, Any] = {
         "category": bundle.get("category"),
         "brand": bundle.get("brand"),
@@ -195,11 +203,13 @@ def build_embeddings(session: Session, bundle: dict[str, Any]) -> dict[str, bool
     if bundle.get("distinctive"):
         attr_payload["distinctive feature"] = bundle["distinctive"]
 
-    return {
-        "TEXT": upsert_embedding(session, bundle["id"], "TEXT", text_content),
-        "ATTRIBUTES": upsert_embedding(session, bundle["id"], "ATTRIBUTES",
-                                       canonical_text_for_attributes(attr_payload)),
-    }
+    attr_text = canonical_text_for_attributes(attr_payload)
+    out = {"TEXT": upsert_embedding(session, bundle["id"], "TEXT", text_content)}
+    # 少于 2 项属性的 canonical text（例如只有 "color: black"）没有区分度，
+    # 生成出来只会在召回里制造大量并列满分，不如不生成。
+    if len(attr_text.splitlines()) >= 2:
+        out["ATTRIBUTES"] = upsert_embedding(session, bundle["id"], "ATTRIBUTES", attr_text)
+    return out
 
 
 def query_vectors(session: Session, item_id: str) -> dict[str, list[float]]:

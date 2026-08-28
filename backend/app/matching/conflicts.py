@@ -130,9 +130,15 @@ def detect_conflicts(lost_attrs: list[dict], found_attrs: list[dict],
             found_map[key] = {"attribute_code": key, "value_text": found_core[key],
                               "source": found_core.get("source", "STAFF")}
 
+    # 类别抽取有歧义时，不允许它产生冲突（UNKNOWN != CONFLICT）
+    category_uncertain = bool((lost_core or {}).get("category_uncertain")
+                              or (found_core or {}).get("category_uncertain"))
+
     report = ConflictReport()
     for rule in cfg["rules"]:
         code = rule["attribute"]
+        if code == "category" and category_uncertain:
+            continue
         la, fa = lost_map.get(code), found_map.get(code)
         if not la or not fa:
             continue                       # UNKNOWN != CONFLICT

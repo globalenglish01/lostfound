@@ -35,6 +35,11 @@ CATEGORIES = [
     ("id_card", "documents", "身份证", 2, 1000, 72),
     ("clothing", None, "衣物", 1, None, None),
     ("jewelry", "personal", "首饰", 2, 300, 48),
+    ("goods", None, "其他物品", 1, None, None),
+    ("sake", "goods", "酒类", 2, 500, 72),
+    ("book", "goods", "书籍/笔记", 2, 300, 72),
+    ("medicine", "goods", "药品", 2, 300, 48),
+    ("cosmetics", "goods", "化妆品", 2, 300, 48),
 ]
 
 # (name, type, parent_name, lat, lon, aliases)

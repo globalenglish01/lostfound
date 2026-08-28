@@ -52,6 +52,21 @@ def category_score(lost: dict, found: dict, taxonomy: dict[str, str] | None = No
     if not a or not b:
         return FeatureScore("category", "category", None, lost_value=a, found_value=b,
                             explanation="任一侧未知类别，不参与评分")
+
+    # 抽取有歧义时保留了多个候选类别（「bottle of sake」-> water_bottle / sake）。
+    # 只要候选集合有交集就算命中；没有交集且存在歧义，则按 UNKNOWN 处理而非冲突。
+    la = [c for c in (lost.get("category_candidates") or [a]) if c]
+    fb = [c for c in (found.get("category_candidates") or [b]) if c]
+    uncertain = lost.get("category_uncertain") or found.get("category_uncertain")
+    if uncertain:
+        overlap = {norm_text(x) for x in la} & {norm_text(y) for y in fb}
+        if overlap:
+            return FeatureScore("category", "category", float(rel["SAME"]), 0.7, a, b,
+                                "SEMANTIC_MATCH",
+                                f"类别候选集合命中：{sorted(overlap)}（抽取存在歧义，可靠性下调）")
+        return FeatureScore("category", "category", None, lost_value=la, found_value=fb,
+                            explanation="类别抽取存在歧义且无交集，按 UNKNOWN 处理，不参与评分")
+
     if norm_text(a) == norm_text(b):
         return FeatureScore("category", "category", float(rel["SAME"]), 1.0, a, b,
                             "EXACT_MATCH", "类别完全一致")
@@ -143,9 +158,19 @@ def attribute_score(lost_attrs: list[dict], found_attrs: list[dict],
     if den == 0:
         return FeatureScore("attribute", "attribute", None,
                             explanation="双方没有可比对的共同属性", children=children)
-    return FeatureScore("attribute", "attribute", round(num / den, 4), 1.0,
+
+    # 证据厚度修正：只对上一个「颜色」也给 100 分是危险的——
+    # 库里每个类别都有一堆同色物品，属性维度权重又高达 25%~32%，
+    # 单薄证据会把一堆无关同色物品顶到前面。
+    # den 是实际参与比对的 sum(w*r)，用它相对「参考证据量」缩放该维度的可靠性 r。
+    ref = float(matching_weights().get("attribute_reference_mass", 8.0))
+    floor = float(matching_weights().get("attribute_min_reliability", 0.25))
+    thickness = max(floor, min(1.0, den / ref))
+    compared = len([c for c in children if c.score is not None])
+    return FeatureScore("attribute", "attribute", round(num / den, 4), round(thickness, 4),
                         relation="AGGREGATE", children=children,
-                        explanation=f"{len([c for c in children if c.score is not None])} 项属性加权")
+                        explanation=(f"{compared} 项属性加权"
+                                     f"（证据量 {den:.1f}/{ref:.0f}，可靠性 {thickness:.2f}）"))
 
 
 # ---------------------------------------------------------------------------

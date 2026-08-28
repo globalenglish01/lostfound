@@ -1,28 +1,58 @@
 {
   "algorithm_version": "lf-matching-v1.0",
   "_comment": "八大维度权重（category-aware）。权重绝不写死在代码里。缺失维度不参与评分，分母按 sum(w*r) 重新归一化。",
-
   "match_levels": [
-    { "min": 95, "max": 100, "level": "VERY_HIGH", "action": "AUTO_RECOMMEND" },
-    { "min": 85, "max": 95,  "level": "HIGH",      "action": "HUMAN_REVIEW" },
-    { "min": 70, "max": 85,  "level": "MEDIUM",    "action": "HUMAN_REVIEW" },
-    { "min": 50, "max": 70,  "level": "LOW",       "action": "DO_NOT_RECOMMEND" },
-    { "min": 0,  "max": 50,  "level": "IGNORE",    "action": "DO_NOT_RECOMMEND" }
+    {
+      "min": 95,
+      "max": 100,
+      "level": "VERY_HIGH",
+      "action": "AUTO_RECOMMEND"
+    },
+    {
+      "min": 85,
+      "max": 95,
+      "level": "HIGH",
+      "action": "HUMAN_REVIEW"
+    },
+    {
+      "min": 70,
+      "max": 85,
+      "level": "MEDIUM",
+      "action": "HUMAN_REVIEW"
+    },
+    {
+      "min": 50,
+      "max": 70,
+      "level": "LOW",
+      "action": "DO_NOT_RECOMMEND"
+    },
+    {
+      "min": 0,
+      "max": 50,
+      "level": "IGNORE",
+      "action": "DO_NOT_RECOMMEND"
+    }
   ],
-
   "_level_rule": "存在 CRITICAL 冲突时，无论分数多高都不得进入 HIGH 及以上",
   "critical_conflict_max_level": "LOW",
-
   "_coverage_rule": "Semantic / Keyword 属于弱证据，永远不能单独决定匹配。可用证据覆盖度不足时封顶匹配等级。",
-  "identity_dimensions": ["attribute", "distinctive", "category"],
+  "identity_dimensions": [
+    "attribute",
+    "distinctive",
+    "category"
+  ],
   "no_identity_evidence_max_level": "LOW",
   "evidence_coverage_caps": [
-    { "below": 0.30, "max_level": "LOW" },
-    { "below": 0.55, "max_level": "MEDIUM" }
+    {
+      "below": 0.3,
+      "max_level": "LOW"
+    },
+    {
+      "below": 0.55,
+      "max_level": "MEDIUM"
+    }
   ],
-
   "evidence_bonus_max": 10.0,
-
   "reliability": {
     "SERIAL": 1.0,
     "SYSTEM": 0.95,
@@ -37,12 +67,11 @@
     "UNCERTAIN": 0.5,
     "EXPLICIT": 0.85
   },
-
   "default": {
-    "category": 0.10,
+    "category": 0.1,
     "attribute": 0.25,
     "location": 0.15,
-    "time": 0.10,
+    "time": 0.1,
     "distinctive": 0.15,
     "semantic": 0.15,
     "keyword": 0.05,
@@ -50,7 +79,6 @@
     "location_tau_m": 500,
     "time_tau_hours": 24
   },
-
   "categories": {
     "smartphone": {
       "category": 0.08,
@@ -66,9 +94,9 @@
     },
     "wallet": {
       "category": 0.08,
-      "attribute": 0.30,
+      "attribute": 0.3,
       "location": 0.16,
-      "time": 0.10,
+      "time": 0.1,
       "distinctive": 0.18,
       "semantic": 0.11,
       "keyword": 0.03,
@@ -79,7 +107,7 @@
     "umbrella": {
       "category": 0.12,
       "attribute": 0.26,
-      "location": 0.20,
+      "location": 0.2,
       "time": 0.14,
       "distinctive": 0.14,
       "semantic": 0.09,
@@ -91,10 +119,10 @@
     "passport": {
       "category": 0.05,
       "attribute": 0.45,
-      "location": 0.10,
+      "location": 0.1,
       "time": 0.07,
       "distinctive": 0.13,
-      "semantic": 0.10,
+      "semantic": 0.1,
       "keyword": 0.06,
       "image": 0.04,
       "location_tau_m": 1000,
@@ -116,7 +144,7 @@
       "category": 0.08,
       "attribute": 0.28,
       "location": 0.14,
-      "time": 0.10,
+      "time": 0.1,
       "distinctive": 0.22,
       "semantic": 0.09,
       "keyword": 0.03,
@@ -125,17 +153,27 @@
       "time_tau_hours": 48
     }
   },
-
   "_environment_tau": "地点半径必须 environment aware：机场 5km 仍可能相关，办公室 500m 已经很远",
   "environments": {
-    "airport":   { "location_tau_m": 5000 },
-    "station":   { "location_tau_m": 800 },
-    "train":     { "location_tau_m": 3000 },
-    "office":    { "location_tau_m": 200 },
-    "shop":      { "location_tau_m": 150 },
-    "stadium":   { "location_tau_m": 1000 }
+    "airport": {
+      "location_tau_m": 5000
+    },
+    "station": {
+      "location_tau_m": 800
+    },
+    "train": {
+      "location_tau_m": 3000
+    },
+    "office": {
+      "location_tau_m": 200
+    },
+    "shop": {
+      "location_tau_m": 150
+    },
+    "stadium": {
+      "location_tau_m": 1000
+    }
   },
-
   "location_zone_scores": {
     "SAME_LOCATION": 100,
     "SAME_FACILITY": 95,
@@ -144,19 +182,20 @@
     "FAR": 30,
     "UNRELATED": 0
   },
-
   "category_relation_scores": {
     "SAME": 100,
     "SAME_PARENT": 70,
     "RELATED": 30,
     "UNRELATED": 0
   },
-
   "distinctive_relation_scores": {
     "EXACT": 100,
     "HIGHLY_SIMILAR": 90,
     "POSSIBLY_SAME": 70,
     "INCONSISTENT": 20,
     "CONFLICT": 0
-  }
+  },
+  "_attribute_thickness": "属性维度的证据厚度参考值：实际参与比对的 sum(w*r) 除以它，得到该维度的可靠性 r。只对上一个颜色 -> r 很低，不会拿满权重。",
+  "attribute_reference_mass": 8.0,
+  "attribute_min_reliability": 0.25
 }

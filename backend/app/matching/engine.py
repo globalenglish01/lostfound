@@ -59,9 +59,11 @@ def match_pair(lost: dict[str, Any], found: dict[str, Any],
     report = detect_conflicts(
         lost.get("attributes") or [], found.get("attributes") or [],
         {"category": lost.get("category"), "brand": lost.get("brand"),
-         "model": lost.get("model"), "source": "USER"},
+         "model": lost.get("model"), "source": "USER",
+         "category_uncertain": lost.get("category_uncertain")},
         {"category": found.get("category"), "brand": found.get("brand"),
-         "model": found.get("model"), "source": "STAFF"},
+         "model": found.get("model"), "source": "STAFF",
+         "category_uncertain": found.get("category_uncertain")},
     )
 
     result = compute_score(feats, report, category_code)
@@ -169,6 +171,8 @@ def run_matching(session: Session, source_item_id: str, *,
 
     target_type = "FOUND" if source["record_type"] == "LOST" else "LOST"
     query_text = source.get("normalized_text") or source.get("raw_description") or ""
+    # 关键词通道用 normalized_text（含 canonical 词，利于 FTS/trigram），
+    # 向量通道用剥离套话的原文——两者预处理不同，不能混用。
 
     candidates: list[Candidate] = hybrid_retrieve(
         session,

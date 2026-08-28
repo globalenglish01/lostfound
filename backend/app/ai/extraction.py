@@ -50,8 +50,17 @@ def normalize_extraction(raw: dict[str, Any], description: str) -> dict[str, Any
     brand, brand_orig, brand_conf, brand_st = val("brand")
     model, model_orig, model_conf, model_st = val("model")
 
+    category_candidates = [c for c in ((raw.get("category") or {}).get("candidates") or [])
+                           if c]
     core = {
-        "category": canonical_category(category),
+        # 零样本推断出来的 code 本身就是 canonical，不需要再过词典
+        "category": (category if (raw.get("category") or {}).get("inferred")
+                     else canonical_category(category)),
+        "category_candidates": category_candidates or (
+            [canonical_category(category)] if canonical_category(category) else []),
+        # INFERRED（向量推断）与 UNCERTAIN（多候选）都不允许据此判冲突
+        "category_uncertain": (category_st in {"UNCERTAIN", "INFERRED"}
+                               or len(category_candidates) > 1),
         "brand": canonical_brand(brand),
         "model": canonical_model(model),
         "raw_description": description,
@@ -163,6 +172,8 @@ def query_understanding(query: str) -> dict[str, Any]:
     return {
         "query": query,
         "category": parsed["core"].get("category"),
+        "category_candidates": parsed["core"].get("category_candidates") or [],
+        "category_uncertain": parsed["core"].get("category_uncertain", False),
         "brand": parsed["core"].get("brand"),
         "model": parsed["core"].get("model"),
         "location_name": parsed.get("location_name"),
