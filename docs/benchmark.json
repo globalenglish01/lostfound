@@ -1,0 +1,938 @@
+{
+  "environment": {
+    "status": "ok",
+    "algorithm_version": "lf-matching-v1.0",
+    "llm_provider": "rule",
+    "embedding_provider": "onnx",
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "llm_model": "rule-engine-v1"
+  },
+  "corpus_size": 247,
+  "elapsed_seconds": 145.1,
+  "summary": {
+    "queries": 53,
+    "recall@1": 0.9622641509433962,
+    "recall@3": 0.9622641509433962,
+    "recall@10": 0.9811320754716981,
+    "mrr": 0.9652312842361533,
+    "outside_topk": 0,
+    "top_k": 100,
+    "per_language": {
+      "en": {
+        "n": 7,
+        "recall@1": 0.8571428571428571,
+        "recall@3": 0.8571428571428571
+      },
+      "ja": {
+        "n": 32,
+        "recall@1": 0.96875,
+        "recall@3": 0.96875
+      },
+      "romaji": {
+        "n": 1,
+        "recall@1": 1.0,
+        "recall@3": 1.0
+      },
+      "zh": {
+        "n": 13,
+        "recall@1": 1.0,
+        "recall@3": 1.0
+      }
+    }
+  },
+  "results": [
+    {
+      "item": "bag",
+      "style": "ja-katakana",
+      "lang": "ja",
+      "query": "黒いバッグをなくしました",
+      "rank": 1,
+      "score": 69.6398,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "ja-katakana2",
+      "lang": "ja",
+      "query": "ブラックのバックパックを落としました",
+      "rank": 1,
+      "score": 67.8342,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "ja-hiragana",
+      "lang": "ja",
+      "query": "くろいかばんをおとしました",
+      "rank": 1,
+      "score": 59.7681,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "ja-kanji",
+      "lang": "ja",
+      "query": "黒い鞄を紛失しました",
+      "rank": 1,
+      "score": 67.6799,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "ja-colloquial",
+      "lang": "ja",
+      "query": "黒いリュック落としちゃった",
+      "rank": 1,
+      "score": 73.7567,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "ja-old",
+      "lang": "ja",
+      "query": "黒色の背嚢を失くしました",
+      "rank": 1,
+      "score": 70.6739,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "ja-alt",
+      "lang": "ja",
+      "query": "黒いデイパックが見つかりません",
+      "rank": 1,
+      "score": 74.4856,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "zh",
+      "lang": "zh",
+      "query": "丢了一个黑色双肩包",
+      "rank": 1,
+      "score": 67.5105,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "zh2",
+      "lang": "zh",
+      "query": "黑色背包不见了",
+      "rank": 1,
+      "score": 67.108,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "en",
+      "lang": "en",
+      "query": "lost a black backpack",
+      "rank": 1,
+      "score": 62.771,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bag",
+      "style": "romaji",
+      "lang": "romaji",
+      "query": "kuroi kaban wo nakushimashita",
+      "rank": 1,
+      "score": 57.1814,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "bag",
+      "candidates": 247
+    },
+    {
+      "item": "bottle",
+      "style": "ja-katakana",
+      "lang": "ja",
+      "query": "青いタンブラーをなくしました",
+      "rank": 1,
+      "score": 70.6768,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "bottle",
+      "style": "ja-katakana2",
+      "lang": "ja",
+      "query": "ブルーのマイボトルを落としました",
+      "rank": 1,
+      "score": 73.8531,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "bottle",
+      "style": "ja-hiragana",
+      "lang": "ja",
+      "query": "あおいすいとうをおとしました",
+      "rank": 1,
+      "score": 55.9048,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "bottle",
+      "style": "ja-kanji",
+      "lang": "ja",
+      "query": "青色の魔法瓶を紛失",
+      "rank": 1,
+      "score": 72.7557,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "bottle",
+      "style": "ja-colloquial",
+      "lang": "ja",
+      "query": "青いボトル忘れちゃった",
+      "rank": 1,
+      "score": 69.51,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "bottle",
+      "style": "zh",
+      "lang": "zh",
+      "query": "丢了一个蓝色保温杯",
+      "rank": 1,
+      "score": 72.2467,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "bottle",
+      "style": "zh2",
+      "lang": "zh",
+      "query": "蓝色不锈钢水壶不见了",
+      "rank": 1,
+      "score": 72.1668,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "bottle",
+      "style": "en",
+      "lang": "en",
+      "query": "lost a blue thermos flask",
+      "rank": 1,
+      "score": 75.1404,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "umbrella",
+      "style": "ja-hiragana",
+      "lang": "ja",
+      "query": "こんいろのかさをなくしました",
+      "rank": 1,
+      "score": 72.8625,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "umbrella",
+      "candidates": 247
+    },
+    {
+      "item": "umbrella",
+      "style": "ja-katakana",
+      "lang": "ja",
+      "query": "ネイビーのアンブレラを落としました",
+      "rank": 1,
+      "score": 75.0108,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "umbrella",
+      "candidates": 247
+    },
+    {
+      "item": "umbrella",
+      "style": "ja-kanji",
+      "lang": "ja",
+      "query": "紺色の雨傘を紛失しました",
+      "rank": 1,
+      "score": 89.9121,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "umbrella",
+      "candidates": 247
+    },
+    {
+      "item": "umbrella",
+      "style": "ja-colloquial",
+      "lang": "ja",
+      "query": "紺の折りたたみ忘れた",
+      "rank": 1,
+      "score": 86.156,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "umbrella",
+      "candidates": 247
+    },
+    {
+      "item": "umbrella",
+      "style": "zh",
+      "lang": "zh",
+      "query": "丢了一把深蓝色折叠伞",
+      "rank": 1,
+      "score": 89.7661,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "umbrella",
+      "candidates": 247
+    },
+    {
+      "item": "umbrella",
+      "style": "zh2",
+      "lang": "zh",
+      "query": "藏青色带花纹的伞不见了",
+      "rank": 1,
+      "score": 91.3701,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "umbrella",
+      "candidates": 247
+    },
+    {
+      "item": "umbrella",
+      "style": "en",
+      "lang": "en",
+      "query": "lost a navy folding umbrella with flower pattern",
+      "rank": 1,
+      "score": 67.1171,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "umbrella",
+      "candidates": 247
+    },
+    {
+      "item": "wallet",
+      "style": "ja-hiragana",
+      "lang": "ja",
+      "query": "ちゃいろのさいふをなくしました",
+      "rank": 1,
+      "score": 64.4,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "wallet",
+      "candidates": 247
+    },
+    {
+      "item": "wallet",
+      "style": "ja-katakana",
+      "lang": "ja",
+      "query": "ブラウンのウォレットを落としました",
+      "rank": 1,
+      "score": 72.1133,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "wallet",
+      "candidates": 247
+    },
+    {
+      "item": "wallet",
+      "style": "ja-kanji",
+      "lang": "ja",
+      "query": "茶色の札入れを紛失",
+      "rank": 1,
+      "score": 80.8975,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "wallet",
+      "candidates": 247
+    },
+    {
+      "item": "wallet",
+      "style": "ja-alt",
+      "lang": "ja",
+      "query": "茶色いがま口を失くしました",
+      "rank": 1,
+      "score": 71.7373,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "wallet",
+      "candidates": 247
+    },
+    {
+      "item": "wallet",
+      "style": "ja-colloquial",
+      "lang": "ja",
+      "query": "茶色の財布どっかいった",
+      "rank": 1,
+      "score": 84.9178,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "wallet",
+      "candidates": 247
+    },
+    {
+      "item": "wallet",
+      "style": "zh",
+      "lang": "zh",
+      "query": "丢了一个棕色皮夹",
+      "rank": 1,
+      "score": 84.6233,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "wallet",
+      "candidates": 247
+    },
+    {
+      "item": "wallet",
+      "style": "zh2",
+      "lang": "zh",
+      "query": "咖啡色真皮长款钱包不见了",
+      "rank": 1,
+      "score": 82.5397,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "wallet",
+      "candidates": 247
+    },
+    {
+      "item": "wallet",
+      "style": "en",
+      "lang": "en",
+      "query": "lost a brown leather long wallet",
+      "rank": 1,
+      "score": 89.3364,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "wallet",
+      "candidates": 247
+    },
+    {
+      "item": "earbuds",
+      "style": "ja-katakana",
+      "lang": "ja",
+      "query": "白いワイヤレスイヤフォンをなくしました",
+      "rank": 1,
+      "score": 82.6597,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "earbuds",
+      "candidates": 247
+    },
+    {
+      "item": "earbuds",
+      "style": "ja-brand",
+      "lang": "ja",
+      "query": "白いエアポッズを落としました",
+      "rank": 1,
+      "score": 68.0347,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "earbuds",
+      "candidates": 247
+    },
+    {
+      "item": "earbuds",
+      "style": "ja-hiragana",
+      "lang": "ja",
+      "query": "しろいみみにつけるやつをなくした",
+      "rank": 31,
+      "score": 56.4089,
+      "level": "LOW",
+      "channels": [
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "earbuds",
+      "style": "ja-alt",
+      "lang": "ja",
+      "query": "白い無線ヘッドホンを紛失",
+      "rank": 1,
+      "score": 75.3155,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "earbuds",
+      "candidates": 247
+    },
+    {
+      "item": "earbuds",
+      "style": "zh",
+      "lang": "zh",
+      "query": "丢了白色无线耳机",
+      "rank": 1,
+      "score": 76.6249,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "earbuds",
+      "candidates": 247
+    },
+    {
+      "item": "earbuds",
+      "style": "zh2",
+      "lang": "zh",
+      "query": "白色蓝牙耳机连充电盒不见了",
+      "rank": 1,
+      "score": 80.5275,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "earbuds",
+      "candidates": 247
+    },
+    {
+      "item": "earbuds",
+      "style": "en",
+      "lang": "en",
+      "query": "lost white wireless earbuds with charging case",
+      "rank": 1,
+      "score": 66.9891,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "earbuds",
+      "candidates": 247
+    },
+    {
+      "item": "sake",
+      "style": "ja-polite",
+      "lang": "ja",
+      "query": "お酒の瓶を忘れました",
+      "rank": 1,
+      "score": 71.9766,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text"
+      ],
+      "understood_category": "sake",
+      "candidates": 247
+    },
+    {
+      "item": "sake",
+      "style": "ja-alt",
+      "lang": "ja",
+      "query": "地酒の一升瓶を置き忘れました",
+      "rank": 1,
+      "score": 74.5538,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text"
+      ],
+      "understood_category": "sake",
+      "candidates": 247
+    },
+    {
+      "item": "sake",
+      "style": "ja-colloquial",
+      "lang": "ja",
+      "query": "日本酒の瓶忘れてきた",
+      "rank": 1,
+      "score": 80.3411,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text"
+      ],
+      "understood_category": "sake",
+      "candidates": 247
+    },
+    {
+      "item": "sake",
+      "style": "ja-kanji",
+      "lang": "ja",
+      "query": "清酒の大瓶を紛失",
+      "rank": 1,
+      "score": 71.287,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text"
+      ],
+      "understood_category": "sake",
+      "candidates": 247
+    },
+    {
+      "item": "sake",
+      "style": "zh",
+      "lang": "zh",
+      "query": "落了一瓶日本清酒",
+      "rank": 1,
+      "score": 69.6216,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text"
+      ],
+      "understood_category": "sake",
+      "candidates": 247
+    },
+    {
+      "item": "sake",
+      "style": "en",
+      "lang": "en",
+      "query": "left a bottle of sake",
+      "rank": 8,
+      "score": 56.7574,
+      "level": "LOW",
+      "channels": [
+        "keyword",
+        "vector_text"
+      ],
+      "understood_category": "water_bottle",
+      "candidates": 247
+    },
+    {
+      "item": "laptop",
+      "style": "ja-katakana",
+      "lang": "ja",
+      "query": "シルバーのノートPCをなくしました",
+      "rank": 1,
+      "score": 76.7243,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "laptop",
+      "candidates": 247
+    },
+    {
+      "item": "laptop",
+      "style": "ja-alt",
+      "lang": "ja",
+      "query": "銀色のラップトップを落としました",
+      "rank": 1,
+      "score": 81.8184,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "laptop",
+      "candidates": 247
+    },
+    {
+      "item": "laptop",
+      "style": "ja-hiragana",
+      "lang": "ja",
+      "query": "ぎんいろのぱそこんをなくした",
+      "rank": 1,
+      "score": 58.2817,
+      "level": "LOW",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "laptop",
+      "candidates": 247
+    },
+    {
+      "item": "laptop",
+      "style": "zh",
+      "lang": "zh",
+      "query": "丢了一台银色笔记本电脑",
+      "rank": 1,
+      "score": 81.2596,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "laptop",
+      "candidates": 247
+    },
+    {
+      "item": "laptop",
+      "style": "zh2",
+      "lang": "zh",
+      "query": "13寸银色手提电脑不见了",
+      "rank": 1,
+      "score": 84.4062,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "laptop",
+      "candidates": 247
+    },
+    {
+      "item": "laptop",
+      "style": "en",
+      "lang": "en",
+      "query": "lost a silver 13 inch laptop",
+      "rank": 1,
+      "score": 83.4055,
+      "level": "MEDIUM",
+      "channels": [
+        "structured",
+        "keyword",
+        "vector_text",
+        "vector_attr"
+      ],
+      "understood_category": "laptop",
+      "candidates": 247
+    }
+  ]
+}

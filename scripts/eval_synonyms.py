@@ -17,11 +17,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import urllib.request
 from pathlib import Path
 
-BASE = "http://127.0.0.1:8080"
+BASE = os.getenv("LF_API_BASE", "http://127.0.0.1:8080")
 
 # --------------------------------------------------------------------------
 # 登记侧：工作人员的写法（每个物品只有这一种表述进库）

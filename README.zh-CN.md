@@ -116,6 +116,19 @@ S_final = clip( Σ(wᵢ · rᵢ · sᵢ) / Σ(wᵢ · rᵢ)  −  P_conflict  + 
 所以 `base_pool` 只按 `record_type + status` 收缩；类别只是 RRF 的一路 + 一个评分维度，
 绝不是生杀大权。
 
+### 自己跑一遍
+
+下面每个数字都由一条命令产出，没有一个是手写的：
+
+```bash
+docker compose up -d --build
+docker compose exec api python -m scripts.benchmark
+```
+
+它会清库、灌语料、跑完 53 条查询，生成
+[docs/BENCHMARK.md](docs/BENCHMARK.md) 和机器可读的
+[docs/benchmark.json](docs/benchmark.json)。
+
 ### 实测，不是宣称
 
 ```bash
@@ -189,6 +202,28 @@ python -m scripts.reextract            # 词典 / 抽取规则改动后重跑 AI
 Accuracy **刻意**不是核心指标。真正要盯的失败是 **False Positive** —— 把别人的东西推荐给用户。
 
 ---
+
+## 成本：零。不需要 API key，不依赖任何付费服务
+
+| 组件 | 许可证 | 费用 |
+|---|---|---|
+| PostgreSQL + pgvector | PostgreSQL License / MIT | 免费 |
+| FastAPI / SQLAlchemy / psycopg / uvicorn | MIT / BSD | 免费 |
+| fastembed + onnxruntime | Apache-2.0 / MIT | 免费 |
+| `paraphrase-multilingual-MiniLM-L12-v2` | Apache-2.0 | 免费 |
+| LLM | **默认 provider 是 `rule`，根本不调用任何模型** | — |
+
+241MB 的向量模型在 **构建时就打进镜像**，运行中的容器不联网，也不需要 HuggingFace token。
+`LF_LLM_API_KEY` 和 `LF_EMBEDDING_API_KEY` 默认为空且不会被使用。
+
+两点如实说明：
+
+1. **首次构建**需要联网（拉基础镜像 + 下模型），之后完全离线可用。
+2. **Docker Desktop 对大型企业需要商业订阅** —— 这是 Docker 自己的授权政策，与本项目无关。
+   Linux 上的 Docker Engine 和 Podman 完全免费。
+
+`openai_compatible` 那些 provider 是留给企业接自己网关用的，属于可选项；
+不配置就永远不会被调用。
 
 ## Provider
 

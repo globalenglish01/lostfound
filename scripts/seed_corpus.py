@@ -11,11 +11,12 @@ from __future__ import annotations
 import argparse
 import itertools
 import json
+import os
 import sys
 import urllib.request
 from pathlib import Path
 
-BASE = "http://127.0.0.1:8080"
+BASE = os.getenv("LF_API_BASE", "http://127.0.0.1:8080")
 
 TEMPLATES: dict[str, tuple[str, list[str], list[str], list[str]]] = {
     # category: (名詞, 色, 素材/形状, 特徴)

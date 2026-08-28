@@ -121,6 +121,19 @@ S_final = clip( Σ(wᵢ · rᵢ · sᵢ) / Σ(wᵢ · rᵢ)  −  P_conflict  + 
 そのため `base_pool` は `record_type + status` だけで絞り、
 カテゴリは RRF の 1 経路かつスコアの 1 次元にとどめ、生殺与奪の権は与えません。
 
+### 自分で再現する
+
+以下の数値はすべて 1 コマンドで生成されます。手書きの数字はありません。
+
+```bash
+docker compose up -d --build
+docker compose exec api python -m scripts.benchmark
+```
+
+DB を初期化し、コーパスを投入し、53 クエリを実行して
+[docs/BENCHMARK.md](docs/BENCHMARK.md) と機械可読の
+[docs/benchmark.json](docs/benchmark.json) を出力します。
+
 ### 主張ではなく実測
 
 ```bash
@@ -197,6 +210,29 @@ Accuracy は**意図的に**主要指標にしていません。本当に怖い�
 他人の所持品を推薦してしまうことです。
 
 ---
+
+## コスト：ゼロ。API キー不要、有料サービス不使用
+
+| コンポーネント | ライセンス | 費用 |
+|---|---|---|
+| PostgreSQL + pgvector | PostgreSQL License / MIT | 無料 |
+| FastAPI / SQLAlchemy / psycopg / uvicorn | MIT / BSD | 無料 |
+| fastembed + onnxruntime | Apache-2.0 / MIT | 無料 |
+| `paraphrase-multilingual-MiniLM-L12-v2` | Apache-2.0 | 無料 |
+| LLM | **既定の provider は `rule`。モデルを一切呼びません** | — |
+
+241MB のベクトルモデルは**ビルド時にイメージへ焼き込まれる**ため、
+稼働中のコンテナはネットワークにアクセスせず、HuggingFace のトークンも不要です。
+`LF_LLM_API_KEY` と `LF_EMBEDDING_API_KEY` は既定で空、かつ使用されません。
+
+正直に述べておく点が 2 つあります。
+
+1. **初回ビルド時のみ**インターネットが必要です（ベースイメージとモデルの取得）。以降はオフラインで動作します。
+2. **Docker Desktop は大企業では有償サブスクリプションが必要**です。これは Docker 社のライセンス方針であり、
+   本プロジェクトとは無関係です。Linux の Docker Engine や Podman は無料です。
+
+`openai_compatible` 系の provider は、企業が自社ゲートウェイを接続するための**オプション**です。
+設定しなければ一度も呼ばれません。
 
 ## Provider
 

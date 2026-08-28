@@ -121,6 +121,19 @@ the record becomes a water bottle. Use that as a filter and the sake is unreacha
 forever, silently. So `base_pool` narrows only by `record_type + status`; category is one
 RRF channel and one scoring dimension, never a gate.
 
+### Reproduce it yourself
+
+Every number below is produced by one command — nothing is hand-written:
+
+```bash
+docker compose up -d --build
+docker compose exec api python -m scripts.benchmark
+```
+
+It wipes the database, seeds the corpus, runs all 53 queries, and writes
+[docs/BENCHMARK.md](docs/BENCHMARK.md) plus a machine-readable
+[docs/benchmark.json](docs/benchmark.json).
+
 ### Measured, not asserted
 
 ```bash
@@ -198,6 +211,29 @@ Accuracy is deliberately **not** the headline metric. The failure that matters i
 **false positive** — recommending the wrong person's property.
 
 ---
+
+## Cost: zero. No API keys, no paid services.
+
+| Component | License | Cost |
+|---|---|---|
+| PostgreSQL + pgvector | PostgreSQL License / MIT | Free |
+| FastAPI / SQLAlchemy / psycopg / uvicorn | MIT / BSD | Free |
+| fastembed + onnxruntime | Apache-2.0 / MIT | Free |
+| `paraphrase-multilingual-MiniLM-L12-v2` | Apache-2.0 | Free |
+| LLM | **Default provider is `rule` — no model is called at all** | — |
+
+The 241 MB embedding model is **baked into the image at build time**, so the running
+container never reaches the network and never needs a HuggingFace token. `LF_LLM_API_KEY`
+and `LF_EMBEDDING_API_KEY` are empty by default and unused.
+
+Two honest caveats:
+
+1. The **first build** needs internet (base images + the model). After that it runs offline.
+2. **Docker Desktop** requires a paid subscription for large organisations — that is Docker's
+   own licensing, unrelated to this project. Docker Engine and Podman on Linux are free.
+
+The `openai_compatible` providers exist so enterprises can point at their own gateway.
+They are opt-in; if you do not configure them, nothing is ever called.
 
 ## Providers
 

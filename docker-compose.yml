@@ -34,11 +34,16 @@ services:
       LF_EMBEDDING_MODEL: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
       LF_EMBEDDING_MODEL_VERSION: v1
       LF_MODEL_CACHE: /models
+      # 容器内跑评测脚本时指向自身
+      LF_API_BASE: http://127.0.0.1:8000
     ports:
       - "8080:8000"
     volumes:
       - ./config:/app/config:ro
       - ./db:/app/db:ro
+      # 评测脚本挂载进来：改完不用重建镜像就能重跑 benchmark
+      - ./scripts:/app/scripts:ro
+      - ./docs:/app/docs
 
 volumes:
   lostfound_pgdata:
