@@ -1,0 +1,40 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: lostfound-db
+    environment:
+      POSTGRES_USER: lostfound
+      POSTGRES_PASSWORD: lostfound
+      POSTGRES_DB: lostfound
+    ports:
+      - "5433:5432"
+    volumes:
+      - lostfound_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lostfound -d lostfound"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: lostfound-api
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      LF_DATABASE_URL: postgresql+psycopg://lostfound:lostfound@db:5432/lostfound
+      LF_CONFIG_DIR: /app/config
+      # 默认零外部依赖；生产改成企业网关
+      LF_LLM_PROVIDER: rule
+      LF_EMBEDDING_PROVIDER: hashing
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./config:/app/config:ro
+      - ./db:/app/db:ro
+
+volumes:
+  lostfound_pgdata:

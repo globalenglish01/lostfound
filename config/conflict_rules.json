@@ -1,0 +1,112 @@
+{
+  "_comment": "冲突分级与惩罚。Hard Constraint 不能太多——颜色 black vs dark gray 绝不能 REJECT。",
+
+  "severity_penalty": {
+    "CRITICAL": 70,
+    "MAJOR": 40,
+    "MINOR": 10
+  },
+
+  "penalty_aggregation": "max_plus_half_rest",
+  "_penalty_aggregation_note": "取最严重一条的全额惩罚 + 其余惩罚的一半，避免多条 MINOR 线性叠加把分数打穿",
+
+  "rules": [
+    {
+      "attribute": "imei",
+      "severity": "CRITICAL",
+      "comparator": "exact",
+      "reject": true,
+      "reason": "IMEI 明确不一致"
+    },
+    {
+      "attribute": "serial_number",
+      "severity": "CRITICAL",
+      "comparator": "exact",
+      "reject": true,
+      "reason": "序列号明确不一致"
+    },
+    {
+      "attribute": "passport_number",
+      "severity": "CRITICAL",
+      "comparator": "exact",
+      "reject": true,
+      "reason": "证件号码明确不一致"
+    },
+    {
+      "attribute": "model",
+      "severity": "CRITICAL",
+      "comparator": "model",
+      "reject": false,
+      "penalty": 70,
+      "reason": "型号明确不一致（iPhone 15 Pro vs iPhone 15 Pro Max 是两台不同的手机）"
+    },
+    {
+      "attribute": "brand",
+      "severity": "MAJOR",
+      "comparator": "normalized",
+      "penalty": 45,
+      "reason": "品牌明确不一致"
+    },
+    {
+      "attribute": "category",
+      "severity": "MAJOR",
+      "comparator": "normalized",
+      "penalty": 50,
+      "reason": "物品类别明显不一致"
+    },
+    {
+      "attribute": "nationality",
+      "severity": "MAJOR",
+      "comparator": "normalized",
+      "penalty": 50,
+      "reason": "国籍不一致"
+    },
+    {
+      "attribute": "color",
+      "severity": "MINOR",
+      "comparator": "color",
+      "penalty": 8,
+      "reason": "颜色描述不一致"
+    },
+    {
+      "attribute": "material",
+      "severity": "MINOR",
+      "comparator": "normalized",
+      "penalty": 8,
+      "reason": "材质描述不一致"
+    },
+    {
+      "attribute": "size",
+      "severity": "MINOR",
+      "comparator": "normalized",
+      "penalty": 6,
+      "reason": "尺寸略有差异"
+    },
+    {
+      "attribute": "case",
+      "severity": "MINOR",
+      "comparator": "normalized",
+      "penalty": 10,
+      "reason": "手机壳/保护套描述不一致"
+    }
+  ],
+
+  "_color_note": "同一族颜色互不冲突：black / dark gray / 深色 视为同族",
+  "color_families": {
+    "black": ["black", "黑色", "黑", "黒", "ブラック", "dark gray", "dark grey", "深灰", "深灰色", "深色", "charcoal"],
+    "white": ["white", "白色", "白", "ホワイト", "ivory", "off-white", "米白"],
+    "gray":  ["gray", "grey", "灰色", "グレー", "silver", "银色", "シルバー"],
+    "blue":  ["blue", "蓝色", "青", "ブルー", "navy", "藏青", "深蓝", "light blue", "浅蓝"],
+    "red":   ["red", "红色", "赤", "レッド", "crimson", "酒红", "wine"],
+    "pink":  ["pink", "粉色", "ピンク", "rose", "玫瑰金", "rose gold"],
+    "green": ["green", "绿色", "緑", "グリーン", "olive", "墨绿"],
+    "yellow":["yellow", "黄色", "黄", "イエロー", "gold", "金色", "ゴールド"],
+    "brown": ["brown", "棕色", "茶色", "ブラウン", "coffee", "咖啡色", "tan"],
+    "purple":["purple", "紫色", "パープル", "violet"],
+    "orange":["orange", "橙色", "オレンジ"],
+    "transparent": ["transparent", "clear", "透明", "クリア", "无色"]
+  },
+
+  "_model_note": "型号比较规则：归一化后完全一致=匹配；一个是另一个的严格前缀且剩余部分是 Pro/Max/Plus/mini 等档位词 => CRITICAL 冲突",
+  "model_tier_tokens": ["pro", "max", "plus", "mini", "ultra", "se", "air", "lite", "promax"]
+}

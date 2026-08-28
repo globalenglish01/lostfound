@@ -1,0 +1,77 @@
+{
+  "_comment": "中/日/英同义词与标准化词典。用户说法千奇百怪：苹果手机 / iPhone / アイフォン / 黒い財布 / 黑色钱包。",
+
+  "category": {
+    "smartphone": ["手机", "苹果手机", "iphone", "スマホ", "携帯", "携帯電話", "phone", "mobile", "安卓手机", "android"],
+    "laptop": ["笔记本", "笔记本电脑", "电脑", "ノートパソコン", "パソコン", "macbook", "laptop", "notebook"],
+    "tablet": ["平板", "ipad", "タブレット", "tablet"],
+    "earbuds": ["耳机", "无线耳机", "蓝牙耳机", "airpods", "イヤホン", "ワイヤレスイヤホン", "earphone", "headphone"],
+    "camera": ["相机", "カメラ", "camera", "单反"],
+    "wallet": ["钱包", "钱夹", "皮夹", "財布", "さいふ", "wallet", "purse", "长夹", "長財布"],
+    "bag": ["包", "手提包", "背包", "双肩包", "カバン", "バッグ", "リュック", "bag", "backpack", "handbag"],
+    "umbrella": ["雨伞", "伞", "傘", "かさ", "umbrella", "折叠伞", "折り畳み傘"],
+    "keys": ["钥匙", "鍵", "かぎ", "key", "keys", "钥匙串"],
+    "passport": ["护照", "パスポート", "passport"],
+    "id_card": ["身份证", "身分証", "id card", "在留カード"],
+    "jewelry": ["首饰", "戒指", "项链", "耳环", "アクセサリー", "指輪", "ring", "necklace"],
+    "clothing": ["衣服", "外套", "夹克", "上着", "ジャケット", "jacket", "coat", "围巾", "マフラー", "scarf"],
+    "water_bottle": ["水杯", "水壶", "保温杯", "水筒", "ボトル", "bottle", "tumbler"]
+  },
+
+  "brand": {
+    "Apple": ["苹果", "apple", "アップル", "アップル社"],
+    "Samsung": ["三星", "samsung", "サムスン", "galaxy"],
+    "Sony": ["索尼", "sony", "ソニー"],
+    "Xiaomi": ["小米", "xiaomi", "mi", "シャオミ"],
+    "Huawei": ["华为", "huawei", "ファーウェイ"],
+    "Louis Vuitton": ["lv", "louis vuitton", "路易威登", "ルイヴィトン"],
+    "Prada": ["prada", "普拉达", "プラダ"],
+    "Gucci": ["gucci", "古驰", "グッチ"],
+    "Nintendo": ["任天堂", "nintendo", "ニンテンドー", "switch"],
+    "Anker": ["anker", "アンカー"],
+    "Uniqlo": ["优衣库", "uniqlo", "ユニクロ"]
+  },
+
+  "color": {
+    "black": ["黑色", "黑", "黒", "黒い", "ブラック", "深黑", "深色"],
+    "dark_gray": ["深灰", "深灰色", "ダークグレー", "charcoal"],
+    "white": ["白色", "白", "白い", "ホワイト"],
+    "gray": ["灰色", "グレー", "silver", "银色", "シルバー"],
+    "blue": ["蓝色", "藍", "青", "ブルー", "navy", "藏青"],
+    "red": ["红色", "赤", "赤い", "レッド"],
+    "pink": ["粉色", "粉红", "ピンク"],
+    "green": ["绿色", "緑", "グリーン"],
+    "yellow": ["黄色", "黄", "イエロー"],
+    "brown": ["棕色", "茶色", "褐色", "ブラウン"],
+    "purple": ["紫色", "紫", "パープル"],
+    "orange": ["橙色", "橘色", "オレンジ"],
+    "gold": ["金色", "ゴールド", "香槟金"],
+    "transparent": ["透明", "クリア", "无色", "透明色"]
+  },
+
+  "attribute": {
+    "case": ["手机壳", "手机套", "保护壳", "保护套", "ケース", "カバー", "case", "cover"],
+    "sticker": ["贴纸", "シール", "sticker", "贴画"],
+    "scratch": ["划痕", "裂痕", "破损", "傷", "ひび", "crack", "scratch"],
+    "engraving": ["刻字", "刻印", "彫刻", "engraving"],
+    "strap": ["挂绳", "吊饰", "ストラップ", "strap", "挂件"]
+  },
+
+  "location": {
+    "Shinjuku Station": ["新宿站", "新宿駅", "shinjuku station", "shinjuku", "新宿"],
+    "Tokyo Station": ["东京站", "東京駅", "tokyo station"],
+    "Shibuya Station": ["涩谷站", "渋谷駅", "shibuya station", "shibuya"],
+    "Haneda Airport": ["羽田机场", "羽田空港", "haneda airport", "hnd"],
+    "Narita Airport": ["成田机场", "成田空港", "narita airport", "nrt"],
+    "train": ["电车", "地铁", "列车", "電車", "地下鉄", "metro", "subway", "train"]
+  },
+
+  "material": {
+    "leather": ["皮", "皮革", "真皮", "革", "レザー", "leather"],
+    "nylon": ["尼龙", "ナイロン", "nylon"],
+    "plastic": ["塑料", "プラスチック", "plastic"],
+    "metal": ["金属", "メタル", "metal", "不锈钢"],
+    "silicone": ["硅胶", "シリコン", "silicone"],
+    "canvas": ["帆布", "キャンバス", "canvas"]
+  }
+}

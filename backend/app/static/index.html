@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>失物智能匹配平台</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --fg:#1a1d21; --muted:#6b7280;
+    --line:#e5e7eb; --accent:#2563eb; --ok:#16a34a; --warn:#d97706; --bad:#dc2626;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0f1115;--card:#171a1f;--fg:#e7e9ee;--muted:#9aa1ad;--line:#272b33;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:15px/1.6 system-ui,-apple-system,"Segoe UI","Noto Sans CJK SC",sans-serif}
+  header{padding:24px 20px 8px;max-width:960px;margin:0 auto}
+  h1{font-size:20px;margin:0 0 4px}
+  header p{margin:0;color:var(--muted);font-size:13px}
+  main{max-width:960px;margin:0 auto;padding:16px 20px 60px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+        padding:16px;margin-bottom:16px}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tabs button{background:var(--card);border:1px solid var(--line);color:var(--fg);
+    padding:7px 14px;border-radius:999px;cursor:pointer;font-size:14px}
+  .tabs button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  textarea,input,select{width:100%;padding:9px 11px;border:1px solid var(--line);
+    border-radius:7px;background:transparent;color:var(--fg);font:inherit}
+  textarea{min-height:86px;resize:vertical}
+  label{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row>div{flex:1 1 180px}
+  button.primary{margin-top:14px;background:var(--accent);color:#fff;border:0;
+    padding:10px 18px;border-radius:7px;cursor:pointer;font:inherit}
+  .result{border-left:3px solid var(--line);padding-left:12px;margin:14px 0}
+  .lvl{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;
+       font-weight:600;color:#fff}
+  .VERY_HIGH,.HIGH{background:var(--ok)} .MEDIUM{background:var(--warn)}
+  .LOW,.IGNORE,.REJECT{background:var(--bad)}
+  .ev{font-size:13px;color:var(--muted);margin:2px 0}
+  .ev b{color:var(--fg);font-weight:600}
+  .ok::before{content:"✓ ";color:var(--ok)}
+  .cf::before{content:"! ";color:var(--bad)}
+  .dims{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:6px}
+  .dims span{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 7px}
+  pre{overflow-x:auto;background:var(--bg);border:1px solid var(--line);
+      border-radius:7px;padding:10px;font-size:12px}
+  .hint{font-size:12px;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+  <h1>失物智能匹配平台</h1>
+  <p>Embedding 负责「找得出来」，结构化属性负责「比得准」，Hard Constraint 负责「排错」，人工确认负责「最终归属」</p>
+</header>
+<main>
+  <div class="tabs">
+    <button class="active" data-tab="search">智能检索</button>
+    <button data-tab="lost">用户报失</button>
+    <button data-tab="found">工作人员登记拾获</button>
+    <button data-tab="extract">AI 抽取调试</button>
+  </div>
+
+  <div class="card" id="panel"></div>
+  <div id="out"></div>
+</main>
+
+<script>
+const $ = (s,r=document)=>r.querySelector(s);
+let tab = "search";
+
+const panels = {
+  search: `
+    <label>描述你丢失的物品（自然语言即可）</label>
+    <textarea id="q">黑色苹果手机，透明壳，后面有猫咪贴纸，昨天在新宿站丢的</textarea>
+    <div class="row">
+      <div><label>搜索目标</label>
+        <select id="type"><option value="FOUND">拾获记录 FOUND</option><option value="LOST">失物记录 LOST</option></select></div>
+      <div><label>Top K</label><input id="topk" type="number" value="10"></div>
+    </div>
+    <button class="primary" onclick="doSearch()">搜索</button>
+    <p class="hint">流程：Query Understanding → 结构化过滤 → BM25 ∪ pgvector → RRF → 硬约束 → 八维打分 → Top K</p>`,
+  lost: `
+    <label>用户原话（原封不动保存到 raw_description）</label>
+    <textarea id="d">昨天晚上在新宿站丢了一部黑色 iPhone 15 Pro，透明手机壳，背面有猫咪贴纸</textarea>
+    <div class="row">
+      <div><label>地点</label><input id="loc" value="新宿站"></div>
+      <div><label>丢失时间起</label><input id="t1" value="2026-08-27T19:00:00Z"></div>
+      <div><label>丢失时间止</label><input id="t2" value="2026-08-27T22:00:00Z"></div>
+    </div>
+    <button class="primary" onclick="doReport('lost')">提交报失并自动匹配</button>`,
+  found: `
+    <label>拾获描述</label>
+    <textarea id="d">新宿站南口拾获深灰色 Apple iPhone 15 Pro，透明保护套，背面有猫咪图案</textarea>
+    <div class="row">
+      <div><label>地点</label><input id="loc" value="新宿站南口"></div>
+      <div><label>拾获时间</label><input id="t1" value="2026-08-27T20:10:00Z"></div>
+      <div><label>保管位置</label><input id="store" value="Locker A-23"></div>
+    </div>
+    <button class="primary" onclick="doReport('found')">登记并反查历史失物</button>`,
+  extract: `
+    <label>任意描述</label>
+    <textarea id="d">昨天晚上在新宿站丢了一部黑色 iPhone 15 Pro，透明手机壳，背面有猫咪贴纸</textarea>
+    <button class="primary" onclick="doExtract()">抽取结构化信息</button>
+    <p class="hint">规则：只抽取明确陈述或强烈暗示的信息，未知返回 null，绝不编造。</p>`
+};
+
+function render(){
+  $("#panel").innerHTML = panels[tab];
+  document.querySelectorAll(".tabs button").forEach(b=>
+    b.classList.toggle("active", b.dataset.tab===tab));
+}
+document.querySelectorAll(".tabs button").forEach(b=>
+  b.onclick=()=>{tab=b.dataset.tab; $("#out").innerHTML=""; render();});
+
+async function post(url, body){
+  const r = await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},
+                            body:JSON.stringify(body)});
+  if(!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+
+function card(html){ return `<div class="card">${html}</div>`; }
+
+function renderMatch(m){
+  const dims = Object.entries(m.dimension_scores||{})
+    .filter(([,v])=>v!==null)
+    .map(([k,v])=>`<span>${k} ${Number(v).toFixed(0)}</span>`).join("");
+  const ev = (m.matched_evidence||m.evidences||[])
+    .filter(e=>!e.is_conflict && e.similarity_score>=70)
+    .slice(0,8)
+    .map(e=>`<div class="ev ok"><b>${e.field_name}</b>：${e.lost_value??"-"} / ${e.found_value??"-"}</div>`).join("");
+  const cf = (m.conflicts||[])
+    .map(c=>`<div class="ev cf"><b>${c.field_name}</b>（${c.severity}）：${c.lost_value} / ${c.found_value} — ${c.reason}</div>`).join("");
+  return `<div class="result">
+    <div><span class="lvl ${m.match_level}">${m.match_level}</span>
+      <b style="margin-left:8px">${Number(m.match_score ?? m.final_score).toFixed(1)} 分</b>
+      <span class="ev" style="display:inline;margin-left:8px">confidence ${m.confidence}</span></div>
+    <div class="ev" style="margin:4px 0">${m.raw_description ?? ""}</div>
+    ${ev}${cf}
+    <div class="dims">${dims}</div>
+  </div>`;
+}
+
+async function doSearch(){
+  $("#out").innerHTML = card("检索中 ...");
+  try{
+    const r = await post("/api/search",{query:$("#q").value, type:$("#type").value,
+                                        top_k:Number($("#topk").value)});
+    const qu = r.query_understanding;
+    $("#out").innerHTML = card(
+      `<b>Query Understanding</b><div class="dims">
+        <span>category ${qu.category??"-"}</span><span>brand ${qu.brand??"-"}</span>
+        <span>model ${qu.model??"-"}</span><span>location ${qu.location_name??"-"}</span>
+        <span>候选 ${r.total_candidates}</span></div>`)
+      + card(r.results.length ? r.results.map(renderMatch).join("")
+                              : "没有达到展示阈值的候选。");
+  }catch(e){ $("#out").innerHTML = card("<pre>"+e.message+"</pre>"); }
+}
+
+async function doReport(kind){
+  $("#out").innerHTML = card("提交中 ...");
+  const body = {description:$("#d").value, location_name:$("#loc").value};
+  if(kind==="lost"){ body.lost_at_start=$("#t1").value; body.lost_at_end=$("#t2").value; }
+  else { body.found_at=$("#t1").value; body.storage_location=$("#store").value; }
+  try{
+    const r = await post("/api/"+kind, body);
+    const res = (r.match&&r.match.results)||[];
+    $("#out").innerHTML = card(`已建档 <b>${r.item_id}</b> · 类别 ${r.category??"-"}
+      · 抽取属性 ${r.attributes.length} 项 · 候选 ${(r.match&&r.match.candidate_count)||0}
+      · 耗时 ${(r.match&&r.match.duration_ms)||0}ms`)
+      + card(res.length ? res.map(renderMatch).join("") : "暂无潜在匹配。");
+  }catch(e){ $("#out").innerHTML = card("<pre>"+e.message+"</pre>"); }
+}
+
+async function doExtract(){
+  try{
+    const r = await post("/api/ai/extract",{description:$("#d").value});
+    $("#out").innerHTML = card("<pre>"+JSON.stringify(r,null,2)+"</pre>");
+  }catch(e){ $("#out").innerHTML = card("<pre>"+e.message+"</pre>"); }
+}
+
+render();
+</script>
+</body>
+</html>

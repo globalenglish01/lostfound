@@ -1,0 +1,118 @@
+{
+  "_comment": "属性级权重 profile：Category -> Attribute Definition -> Matching Weight。整个系统绝不能只有一套固定权重。",
+
+  "default": {
+    "brand": 4,
+    "model": 5,
+    "color": 2,
+    "material": 2,
+    "size": 1,
+    "pattern": 3,
+    "distinctive": 5,
+    "serial_number": 10
+  },
+
+  "smartphone": {
+    "imei": 10,
+    "serial_number": 10,
+    "model": 8,
+    "brand": 6,
+    "distinctive": 6,
+    "case": 4,
+    "case_color": 3,
+    "color": 2,
+    "size": 1,
+    "carrier": 2,
+    "lock_screen": 4
+  },
+
+  "wallet": {
+    "contents": 8,
+    "brand": 5,
+    "pattern": 5,
+    "color": 3,
+    "material": 3,
+    "wallet_type": 3,
+    "card_count": 2,
+    "distinctive": 6
+  },
+
+  "umbrella": {
+    "pattern": 6,
+    "handle": 5,
+    "color": 4,
+    "brand": 2,
+    "length": 2,
+    "umbrella_type": 3,
+    "distinctive": 5
+  },
+
+  "passport": {
+    "passport_number": 10,
+    "nationality": 10,
+    "holder_name": 10,
+    "expiry_date": 6,
+    "color": 0.5,
+    "distinctive": 3
+  },
+
+  "laptop": {
+    "serial_number": 10,
+    "model": 8,
+    "brand": 6,
+    "distinctive": 6,
+    "sticker": 6,
+    "screen_size": 4,
+    "color": 2,
+    "os": 2
+  },
+
+  "bag": {
+    "brand": 5,
+    "color": 4,
+    "material": 4,
+    "bag_type": 4,
+    "pattern": 4,
+    "contents": 6,
+    "distinctive": 6,
+    "size": 2
+  },
+
+  "earbuds": {
+    "serial_number": 10,
+    "model": 7,
+    "brand": 6,
+    "case_condition": 4,
+    "engraving": 8,
+    "color": 3,
+    "distinctive": 6
+  },
+
+  "keys": {
+    "key_count": 5,
+    "keychain": 8,
+    "distinctive": 8,
+    "color": 2,
+    "brand": 2
+  },
+
+  "_alias": {
+    "_comment": "属性代码归一：不同来源写法统一到 canonical code",
+    "手机壳": "case",
+    "保护壳": "case",
+    "手机套": "case",
+    "颜色": "color",
+    "品牌": "brand",
+    "型号": "model",
+    "材质": "material",
+    "尺寸": "size",
+    "图案": "pattern",
+    "贴纸": "distinctive",
+    "序列号": "serial_number",
+    "sticker": "distinctive",
+    "stickers": "distinctive",
+    "distinctive_features": "distinctive",
+    "case_type": "case",
+    "protective_case": "case"
+  }
+}
