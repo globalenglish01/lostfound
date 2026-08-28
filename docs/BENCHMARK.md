@@ -15,7 +15,7 @@
 | Embedding model | `sentence-transformers/paraphrase-multilingual-mpnet-base-v2` |
 | 语料规模 | 247 条 FOUND 记录（240 条同类同色干扰项） |
 | 查询数 | 53 |
-| 耗时 | 255.7s |
+| 耗时 | 93.8s |
 
 ## 总体结果
 

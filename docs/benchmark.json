@@ -4,11 +4,12 @@
     "algorithm_version": "lf-matching-v1.0",
     "llm_provider": "rule",
     "embedding_provider": "onnx",
+    "image_provider": "clip_onnx",
     "embedding_model": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
     "llm_model": "rule-engine-v1"
   },
   "corpus_size": 247,
-  "elapsed_seconds": 255.7,
+  "elapsed_seconds": 93.8,
   "summary": {
     "queries": 53,
     "recall@1": 0.9811320754716981,

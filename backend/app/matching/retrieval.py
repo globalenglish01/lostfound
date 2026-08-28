@@ -148,6 +148,9 @@ def keyword_retrieval(session: Session, pool: list[str], query_text: str,
 # Vector（pgvector HNSW，cosine）
 # ---------------------------------------------------------------------------
 
+# model_name 必须进 WHERE：不同模型产出的向量不在同一空间，
+# 一旦新旧模型的向量同时 ACTIVE（迁移期就是这样），不加这个条件
+# 就会把两个空间的向量放在一起比余弦，检索质量静默劣化且极难排查。
 _VECTOR_SQL = """
 SELECT e.item_id::text AS id,
        1 - (e.embedding <=> CAST(:qvec AS vector)) AS similarity
@@ -155,6 +158,7 @@ FROM embeddings e
 WHERE e.item_id::text = ANY(:pool)
   AND e.embedding_type = :etype
   AND e.status = 'ACTIVE'
+  AND e.model_name = :model
 ORDER BY e.embedding <=> CAST(:qvec AS vector)
 LIMIT :limit
 """
@@ -162,13 +166,25 @@ LIMIT :limit
 
 def vector_retrieval(session: Session, pool: list[str], query_vector: list[float],
                      embedding_type: str = "TEXT",
-                     limit: int | None = None) -> list[tuple[str, float]]:
+                     limit: int | None = None,
+                     model_name: str | None = None) -> list[tuple[str, float]]:
     if not pool or not query_vector:
         return []
+    if model_name is None:
+        if embedding_type == "IMAGE":
+            from ..ai.image_provider import get_image_provider, image_enabled
+            if not image_enabled():
+                return []
+            model_name = get_image_provider().model
+        else:
+            from ..ai.embedding_provider import get_embedding_provider
+            model_name = get_embedding_provider().model
+
     rows = session.execute(text(_VECTOR_SQL), {
         "pool": pool,
         "qvec": vector_literal(query_vector),
         "etype": embedding_type,
+        "model": model_name,
         "limit": limit or settings.vector_limit,
     }).fetchall()
     return [(r[0], float(r[1])) for r in rows]

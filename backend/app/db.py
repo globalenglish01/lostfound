@@ -33,16 +33,39 @@ def get_sessionmaker() -> sessionmaker:
 
 
 def get_session() -> Iterator[Session]:
-    """FastAPI 依赖。"""
+    """FastAPI 依赖。
+
+    这里**故意不提交**。
+
+    FastAPI 里 `yield` 依赖的清理代码是在**响应已经发出之后**才执行的，
+    如果把 commit 放在这里，客户端拿到 200 时事务可能还没落库：
+
+        POST /api/found        -> 200 {"item_id": "..."}     （事务尚未提交）
+        POST /api/items/{id}/images -> 404 记录不存在          （另一个连接看不到）
+
+    这个竞态在单元测试里抓不到，只有连续调用才会偶发暴露，
+    在生产上表现为「刚登记完的物品立刻操作就说不存在」，极难排查。
+
+    所以提交由写接口显式完成（见 `commit()`），
+    这里只负责异常回滚与连接归还。
+    """
     session = get_sessionmaker()()
     try:
         yield session
-        session.commit()
     except Exception:
         session.rollback()
         raise
     finally:
         session.close()
+
+
+def commit(session: Session) -> None:
+    """写接口在返回前显式提交，保证响应发出时数据已经落库。"""
+    try:
+        session.commit()
+    except Exception:
+        session.rollback()
+        raise
 
 
 def init_schema(schema_path: Path | None = None) -> None:

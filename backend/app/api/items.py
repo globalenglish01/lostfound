@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 from ..ai import extraction
 from ..ai.normalize import canonical_attribute_code, norm_text
-from ..db import get_session
+from ..db import commit, get_session
 from ..matching.engine import run_matching
 from .. import repository as repo
 from ..schemas import ExtractIn, FoundReportIn, ItemCreated, LostReportIn
@@ -157,6 +157,7 @@ def create_lost(payload: LostReportIn, session: Session = Depends(get_session)):
     repo.record_audit(session, actor_id=payload.reported_by, action="LOST_CREATED",
                       entity_type="item_records", entity_id=item_id,
                       after={"description": payload.description})
+    commit(session)
     return ItemCreated(item_id=item_id, record_type="LOST",
                        category=parsed["core"].get("category"),
                        normalized_text=parsed["normalized_text"],
@@ -187,6 +188,7 @@ def create_found(payload: FoundReportIn, session: Session = Depends(get_session)
     repo.record_audit(session, actor_id=payload.found_by, action="FOUND_CREATED",
                       entity_type="item_records", entity_id=item_id,
                       after={"description": payload.description})
+    commit(session)
     return ItemCreated(item_id=item_id, record_type="FOUND",
                        category=parsed["core"].get("category"),
                        normalized_text=parsed["normalized_text"],

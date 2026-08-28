@@ -5,10 +5,15 @@ WORKDIR /app
 COPY backend/requirements.txt /app/backend/requirements.txt
 RUN pip install --no-cache-dir -r /app/backend/requirements.txt
 
-# 构建期预下载多语言句向量模型，运行时不需要联网
+# 构建期预下载模型，运行时不需要联网、不需要任何 token。
+# 迭代时若 /models 卷里已经有模型，可以跳过这一步省几分钟：
+#   docker compose build api --build-arg PREFETCH_MODELS=0
 ARG EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+ARG IMAGE_MODEL=Qdrant/clip-ViT-B-32-vision
+ARG IMAGE_TEXT_MODEL=Qdrant/clip-ViT-B-32-text
+ARG PREFETCH_MODELS=1
 ENV LF_MODEL_CACHE=/models
-RUN python -c "from fastembed import TextEmbedding;     TextEmbedding(model_name='${EMBEDDING_MODEL}', cache_dir='/models')"
+RUN if [ "$PREFETCH_MODELS" = "1" ]; then       python -c "from fastembed import TextEmbedding, ImageEmbedding;         TextEmbedding(model_name='${EMBEDDING_MODEL}', cache_dir='/models');         ImageEmbedding(model_name='${IMAGE_MODEL}', cache_dir='/models');         TextEmbedding(model_name='${IMAGE_TEXT_MODEL}', cache_dir='/models')";     else echo "PREFETCH_MODELS=0 -> 跳过模型预下载（依赖 /models 卷）"; fi
 
 COPY backend /app/backend
 COPY config /app/config

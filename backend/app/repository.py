@@ -158,9 +158,15 @@ WHERE item_id = :item_id AND embedding_type = :etype
 
 
 def upsert_embedding(session: Session, item_id: str, embedding_type: str,
-                     content: str) -> bool:
-    """写入/更新一条 embedding。content_hash 未变则跳过，返回 False。"""
-    provider = get_embedding_provider()
+                     content: str, *, provider=None,
+                     vector: list[float] | None = None) -> bool:
+    """写入/更新一条 embedding。content_hash 未变则跳过，返回 False。
+
+    provider/vector 可显式传入，用于 IMAGE 这类走另一个模型的向量——
+    它们与文本向量不在同一空间，必须以自己的 model_name 入库，
+    否则检索时会把两个空间的向量放在一起比余弦。
+    """
+    provider = provider or get_embedding_provider()
     digest = content_hash(content)
     existing = session.execute(text(_EMBED_HASH_SQL), {
         "item_id": item_id, "etype": embedding_type,
@@ -169,7 +175,7 @@ def upsert_embedding(session: Session, item_id: str, embedding_type: str,
     if existing and existing[0] == digest:
         return False
 
-    vec = provider.embed(content)
+    vec = vector if vector is not None else provider.embed(content)
     session.execute(text(_EMBED_UPSERT), {
         "id": str(uuid.uuid4()),
         "item_id": item_id,
@@ -213,10 +219,23 @@ def build_embeddings(session: Session, bundle: dict[str, Any]) -> dict[str, bool
 
 
 def query_vectors(session: Session, item_id: str) -> dict[str, list[float]]:
+    """取该记录当前生效的向量。
+
+    只取**当前模型**的：迁移期新旧模型向量并存，混用会跨空间比余弦。
+    IMAGE 走 CLIP，与文本模型不同，单独放行。
+    """
+    from .ai.image_provider import image_enabled
+
+    models = [get_embedding_provider().model]
+    if image_enabled():
+        from .ai.image_provider import get_image_provider
+        models.append(get_image_provider().model)
+
     rows = session.execute(text(
         "SELECT embedding_type, embedding::text FROM embeddings "
-        "WHERE item_id = :item_id AND status = 'ACTIVE'"
-    ), {"item_id": item_id}).fetchall()
+        "WHERE item_id = :item_id AND status = 'ACTIVE' "
+        "  AND model_name = ANY(:models)"
+    ), {"item_id": item_id, "models": models}).fetchall()
     out: dict[str, list[float]] = {}
     for etype, raw in rows:
         out[etype] = [float(x) for x in raw.strip("[]").split(",") if x]
@@ -370,3 +389,49 @@ def record_audit(session: Session, *, actor_id: str | None, action: str,
 def utcnow() -> datetime:
     from datetime import timezone
     return datetime.now(timezone.utc)
+
+
+# ---------------------------------------------------------------------------
+# 图片（V3 多模态）
+# ---------------------------------------------------------------------------
+
+_IMAGE_INSERT = """
+INSERT INTO item_images (id, item_id, storage_url, image_type, is_primary)
+VALUES (:id, :item, :url, :itype, :primary)
+RETURNING id
+"""
+
+
+def add_item_image(session: Session, item_id: str, *, storage_url: str,
+                   image_type: str | None = None, is_primary: bool = False) -> str:
+    """登记一张图片。数据库只存 URL / object key，二进制放对象存储或本地卷。"""
+    row = session.execute(text(_IMAGE_INSERT), {
+        "id": str(uuid.uuid4()),
+        "item": item_id,
+        "url": storage_url,
+        "itype": image_type,
+        "primary": is_primary,
+    }).fetchone()
+    return str(row[0])
+
+
+def build_image_embedding(session: Session, item_id: str, image_path: str) -> bool:
+    """为一张图片生成 IMAGE 向量。
+
+    用 CLIP 的 model_name 入库，与 TEXT/ATTRIBUTES 分属不同向量空间。
+    """
+    from .ai.image_provider import get_image_provider, image_enabled
+
+    if not image_enabled():
+        return False
+    provider = get_image_provider()
+    vec = provider.embed_image(image_path)
+    return upsert_embedding(session, item_id, "IMAGE", image_path,
+                            provider=provider, vector=vec)
+
+
+def item_image_paths(session: Session, item_id: str) -> list[str]:
+    rows = session.execute(text(
+        "SELECT storage_url FROM item_images WHERE item_id = :i ORDER BY is_primary DESC"
+    ), {"i": item_id}).fetchall()
+    return [r[0] for r in rows]

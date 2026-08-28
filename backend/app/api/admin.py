@@ -31,6 +31,8 @@ def get_config():
         "embedding_provider": get_embedding_provider().name,
         "embedding_model": get_embedding_provider().model,
         "embedding_dim": get_embedding_provider().dim,
+        "image_provider": settings.image_provider,
+        "image_model": settings.image_model if settings.image_provider != "disabled" else None,
         "matching_weights": matching_weights(),
         "attribute_weights": attribute_weights(),
         "conflict_rules": conflict_rules(),

@@ -12,7 +12,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from ..ai.llm_provider import get_llm_provider
-from ..db import get_session
+from ..db import commit, get_session
 from ..matching.engine import run_matching
 from .. import repository as repo
 from ..schemas import MatchDecisionIn, ReturnIn
@@ -23,7 +23,9 @@ router = APIRouter(tags=["matches"])
 @router.post("/api/items/{item_id}/rematch")
 def rematch(item_id: str, top_k: int = 20, session: Session = Depends(get_session)):
     """手动重跑匹配（换了权重/模型之后很有用）。"""
-    return run_matching(session, item_id, trigger="MANUAL", top_k=top_k)
+    out = run_matching(session, item_id, trigger="MANUAL", top_k=top_k)
+    commit(session)
+    return out
 
 
 @router.get("/api/items/{item_id}/matches")
@@ -157,6 +159,7 @@ def decide(candidate_id: str, payload: MatchDecisionIn,
     repo.record_audit(session, actor_id=payload.decided_by, action="MATCH_DECIDED",
                       entity_type="match_candidates", entity_id=candidate_id,
                       after={"decision": payload.decision, "score": float(cand[0] or 0)})
+    commit(session)
     return {"candidate_id": candidate_id, "decision": payload.decision}
 
 
@@ -178,6 +181,7 @@ def do_return(item_id: str, payload: ReturnIn, session: Session = Depends(get_se
     repo.record_audit(session, actor_id=payload.returned_by, action="ITEM_RETURNED",
                       entity_type="item_records", entity_id=item_id,
                       after={"method": payload.verification_method})
+    commit(session)
     return {"item_id": item_id, "status": "RETURNED"}
 
 

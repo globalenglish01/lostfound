@@ -60,6 +60,7 @@
     <button data-tab="lost">用户报失</button>
     <button data-tab="found">工作人员登记拾获</button>
     <button data-tab="extract">AI 抽取调试</button>
+    <button data-tab="image">以图/以文搜图</button>
   </div>
 
   <div class="card" id="panel"></div>
@@ -99,6 +100,17 @@ const panels = {
       <div><label>保管位置</label><input id="store" value="Locker A-23"></div>
     </div>
     <button class="primary" onclick="doReport('found')">登记并反查历史失物</button>`,
+  image: `
+    <label>① 以图搜物 —— 上传你自己物品的旧照片</label>
+    <input id="imgfile" type="file" accept="image/*">
+    <button class="primary" onclick="doImageSearch()">用这张图搜</button>
+    <p class="hint">走 CLIP 视觉侧。同一件物品的另一张照片（不同角度/裁切/亮度）也能认出来。</p>
+    <hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+    <label>② 以文搜图 —— 你没有照片，只有一句描述</label>
+    <input id="imgq" value="黒いリュック">
+    <button class="primary" onclick="doTextToImage()">用文字搜照片</button>
+    <p class="hint">走 CLIP 文本侧。它和图片向量在<b>同一个空间</b>，所以文字能直接匹配照片——
+      这正是选 CLIP 而不是纯视觉模型的原因。</p>`,
   extract: `
     <label>任意描述</label>
     <textarea id="d">昨天晚上在新宿站丢了一部黑色 iPhone 15 Pro，透明手机壳，背面有猫咪贴纸</textarea>
@@ -171,6 +183,42 @@ async function doReport(kind){
       · 抽取属性 ${r.attributes.length} 项 · 候选 ${(r.match&&r.match.candidate_count)||0}
       · 耗时 ${(r.match&&r.match.duration_ms)||0}ms`)
       + card(res.length ? res.map(renderMatch).join("") : "暂无潜在匹配。");
+  }catch(e){ $("#out").innerHTML = card("<pre>"+e.message+"</pre>"); }
+}
+
+function renderImageHits(list){
+  if(!list.length) return card("没有结果。库里可能还没有带照片的记录。");
+  return card(list.map(r=>`<div class="result">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        ${r.image_url?`<img src="${r.image_url}" style="width:96px;height:96px;object-fit:cover;border-radius:8px;border:1px solid var(--line)">`:""}
+        <div>
+          <div><b>${(r.image_similarity*100).toFixed(1)}</b>
+            <span class="ev" style="display:inline;margin-left:6px">图像相似度</span></div>
+          <div class="ev">${r.raw_description??""}</div>
+        </div>
+      </div>
+    </div>`).join(""));
+}
+
+async function doImageSearch(){
+  const f = $("#imgfile").files[0];
+  if(!f){ $("#out").innerHTML = card("先选一张图片。"); return; }
+  $("#out").innerHTML = card("检索中 ...");
+  const fd = new FormData();
+  fd.append("file", f); fd.append("type","FOUND"); fd.append("top_k","10");
+  try{
+    const r = await fetch("/api/search/by-image",{method:"POST",body:fd});
+    if(!r.ok) throw new Error(await r.text());
+    $("#out").innerHTML = renderImageHits((await r.json()).results);
+  }catch(e){ $("#out").innerHTML = card("<pre>"+e.message+"</pre>"); }
+}
+
+async function doTextToImage(){
+  $("#out").innerHTML = card("检索中 ...");
+  try{
+    const j = await post("/api/search/text-to-image",
+                         {query:$("#imgq").value, type:"FOUND", top_k:10});
+    $("#out").innerHTML = renderImageHits(j.results);
   }catch(e){ $("#out").innerHTML = card("<pre>"+e.message+"</pre>"); }
 }
 

@@ -178,6 +178,52 @@ mixing them degrades retrieval silently.
 
 ---
 
+## V3: images and cross-modal search
+
+`item_images`, the `IMAGE` embedding type and the `image` scoring dimension were reserved
+in V1; V3 connects them with a local ONNX CLIP model. CLIP's vision and text towers share
+one embedding space, so the system supports both directions:
+
+| Direction | Use case | Top-1 |
+|---|---|---|
+| image → image | The user has an old photo of their own item | **7/7 = 100%** |
+| text → image | The user has no photo, only a sentence | **6/7 = 85.7%** |
+
+The test that actually matters is the third one: **items of the same category but
+different identity must not be confused**. A black backpack vs a red backpack, a brown
+wallet vs a black wallet — if CLIP only recognises "this is a bag", the image channel is
+worthless. Both pairs stay separated.
+
+### CLIP only understands English — and how to work around it for free
+
+CLIP ViT-B-32 was trained on English. Fed Japanese directly it scores 2/5; fed English,
+5/5. For a system deployed in Japan that is a hard blocker.
+
+The fix is not a bigger model. It is **reusing the synonym normalization layer that
+already exists**: extraction already maps 「黒い」「リュック」 to canonical English
+(`black` / `bag`), so a proper English CLIP prompt can be assembled from the structured
+attributes:
+
+```
+「紺色の傘をなくした」
+   ↓ Query Understanding (layer 1, the dictionary)
+color=blue, category=umbrella
+   ↓ build_clip_prompt()
+"a photo of a blue umbrella"
+   ↓ CLIP text tower
+```
+
+Text → image Top-1 went from 57.1% to 85.7%, cosine from 0.21–0.25 to 0.29–0.33, at zero
+cost and with no new model. Full report:
+[docs/BENCHMARK_IMAGE.md](docs/BENCHMARK_IMAGE.md).
+
+```bash
+docker compose exec api python -m scripts.gen_test_images
+docker compose exec api python -m scripts.eval_images
+```
+
+---
+
 ## Invariants locked down by tests
 
 | Invariant | Test |
@@ -307,7 +353,7 @@ lostfound/
 | V1 | Registration, structured attributes, keyword + vector search | Done |
 | V1.5 | Zero-shot classification, multilingual vectors, adversarial evaluation | Done |
 | V2 | Hybrid retrieval, match scoring, auto-recommendation, explanations | Done |
-| V3 | Images / OCR / image embeddings | Schema and scoring dimension reserved |
+| V3 | Images / cross-modal search (image→image 100%, text→image 85.7%) | Done |
 | V4 | Feedback loop → learning-to-rank | `training-pairs` exports today; needs ~10k confirmations |
 
 ## License

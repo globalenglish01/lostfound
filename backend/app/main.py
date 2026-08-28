@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
-from .api import admin, items, matches, search
+from .api import admin, images, items, matches, search
 from .config import settings
 
 app = FastAPI(
@@ -29,6 +29,7 @@ app.add_middleware(
 
 app.include_router(items.router)
 app.include_router(search.router)
+app.include_router(images.router)
 app.include_router(matches.router)
 app.include_router(admin.router)
 
@@ -42,6 +43,7 @@ def health():
         "algorithm_version": settings.algorithm_version,
         "llm_provider": settings.llm_provider,
         "embedding_provider": settings.embedding_provider,
+        "image_provider": settings.image_provider,
     }
 
 

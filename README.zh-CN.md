@@ -171,6 +171,49 @@ python -m scripts.reextract            # 词典 / 抽取规则改动后重跑 AI
 
 ---
 
+## V3：图片与跨模态检索
+
+`item_images`、`IMAGE` 向量类型、`image` 评分维度在 V1 就已预留，V3 用本机 ONNX CLIP 接通。
+CLIP 的视觉侧与文本侧共享同一个向量空间，因此两个方向都支持：
+
+| 方向 | 场景 | Top1 |
+|---|---|---|
+| 图 → 图 | 用户有自己物品的旧照片 | **7/7 = 100%** |
+| 文 → 图 | 用户没有照片，只有一句描述 | **6/7 = 85.7%** |
+
+真正关键的是第三条：**同类不同件绝不能被错认**。
+黑色背包 vs 红色背包、棕色钱包 vs 黑色钱包 ——
+如果 CLIP 只认得「这是个包」，图像通道就毫无价值。两组都没有混淆。
+
+### CLIP 只懂英文 —— 以及怎么零成本绕过
+
+CLIP ViT-B-32 只在英文语料上训练过。日文 query 直接问它命中 2/5，英文 5/5。
+对一个部署在日本的系统，这是硬伤。
+
+解法不是换更大的模型，而是**复用已经存在的同义词标准化层**：
+抽取层本来就把「黒い」「リュック」归一成了英文 canonical（`black` / `bag`），
+于是可以从结构化属性拼出一句规范的英文 CLIP prompt：
+
+```
+「紺色の傘をなくした」
+   ↓ Query Understanding（第 ① 层，词典）
+color=blue, category=umbrella
+   ↓ build_clip_prompt()
+"a photo of a blue umbrella"
+   ↓ CLIP 文本侧
+```
+
+文 → 图 Top1 从 57.1% 提到 85.7%，余弦从 0.21~0.25 提到 0.29~0.33。
+零成本，没有引入任何新模型。完整报告见
+[docs/BENCHMARK_IMAGE.md](docs/BENCHMARK_IMAGE.md)。
+
+```bash
+docker compose exec api python -m scripts.gen_test_images
+docker compose exec api python -m scripts.eval_images
+```
+
+---
+
 ## 被测试锁死的不变量
 
 | 不变量 | 测试 |
@@ -295,7 +338,7 @@ lostfound/
 | V1 | 登记、结构化属性、关键词 + 向量检索 | 已完成 |
 | V1.5 | 零样本分类、多语言向量、对抗评测 | 已完成 |
 | V2 | 混合检索、匹配评分、自动推荐、匹配解释 | 已完成 |
-| V3 | 图片 / OCR / 图像向量 | 表结构与评分维度已预留 |
+| V3 | 图片 / 跨模态检索（图→图 100%，文→图 85.7%） | 已完成 |
 | V4 | 反馈闭环 → Learning-to-Rank | `training-pairs` 已可导出，待积累约 1 万条确认数据 |
 
 ## 许可证

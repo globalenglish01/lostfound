@@ -221,3 +221,37 @@ def test_zero_shot_refuses_when_no_clear_winner(monkeypatch):
         lambda: type("P", (), {"embed": staticmethod(lambda t, kind="passage": [1.0])})())
 
     assert classify.zero_shot_category("x")[0] is None
+
+
+# ---------------------------------------------------------------------------
+# 文 -> 图：CLIP 只懂英文，靠词典层补
+# ---------------------------------------------------------------------------
+
+def test_clip_prompt_is_built_from_canonical_english():
+    """日文查询要能变成英文 CLIP prompt，否则 CLIP 文本侧基本是噪声。"""
+    from app.ai.extraction import query_understanding
+    from app.api.images import build_clip_prompt
+
+    prompt = build_clip_prompt(query_understanding("紺色の傘をなくした"))
+    assert prompt is not None
+    assert "blue" in prompt and "umbrella" in prompt
+    # 必须是 CLIP 习惯的句式，不是裸词
+    assert prompt.startswith("a photo of ")
+    # 不能把日文原文漏进去
+    assert all(ord(c) < 128 for c in prompt), prompt
+
+
+def test_clip_prompt_none_when_nothing_extracted():
+    """抽不出任何结构化信息时返回 None，让调用方回退到原文，而不是编一句假 prompt。"""
+    from app.api.images import build_clip_prompt
+
+    assert build_clip_prompt({"attributes": [], "category": None, "brand": None}) is None
+
+
+def test_clip_prompt_article_agreement():
+    from app.api.images import build_clip_prompt
+
+    p = build_clip_prompt({"attributes": [{"attribute_code": "color",
+                                           "value_text": "orange"}],
+                           "category": "bag", "brand": None})
+    assert p.startswith("a photo of an orange"), p

@@ -36,6 +36,9 @@ services:
       #   LF_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 docker compose up -d
       LF_EMBEDDING_MODEL: ${LF_EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-mpnet-base-v2}
       LF_EMBEDDING_MODEL_VERSION: ${LF_EMBEDDING_MODEL_VERSION:-v1}
+      # 图像匹配（V3）：CLIP 视觉侧+文本侧同一空间，支持 图->图 与 文->图
+      LF_IMAGE_PROVIDER: ${LF_IMAGE_PROVIDER:-clip_onnx}
+      LF_IMAGE_STORAGE_DIR: /data/images
       LF_MODEL_CACHE: /models
       # 容器内跑评测脚本时指向自身
       LF_API_BASE: http://127.0.0.1:8000
@@ -50,7 +53,10 @@ services:
       # 模型缓存持久化：换模型时不必重建镜像
       # （镜像里已烤好默认模型，首次挂载会自动复制进卷）
       - lostfound_models:/models
+      # 图片二进制：数据库只存路径，生产换 S3 只改 images.py 的 _save()
+      - lostfound_images:/data/images
 
 volumes:
   lostfound_pgdata:
   lostfound_models:
+  lostfound_images:

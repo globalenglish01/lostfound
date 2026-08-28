@@ -38,6 +38,16 @@ class Settings:
     embedding_base_url: str = os.getenv("LF_EMBEDDING_BASE_URL", "")
     embedding_api_key: str = os.getenv("LF_EMBEDDING_API_KEY", "")
 
+    # --- 图像（V3 多模态）---
+    # clip_onnx: 本机 ONNX CLIP，视觉侧与文本侧同一空间，无外部 API
+    # disabled : 关闭图像匹配（默认，避免不用图片的部署白白加载 340MB 模型）
+    image_provider: str = os.getenv("LF_IMAGE_PROVIDER", "disabled")
+    image_model: str = os.getenv("LF_IMAGE_MODEL", "Qdrant/clip-ViT-B-32-vision")
+    image_text_model: str = os.getenv("LF_IMAGE_TEXT_MODEL", "Qdrant/clip-ViT-B-32-text")
+    image_model_version: str = os.getenv("LF_IMAGE_MODEL_VERSION", "v1")
+    image_storage_dir: str = os.getenv("LF_IMAGE_STORAGE_DIR", "/data/images")
+    image_max_bytes: int = int(os.getenv("LF_IMAGE_MAX_BYTES", str(8 * 1024 * 1024)))
+
     # --- LLM ---
     # rule             : 纯规则实现，无任何外部 API（默认，CI 可跑）
     # openai_compatible: 走企业自有网关 / 自托管模型
