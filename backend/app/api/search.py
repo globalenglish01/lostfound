@@ -30,14 +30,14 @@ def search(payload: SearchIn, session: Session = Depends(get_session)):
 
     provider = get_embedding_provider()
     # 查询侧与记录侧必须用同一套预处理，否则向量不在同一个分布上
-    text_vec = provider.embed(strip_report_boilerplate(payload.query))
+    text_vec = provider.embed(strip_report_boilerplate(payload.query), kind="query")
     attr_text = canonical_text_for_attributes({
         "category": parsed.get("category"),
         "brand": parsed.get("brand"),
         "model": parsed.get("model"),
         **{a["attribute_code"]: a["value_text"] for a in parsed["attributes"]},
     })
-    attr_vec = (provider.embed(attr_text)
+    attr_vec = (provider.embed(attr_text, kind="query")
                 if len(attr_text.splitlines()) >= 2 else None)
 
     category_id = None

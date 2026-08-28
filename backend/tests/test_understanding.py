@@ -177,3 +177,47 @@ def test_extraction_never_invents_brand():
 def test_unknown_word_yields_no_dictionary_category():
     """词典里没有「コインケース」——严格模式下不能瞎填，只能靠零样本兜底。"""
     assert canonical_category("コインケース") is None
+
+
+# ---------------------------------------------------------------------------
+# 零样本分类阈值必须量纲无关
+# ---------------------------------------------------------------------------
+
+def test_zero_shot_thresholds_are_scale_free(monkeypatch):
+    """换模型不能因为余弦分布被压缩就整体失灵。
+
+    同一组「相对形状」的相似度，一份散布在 0.1~0.7（paraphrase 系列），
+    一份压缩在 0.7~0.95（e5 系列），判定结果必须一致。
+    """
+    from app.ai import classify
+
+    def run(sims: list[float]) -> str | None:
+        protos = [(f"cat{i}", [s]) for i, s in enumerate(sims)]
+        monkeypatch.setattr(classify, "_prototypes", lambda: protos)
+        monkeypatch.setattr(classify, "cosine", lambda a, b: b[0])
+        monkeypatch.setattr(
+            classify, "get_embedding_provider",
+            lambda: type("P", (), {"embed": staticmethod(lambda t, kind="passage": [1.0])})())
+        return classify.zero_shot_category("x")[0]
+
+    wide = [0.70, 0.40, 0.35, 0.30, 0.28, 0.25, 0.22, 0.20]
+    # 同样的形状，线性压缩到 e5 的取值范围
+    lo, hi = 0.70, 0.95
+    span = max(wide) - min(wide)
+    narrow = [lo + (v - min(wide)) / span * (hi - lo) for v in wide]
+
+    assert run(wide) == run(narrow) == "cat0"
+
+
+def test_zero_shot_refuses_when_no_clear_winner(monkeypatch):
+    """所有类别都差不多时必须留空，绝不硬猜。"""
+    from app.ai import classify
+
+    protos = [(f"cat{i}", [s]) for i, s in enumerate([0.61, 0.60, 0.60, 0.59, 0.59, 0.58])]
+    monkeypatch.setattr(classify, "_prototypes", lambda: protos)
+    monkeypatch.setattr(classify, "cosine", lambda a, b: b[0])
+    monkeypatch.setattr(
+        classify, "get_embedding_provider",
+        lambda: type("P", (), {"embed": staticmethod(lambda t, kind="passage": [1.0])})())
+
+    assert classify.zero_shot_category("x")[0] is None

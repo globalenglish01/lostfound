@@ -31,7 +31,7 @@ class Settings:
     # hashing: 确定性哈希投影，零依赖，用于开发/CI/离线
     # openai_compatible: 自建或企业网关（LF_EMBEDDING_BASE_URL）
     embedding_provider: str = os.getenv("LF_EMBEDDING_PROVIDER", "hashing")
-    embedding_model: str = os.getenv("LF_EMBEDDING_MODEL", "hashing-1536-v1")
+    embedding_model: str = os.getenv("LF_EMBEDDING_MODEL", "hashing-1536-v1")  # onnx 时由 compose 指定
     embedding_model_version: str = os.getenv("LF_EMBEDDING_MODEL_VERSION", "v1")
     embedding_dim: int = int(os.getenv("LF_EMBEDDING_DIM", "1536"))
     model_cache_dir: str = os.getenv("LF_MODEL_CACHE", "")

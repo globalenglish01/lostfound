@@ -148,16 +148,23 @@ python -m scripts.eval_synonyms             # 敵対的クエリ 53 件
 |---|---|---|
 | 初版（辞書が不完全 + ハッシュの仮ベクトル） | 77.4% | 83.0% |
 | 辞書と検索アーキテクチャを修正後 | 88.7% | 88.7% |
-| 実用的な多言語ベクトル + ゼロショット + 証拠量補正 | **96.2%** | **96.2%** |
+| 実用的な多言語ベクトル + ゼロショット + 証拠量補正 | 96.2% | 96.2% |
+| 閾値を無次元化 + より強い paraphrase モデルへ | **98.1%** | **98.1%** |
 
-失敗が 2 件残っています。取り繕わずそのまま記載します。
+失敗は 1 件残っています。取り繕わずそのまま記載します。
+`しろいみみにつけるやつをなくした` —— 名詞が一つも無く、機能的な説明だけ → 44 位。
 
-- `しろいみみにつけるやつをなくした` —— 名詞がまったく無い純粋な言い換え → 31 位
-- `left a bottle of sake` —— 英語の bottle が本質的に曖昧 → 8 位
+**大きいモデルほど良い、とは限りません。** 10 倍のサイズの `multilingual-e5-large` に
+差し替えると結果はむしろ悪化します。e5 は非対称検索向けに学習されており、
+この課題は対称な短文類似だからです。
+比較を成立させるために先に潰した 2 つの交絡要因も含め、詳細は
+[docs/MODEL_COMPARISON.md](docs/MODEL_COMPARISON.md) を参照してください。
 
-384 次元の MiniLM は純粋な言い換えに弱いのが実情です。
-`multilingual-e5-large` や社内ベクトルゲートウェイへの切り替えは
-環境変数の変更だけで済みます（Provider インターフェースは抽象化済み）。
+| モデル | 次元 | サイズ | Recall@1 |
+|---|---|---|---|
+| paraphrase-multilingual-MiniLM-L12-v2 | 384 | 0.22 GB | 96.2% |
+| **paraphrase-multilingual-mpnet-base-v2**（既定） | 768 | 1.00 GB | **98.1%** |
+| intfloat/multilingual-e5-large | 1024 | 2.24 GB | 88.7% |
 
 ### ベクトルモデルの入れ替えで履歴を壊さない
 
@@ -218,10 +225,10 @@ Accuracy は**意図的に**主要指標にしていません。本当に怖い�
 | PostgreSQL + pgvector | PostgreSQL License / MIT | 無料 |
 | FastAPI / SQLAlchemy / psycopg / uvicorn | MIT / BSD | 無料 |
 | fastembed + onnxruntime | Apache-2.0 / MIT | 無料 |
-| `paraphrase-multilingual-MiniLM-L12-v2` | Apache-2.0 | 無料 |
+| `paraphrase-multilingual-mpnet-base-v2` | Apache-2.0 | 無料 |
 | LLM | **既定の provider は `rule`。モデルを一切呼びません** | — |
 
-241MB のベクトルモデルは**ビルド時にイメージへ焼き込まれる**ため、
+約 1GB のベクトルモデルは**ビルド時にイメージへ焼き込まれる**ため、
 稼働中のコンテナはネットワークにアクセスせず、HuggingFace のトークンも不要です。
 `LF_LLM_API_KEY` と `LF_EMBEDDING_API_KEY` は既定で空、かつ使用されません。
 
@@ -248,7 +255,7 @@ LF_LLM_API_KEY=...
 
 # ベクトル —— onnx（既定）| local | openai_compatible | hashing（CI 用スタブ）
 LF_EMBEDDING_PROVIDER=onnx
-LF_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+LF_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-mpnet-base-v2
 LF_EMBEDDING_DIM=1536
 ```
 

@@ -37,7 +37,10 @@ class EmbeddingProvider(Protocol):
     version: str
     dim: int
 
-    def embed(self, text: str) -> list[float]: ...
+    # kind="passage"：入库的记录；kind="query"：检索用的查询。
+    # e5 系列必须区分（内部加 "query: " / "passage: " 前缀），
+    # 不区分会明显掉点；对 paraphrase 系列则是无害的空操作。
+    def embed(self, text: str, kind: str = "passage") -> list[float]: ...
 
 
 class HashingEmbedding:
@@ -70,7 +73,7 @@ class HashingEmbedding:
             grams.extend(compact[i:i + n] for i in range(max(0, len(compact) - n + 1)))
         return grams
 
-    def embed(self, text: str) -> list[float]:
+    def embed(self, text: str, kind: str = "passage") -> list[float]:
         vec = [0.0] * self.dim
         for tok in self._tokens(text):
             digest = hashlib.blake2b(tok.encode("utf-8"), digest_size=8).digest()
@@ -96,7 +99,7 @@ class LocalSentenceTransformer:
         self._m = SentenceTransformer(self.model)
         self.dim = settings.embedding_dim
 
-    def embed(self, text: str) -> list[float]:
+    def embed(self, text: str, kind: str = "passage") -> list[float]:
         raw = self._m.encode(text, normalize_embeddings=True).tolist()
         return _fit_dim(raw, self.dim)
 
@@ -124,8 +127,12 @@ class OnnxMultilingualEmbedding:
         self._m = TextEmbedding(model_name=self.model,
                                 cache_dir=settings.model_cache_dir or None)
 
-    def embed(self, text: str) -> list[float]:
-        vec = next(iter(self._m.embed([text or ""]))).tolist()
+    def embed(self, text: str, kind: str = "passage") -> list[float]:
+        text = text or ""
+        if kind == "query":
+            vec = next(iter(self._m.query_embed([text]))).tolist()
+        else:
+            vec = next(iter(self._m.passage_embed([text]))).tolist()
         return _fit_dim(vec, self.dim)
 
 
@@ -143,7 +150,7 @@ class OpenAICompatibleEmbedding:
         if not self.base_url:
             raise RuntimeError("LF_EMBEDDING_BASE_URL 未配置")
 
-    def embed(self, text: str) -> list[float]:
+    def embed(self, text: str, kind: str = "passage") -> list[float]:
         import httpx
 
         resp = httpx.post(

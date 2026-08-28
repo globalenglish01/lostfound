@@ -148,17 +148,23 @@ against 247 records:
 |---|---|---|
 | First cut (incomplete dictionary + placeholder hash vectors) | 77.4% | 83.0% |
 | After fixing the dictionary and the retrieval architecture | 88.7% | 88.7% |
-| With real multilingual vectors + zero-shot + evidence-thickness correction | **96.2%** | **96.2%** |
+| With real multilingual vectors + zero-shot + evidence-thickness correction | 96.2% | 96.2% |
+| After scale-free classifier thresholds + a bigger paraphrase model | **98.1%** | **98.1%** |
 
-Two queries still fail, reported as-is rather than tuned away:
+One query still fails, reported as-is rather than tuned away:
+`しろいみみにつけるやつをなくした` ("lost the white thing you put on your ears") — the
+sentence contains no noun at all, only a functional description → rank 44.
 
-- `しろいみみにつけるやつをなくした` ("lost the white thing you put on your ears") — pure
-  paraphrase, no noun at all → rank 31
-- `left a bottle of sake` — "bottle" is genuinely ambiguous in English → rank 8
+**Bigger is not better.** Swapping in `multilingual-e5-large` (10× the size) makes results
+*worse*, because e5 is trained for asymmetric retrieval while this task is symmetric
+short-text similarity. Full analysis, including the two confounds I had to fix before the
+comparison meant anything: [docs/MODEL_COMPARISON.md](docs/MODEL_COMPARISON.md).
 
-A 384-dim MiniLM is simply weak on pure paraphrase. Switching to `multilingual-e5-large`
-or an enterprise embedding gateway is an environment-variable change; the provider
-interface is already abstracted.
+| Model | Dim | Size | Recall@1 |
+|---|---|---|---|
+| paraphrase-multilingual-MiniLM-L12-v2 | 384 | 0.22 GB | 96.2% |
+| **paraphrase-multilingual-mpnet-base-v2** (default) | 768 | 1.00 GB | **98.1%** |
+| intfloat/multilingual-e5-large | 1024 | 2.24 GB | 88.7% |
 
 ### Changing embedding models without destroying history
 
@@ -219,10 +225,10 @@ Accuracy is deliberately **not** the headline metric. The failure that matters i
 | PostgreSQL + pgvector | PostgreSQL License / MIT | Free |
 | FastAPI / SQLAlchemy / psycopg / uvicorn | MIT / BSD | Free |
 | fastembed + onnxruntime | Apache-2.0 / MIT | Free |
-| `paraphrase-multilingual-MiniLM-L12-v2` | Apache-2.0 | Free |
+| `paraphrase-multilingual-mpnet-base-v2` | Apache-2.0 | Free |
 | LLM | **Default provider is `rule` — no model is called at all** | — |
 
-The 241 MB embedding model is **baked into the image at build time**, so the running
+The 1 GB embedding model is **baked into the image at build time**, so the running
 container never reaches the network and never needs a HuggingFace token. `LF_LLM_API_KEY`
 and `LF_EMBEDDING_API_KEY` are empty by default and unused.
 
@@ -249,7 +255,7 @@ LF_LLM_API_KEY=...
 
 # Embeddings — onnx (default) | local | openai_compatible | hashing (CI stub)
 LF_EMBEDDING_PROVIDER=onnx
-LF_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+LF_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-mpnet-base-v2
 LF_EMBEDDING_DIM=1536
 ```
 

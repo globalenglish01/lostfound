@@ -143,15 +143,22 @@ python -m scripts.eval_synonyms             # 53 条对抗查询
 |---|---|---|
 | 初版（词典残缺 + 哈希占位向量） | 77.4% | 83.0% |
 | 修完词典与检索架构后 | 88.7% | 88.7% |
-| 加真实多语言向量 + 零样本分类 + 证据厚度修正 | **96.2%** | **96.2%** |
+| 加真实多语言向量 + 零样本分类 + 证据厚度修正 | 96.2% | 96.2% |
+| 分类阈值改成量纲无关 + 换更强的 paraphrase 模型 | **98.1%** | **98.1%** |
 
-仍有 2 条失败，如实记录、不做粉饰：
+仍有 1 条失败，如实记录、不做粉饰：
+`しろいみみにつけるやつをなくした` —— 整句没有任何名词，只有一个功能性描述 → 排 44。
 
-- `しろいみみにつけるやつをなくした`（「戴在耳朵上的白色玩意儿」）—— 纯描述、无任何名词 → 排 31
-- `left a bottle of sake` —— 英文里 bottle 天然歧义 → 排 8
+**更大的模型反而更差。** 换成体积 10 倍的 `multilingual-e5-large` 结果不升反降 ——
+e5 是为「非对称检索」训练的，而这里是对称的短文本相似度。
+完整分析（含对比前必须先修掉的两个混淆变量）见
+[docs/MODEL_COMPARISON.md](docs/MODEL_COMPARISON.md)。
 
-384 维 MiniLM 在纯描述性表达上就是弱。换成 `multilingual-e5-large` 或企业向量网关
-只需改环境变量，Provider 接口已经抽象好。
+| 模型 | 维度 | 体积 | Recall@1 |
+|---|---|---|---|
+| paraphrase-multilingual-MiniLM-L12-v2 | 384 | 0.22 GB | 96.2% |
+| **paraphrase-multilingual-mpnet-base-v2**（默认） | 768 | 1.00 GB | **98.1%** |
+| intfloat/multilingual-e5-large | 1024 | 2.24 GB | 88.7% |
 
 ### 换向量模型不要覆盖历史
 
@@ -210,10 +217,10 @@ Accuracy **刻意**不是核心指标。真正要盯的失败是 **False Positiv
 | PostgreSQL + pgvector | PostgreSQL License / MIT | 免费 |
 | FastAPI / SQLAlchemy / psycopg / uvicorn | MIT / BSD | 免费 |
 | fastembed + onnxruntime | Apache-2.0 / MIT | 免费 |
-| `paraphrase-multilingual-MiniLM-L12-v2` | Apache-2.0 | 免费 |
+| `paraphrase-multilingual-mpnet-base-v2` | Apache-2.0 | 免费 |
 | LLM | **默认 provider 是 `rule`，根本不调用任何模型** | — |
 
-241MB 的向量模型在 **构建时就打进镜像**，运行中的容器不联网，也不需要 HuggingFace token。
+约 1GB 的向量模型在 **构建时就打进镜像**，运行中的容器不联网，也不需要 HuggingFace token。
 `LF_LLM_API_KEY` 和 `LF_EMBEDDING_API_KEY` 默认为空且不会被使用。
 
 两点如实说明：
@@ -238,7 +245,7 @@ LF_LLM_API_KEY=...
 
 # 向量 —— onnx（默认）| local | openai_compatible | hashing（CI 占位）
 LF_EMBEDDING_PROVIDER=onnx
-LF_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+LF_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-mpnet-base-v2
 LF_EMBEDDING_DIM=1536
 ```
 

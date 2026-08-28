@@ -14,6 +14,7 @@
 """
 from __future__ import annotations
 
+import statistics
 from functools import lru_cache
 
 from ..config import settings, synonyms
@@ -21,8 +22,17 @@ from .embedding_provider import cosine, get_embedding_provider
 
 # 低于该余弦就认为「说不好是什么」，宁可留空也不要瞎猜
 MIN_SIMILARITY = 0.35
-# 与次优类别的差距太小同样不可信（例如 bag / wallet 难分）
-MIN_MARGIN = 0.02
+# 与次优类别的差距太小同样不可信（例如 bag / wallet 难分）。
+# 同样不能用绝对值——改成「相差多少个标准差」。
+MIN_MARGIN_SD = 0.25
+
+# 绝对阈值只对某一个模型的余弦分布有效：
+#   paraphrase 系列的余弦散布在 0.1~0.7，e5 系列压缩在 0.7~0.95。
+#   同一套 MIN_SIMILARITY / MIN_MARGIN 换个模型就会全线失灵——
+#   要么全部拒判（分类全空），要么全部通过（乱判）。
+# 所以真正的判据用 z-score：最高分比「所有类别的平均分」高出多少个标准差。
+# 这个量纲无关，换模型不用重新调参。绝对阈值降级为兜底下限。
+MIN_ZSCORE = 1.8
 
 
 @lru_cache(maxsize=1)
@@ -34,7 +44,7 @@ def _prototypes() -> list[tuple[str, list[float]]]:
         if code.startswith("_"):
             continue
         text = "、".join([code, *aliases][:40])
-        out.append((code, provider.embed(text)))
+        out.append((code, provider.embed(text, kind="passage")))
     return out
 
 
@@ -47,17 +57,26 @@ def zero_shot_category(text: str) -> tuple[str | None, float]:
     if not text or not text.strip():
         return None, 0.0
     try:
-        vec = get_embedding_provider().embed(text)
+        vec = get_embedding_provider().embed(text, kind="query")
     except Exception:                                   # noqa: BLE001
         return None, 0.0
 
     scored = sorted(((code, cosine(vec, proto)) for code, proto in _prototypes()),
                     key=lambda x: x[1], reverse=True)
-    if not scored:
+    if len(scored) < 3:
         return None, 0.0
+
     best_code, best = scored[0]
-    runner_up = scored[1][1] if len(scored) > 1 else 0.0
-    if best < MIN_SIMILARITY or (best - runner_up) < MIN_MARGIN:
+    runner_up = scored[1][1]
+    sims = [s for _, s in scored]
+    mean = statistics.fmean(sims)
+    sd = statistics.pstdev(sims)
+    z = (best - mean) / sd if sd > 1e-9 else 0.0
+
+    # 主判据：z-score（量纲无关，换模型不用调参）
+    # 兜底：绝对相似度下限 + 与次优的最小差距（防止 bag/wallet 这类难分的硬猜）
+    margin_sd = (best - runner_up) / sd if sd > 1e-9 else 0.0
+    if z < MIN_ZSCORE or margin_sd < MIN_MARGIN_SD or best < MIN_SIMILARITY:
         return None, best
     return best_code, best
 

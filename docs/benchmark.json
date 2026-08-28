@@ -4,24 +4,24 @@
     "algorithm_version": "lf-matching-v1.0",
     "llm_provider": "rule",
     "embedding_provider": "onnx",
-    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
     "llm_model": "rule-engine-v1"
   },
   "corpus_size": 247,
-  "elapsed_seconds": 145.1,
+  "elapsed_seconds": 255.7,
   "summary": {
     "queries": 53,
-    "recall@1": 0.9622641509433962,
-    "recall@3": 0.9622641509433962,
+    "recall@1": 0.9811320754716981,
+    "recall@3": 0.9811320754716981,
     "recall@10": 0.9811320754716981,
-    "mrr": 0.9652312842361533,
+    "mrr": 0.9815608919382505,
     "outside_topk": 0,
     "top_k": 100,
     "per_language": {
       "en": {
         "n": 7,
-        "recall@1": 0.8571428571428571,
-        "recall@3": 0.8571428571428571
+        "recall@1": 1.0,
+        "recall@3": 1.0
       },
       "ja": {
         "n": 32,
@@ -47,8 +47,8 @@
       "lang": "ja",
       "query": "黒いバッグをなくしました",
       "rank": 1,
-      "score": 69.6398,
-      "level": "LOW",
+      "score": 73.8838,
+      "level": "MEDIUM",
       "channels": [
         "structured",
         "keyword",
@@ -64,8 +64,8 @@
       "lang": "ja",
       "query": "ブラックのバックパックを落としました",
       "rank": 1,
-      "score": 67.8342,
-      "level": "LOW",
+      "score": 74.1822,
+      "level": "MEDIUM",
       "channels": [
         "structured",
         "keyword",
@@ -81,7 +81,7 @@
       "lang": "ja",
       "query": "くろいかばんをおとしました",
       "rank": 1,
-      "score": 59.7681,
+      "score": 66.3238,
       "level": "LOW",
       "channels": [
         "structured",
@@ -98,8 +98,8 @@
       "lang": "ja",
       "query": "黒い鞄を紛失しました",
       "rank": 1,
-      "score": 67.6799,
-      "level": "LOW",
+      "score": 73.5232,
+      "level": "MEDIUM",
       "channels": [
         "structured",
         "keyword",
@@ -115,7 +115,7 @@
       "lang": "ja",
       "query": "黒いリュック落としちゃった",
       "rank": 1,
-      "score": 73.7567,
+      "score": 74.6044,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -132,7 +132,7 @@
       "lang": "ja",
       "query": "黒色の背嚢を失くしました",
       "rank": 1,
-      "score": 70.6739,
+      "score": 74.7328,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -149,7 +149,7 @@
       "lang": "ja",
       "query": "黒いデイパックが見つかりません",
       "rank": 1,
-      "score": 74.4856,
+      "score": 77.5767,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -166,8 +166,8 @@
       "lang": "zh",
       "query": "丢了一个黑色双肩包",
       "rank": 1,
-      "score": 67.5105,
-      "level": "LOW",
+      "score": 74.247,
+      "level": "MEDIUM",
       "channels": [
         "structured",
         "keyword",
@@ -183,8 +183,8 @@
       "lang": "zh",
       "query": "黑色背包不见了",
       "rank": 1,
-      "score": 67.108,
-      "level": "LOW",
+      "score": 72.3874,
+      "level": "MEDIUM",
       "channels": [
         "structured",
         "keyword",
@@ -200,7 +200,7 @@
       "lang": "en",
       "query": "lost a black backpack",
       "rank": 1,
-      "score": 62.771,
+      "score": 68.4065,
       "level": "LOW",
       "channels": [
         "structured",
@@ -217,7 +217,7 @@
       "lang": "romaji",
       "query": "kuroi kaban wo nakushimashita",
       "rank": 1,
-      "score": 57.1814,
+      "score": 59.9891,
       "level": "LOW",
       "channels": [
         "structured",
@@ -234,7 +234,7 @@
       "lang": "ja",
       "query": "青いタンブラーをなくしました",
       "rank": 1,
-      "score": 70.6768,
+      "score": 74.0153,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -251,7 +251,7 @@
       "lang": "ja",
       "query": "ブルーのマイボトルを落としました",
       "rank": 1,
-      "score": 73.8531,
+      "score": 79.2206,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -268,7 +268,7 @@
       "lang": "ja",
       "query": "あおいすいとうをおとしました",
       "rank": 1,
-      "score": 55.9048,
+      "score": 61.7614,
       "level": "LOW",
       "channels": [
         "structured",
@@ -285,7 +285,7 @@
       "lang": "ja",
       "query": "青色の魔法瓶を紛失",
       "rank": 1,
-      "score": 72.7557,
+      "score": 75.3224,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -302,8 +302,8 @@
       "lang": "ja",
       "query": "青いボトル忘れちゃった",
       "rank": 1,
-      "score": 69.51,
-      "level": "LOW",
+      "score": 72.2932,
+      "level": "MEDIUM",
       "channels": [
         "structured",
         "keyword",
@@ -319,7 +319,7 @@
       "lang": "zh",
       "query": "丢了一个蓝色保温杯",
       "rank": 1,
-      "score": 72.2467,
+      "score": 76.9554,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -336,7 +336,7 @@
       "lang": "zh",
       "query": "蓝色不锈钢水壶不见了",
       "rank": 1,
-      "score": 72.1668,
+      "score": 75.0948,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -353,7 +353,7 @@
       "lang": "en",
       "query": "lost a blue thermos flask",
       "rank": 1,
-      "score": 75.1404,
+      "score": 75.8581,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -370,7 +370,7 @@
       "lang": "ja",
       "query": "こんいろのかさをなくしました",
       "rank": 1,
-      "score": 72.8625,
+      "score": 75.4136,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -387,7 +387,7 @@
       "lang": "ja",
       "query": "ネイビーのアンブレラを落としました",
       "rank": 1,
-      "score": 75.0108,
+      "score": 77.2202,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -404,7 +404,7 @@
       "lang": "ja",
       "query": "紺色の雨傘を紛失しました",
       "rank": 1,
-      "score": 89.9121,
+      "score": 90.9264,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -421,7 +421,7 @@
       "lang": "ja",
       "query": "紺の折りたたみ忘れた",
       "rank": 1,
-      "score": 86.156,
+      "score": 85.2382,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -438,7 +438,7 @@
       "lang": "zh",
       "query": "丢了一把深蓝色折叠伞",
       "rank": 1,
-      "score": 89.7661,
+      "score": 90.2341,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -455,7 +455,7 @@
       "lang": "zh",
       "query": "藏青色带花纹的伞不见了",
       "rank": 1,
-      "score": 91.3701,
+      "score": 91.525,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -472,7 +472,7 @@
       "lang": "en",
       "query": "lost a navy folding umbrella with flower pattern",
       "rank": 1,
-      "score": 67.1171,
+      "score": 67.9171,
       "level": "LOW",
       "channels": [
         "structured",
@@ -489,7 +489,7 @@
       "lang": "ja",
       "query": "ちゃいろのさいふをなくしました",
       "rank": 1,
-      "score": 64.4,
+      "score": 65.7664,
       "level": "LOW",
       "channels": [
         "structured",
@@ -506,7 +506,7 @@
       "lang": "ja",
       "query": "ブラウンのウォレットを落としました",
       "rank": 1,
-      "score": 72.1133,
+      "score": 76.0511,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -523,7 +523,7 @@
       "lang": "ja",
       "query": "茶色の札入れを紛失",
       "rank": 1,
-      "score": 80.8975,
+      "score": 80.7499,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -540,7 +540,7 @@
       "lang": "ja",
       "query": "茶色いがま口を失くしました",
       "rank": 1,
-      "score": 71.7373,
+      "score": 75.3034,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -557,7 +557,7 @@
       "lang": "ja",
       "query": "茶色の財布どっかいった",
       "rank": 1,
-      "score": 84.9178,
+      "score": 83.1277,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -574,7 +574,7 @@
       "lang": "zh",
       "query": "丢了一个棕色皮夹",
       "rank": 1,
-      "score": 84.6233,
+      "score": 80.5158,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -591,7 +591,7 @@
       "lang": "zh",
       "query": "咖啡色真皮长款钱包不见了",
       "rank": 1,
-      "score": 82.5397,
+      "score": 87.1582,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -608,7 +608,7 @@
       "lang": "en",
       "query": "lost a brown leather long wallet",
       "rank": 1,
-      "score": 89.3364,
+      "score": 85.0887,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -625,7 +625,7 @@
       "lang": "ja",
       "query": "白いワイヤレスイヤフォンをなくしました",
       "rank": 1,
-      "score": 82.6597,
+      "score": 83.8032,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -642,7 +642,7 @@
       "lang": "ja",
       "query": "白いエアポッズを落としました",
       "rank": 1,
-      "score": 68.0347,
+      "score": 69.0944,
       "level": "LOW",
       "channels": [
         "structured",
@@ -658,15 +658,14 @@
       "style": "ja-hiragana",
       "lang": "ja",
       "query": "しろいみみにつけるやつをなくした",
-      "rank": 31,
-      "score": 56.4089,
-      "level": "LOW",
+      "rank": 44,
+      "score": 38.8155,
+      "level": "IGNORE",
       "channels": [
         "keyword",
-        "vector_text",
-        "vector_attr"
+        "vector_text"
       ],
-      "understood_category": "water_bottle",
+      "understood_category": null,
       "candidates": 247
     },
     {
@@ -675,7 +674,7 @@
       "lang": "ja",
       "query": "白い無線ヘッドホンを紛失",
       "rank": 1,
-      "score": 75.3155,
+      "score": 78.2533,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -692,7 +691,7 @@
       "lang": "zh",
       "query": "丢了白色无线耳机",
       "rank": 1,
-      "score": 76.6249,
+      "score": 78.9014,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -709,7 +708,7 @@
       "lang": "zh",
       "query": "白色蓝牙耳机连充电盒不见了",
       "rank": 1,
-      "score": 80.5275,
+      "score": 83.6368,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -726,7 +725,7 @@
       "lang": "en",
       "query": "lost white wireless earbuds with charging case",
       "rank": 1,
-      "score": 66.9891,
+      "score": 68.491,
       "level": "LOW",
       "channels": [
         "structured",
@@ -743,7 +742,7 @@
       "lang": "ja",
       "query": "お酒の瓶を忘れました",
       "rank": 1,
-      "score": 71.9766,
+      "score": 72.8223,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -759,7 +758,7 @@
       "lang": "ja",
       "query": "地酒の一升瓶を置き忘れました",
       "rank": 1,
-      "score": 74.5538,
+      "score": 74.377,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -775,7 +774,7 @@
       "lang": "ja",
       "query": "日本酒の瓶忘れてきた",
       "rank": 1,
-      "score": 80.3411,
+      "score": 81.5221,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -791,7 +790,7 @@
       "lang": "ja",
       "query": "清酒の大瓶を紛失",
       "rank": 1,
-      "score": 71.287,
+      "score": 70.2725,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -807,8 +806,8 @@
       "lang": "zh",
       "query": "落了一瓶日本清酒",
       "rank": 1,
-      "score": 69.6216,
-      "level": "LOW",
+      "score": 73.903,
+      "level": "MEDIUM",
       "channels": [
         "structured",
         "keyword",
@@ -822,8 +821,8 @@
       "style": "en",
       "lang": "en",
       "query": "left a bottle of sake",
-      "rank": 8,
-      "score": 56.7574,
+      "rank": 1,
+      "score": 67.8817,
       "level": "LOW",
       "channels": [
         "keyword",
@@ -838,7 +837,7 @@
       "lang": "ja",
       "query": "シルバーのノートPCをなくしました",
       "rank": 1,
-      "score": 76.7243,
+      "score": 77.8675,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -855,7 +854,7 @@
       "lang": "ja",
       "query": "銀色のラップトップを落としました",
       "rank": 1,
-      "score": 81.8184,
+      "score": 82.1295,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -872,7 +871,7 @@
       "lang": "ja",
       "query": "ぎんいろのぱそこんをなくした",
       "rank": 1,
-      "score": 58.2817,
+      "score": 59.3577,
       "level": "LOW",
       "channels": [
         "structured",
@@ -889,7 +888,7 @@
       "lang": "zh",
       "query": "丢了一台银色笔记本电脑",
       "rank": 1,
-      "score": 81.2596,
+      "score": 80.9241,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -906,7 +905,7 @@
       "lang": "zh",
       "query": "13寸银色手提电脑不见了",
       "rank": 1,
-      "score": 84.4062,
+      "score": 82.5128,
       "level": "MEDIUM",
       "channels": [
         "structured",
@@ -923,7 +922,7 @@
       "lang": "en",
       "query": "lost a silver 13 inch laptop",
       "rank": 1,
-      "score": 83.4055,
+      "score": 83.0778,
       "level": "MEDIUM",
       "channels": [
         "structured",
