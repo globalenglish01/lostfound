@@ -42,13 +42,14 @@ def clip(value: float, lo: float = 0.0, hi: float = 100.0) -> float:
     return max(lo, min(hi, value))
 
 
-def evidence_bonus(features: dict[str, FeatureScore]) -> float:
+def evidence_bonus(features: dict[str, FeatureScore],
+                   config: dict[str, Any] | None = None) -> float:
     """额外证据奖励 B_evidence，封顶 B_max。
 
     奖励的是「多个**独立**强证据同时命中」，而不是弱证据的数量。
     「背面有一道明显裂痕」+「背面左上角有明显裂痕」才是强组合证据。
     """
-    cfg = matching_weights()
+    cfg = config if config is not None else matching_weights()
     cap = float(cfg.get("evidence_bonus_max", 10.0))
     bonus = 0.0
 
@@ -93,14 +94,15 @@ def confidence_of(features: dict[str, FeatureScore], report: ConflictReport) -> 
 
 def resolve_level(score: float, report: ConflictReport, *,
                   coverage: float = 1.0,
-                  has_identity_evidence: bool = True) -> tuple[str, str]:
+                  has_identity_evidence: bool = True,
+                  config: dict[str, Any] | None = None) -> tuple[str, str]:
     """分数 -> 匹配等级，并施加两条封顶规则。
 
     1. 存在 CRITICAL 冲突 -> 封顶（即使 99 分）
     2. 可用证据太弱 / 没有身份类证据 -> 封顶
        （Semantic、Keyword 是弱证据，永远不能单独决定匹配）
     """
-    cfg = matching_weights()
+    cfg = config if config is not None else matching_weights()
     if report.rejected:
         return "REJECT", "DO_NOT_RECOMMEND"
 
@@ -131,15 +133,26 @@ def resolve_level(score: float, report: ConflictReport, *,
 
 def compute_score(features: dict[str, FeatureScore],
                   report: ConflictReport,
-                  category_code: str | None = None) -> ScoreResult:
-    weights = dimension_weights(category_code)
+                  category_code: str | None = None,
+                  *,
+                  weights: dict[str, float] | None = None,
+                  dimensions: tuple[str, ...] | None = None,
+                  level_config: dict[str, Any] | None = None) -> ScoreResult:
+    """计算最终得分。
+
+    weights / dimensions / level_config 显式传入时，这个函数就与失物领域完全解耦——
+    公式（可用证据归一化 + 可靠性加权 + 冲突惩罚 + 证据奖励封顶）本身是通用的，
+    换一个领域只需要换一套维度和权重。题库查重就是这么复用的。
+    """
+    weights = weights if weights is not None else dimension_weights(category_code)
+    dims = dimensions if dimensions is not None else DIMENSIONS
 
     num = den = 0.0
     dim_scores: dict[str, float | None] = {}
     used: dict[str, float] = {}
     unknown: list[str] = []
 
-    for dim in DIMENSIONS:
+    for dim in dims:
         f = features.get(dim)
         w = float(weights.get(dim, 0.0))
         if f is None or f.score is None:
@@ -155,21 +168,23 @@ def compute_score(features: dict[str, FeatureScore],
         used[dim] = w
 
     base = round(num / den, 4) if den else 0.0
-    bonus = evidence_bonus(features)
+    bonus = evidence_bonus(features, level_config)
     penalty = report.penalty
     final = clip(base - penalty + bonus)
 
     if report.rejected:
         final = 0.0
 
-    total_weight = sum(float(weights.get(d, 0.0)) for d in DIMENSIONS)
+    total_weight = sum(float(weights.get(d, 0.0)) for d in dims)
     coverage = (sum(used.values()) / total_weight) if total_weight else 0.0
-    identity_dims = matching_weights().get("identity_dimensions",
-                                           ["attribute", "distinctive", "category"])
+    cfg = level_config if level_config is not None else matching_weights()
+    identity_dims = cfg.get("identity_dimensions",
+                            ["attribute", "distinctive", "category"])
     has_identity = any(dim_scores.get(d) is not None for d in identity_dims)
 
     level, action = resolve_level(final, report, coverage=coverage,
-                                  has_identity_evidence=has_identity)
+                                  has_identity_evidence=has_identity,
+                                  config=cfg)
     conf = confidence_of(features, report)
 
     return ScoreResult(

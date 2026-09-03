@@ -19,6 +19,7 @@ COPY backend /app/backend
 COPY config /app/config
 COPY db /app/db
 COPY scripts /app/scripts
+COPY domain /app/domain
 
 ENV PYTHONPATH=/app/backend:/app \
     LF_CONFIG_DIR=/app/config \

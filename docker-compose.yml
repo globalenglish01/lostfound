@@ -49,6 +49,7 @@ services:
       - ./db:/app/db:ro
       # 评测脚本挂载进来：改完不用重建镜像就能重跑 benchmark
       - ./scripts:/app/scripts:ro
+      - ./domain:/app/domain:ro
       - ./docs:/app/docs
       # 模型缓存持久化：换模型时不必重建镜像
       # （镜像里已烤好默认模型，首次挂载会自动复制进卷）

@@ -1,0 +1,202 @@
+{
+  "threshold": 95.0,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+  "clusters": [
+    {
+      "representative": "sap-84",
+      "size": 2,
+      "members": [
+        {
+          "qid": "sap-84",
+          "source_no": "84",
+          "answer": [],
+          "stem": "一家公司在AWS上有其云基础设施。解决方案架构师需要定义基础设施即代码。基础设施目前部署在一个AWS区域。公司的业务扩展计划包括在多个AWS账户中跨多个区域的部署。"
+        },
+        {
+          "qid": "sap-85",
+          "source_no": "85",
+          "answer": [],
+          "stem": "一家公司在AWS上有其云基础设施。解决方案架构师需要定义基础设施即代码。基础设施目前部署在一个AWS区域。公司的业务扩展计划包括在多个AWS账户中跨多个区域的部署。"
+        }
+      ],
+      "top_pairs": [
+        {
+          "a": "sap-84",
+          "b": "sap-85",
+          "score": 100.0,
+          "level": "DUPLICATE",
+          "dims": {
+            "stem": 100.0,
+            "answer": 100.0,
+            "services": 100.0,
+            "kps": null,
+            "constraints": null,
+            "keyword": 100.0
+          }
+        }
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "a": "sap-84",
+      "b": "sap-85",
+      "score": 100.0,
+      "level": "DUPLICATE",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 100.0,
+        "answer": 100.0,
+        "services": 100.0,
+        "kps": null,
+        "constraints": null,
+        "keyword": 100.0
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-329",
+      "b": "sap-498",
+      "score": 91.6101,
+      "level": "LIKELY_DUPLICATE",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 91.6196,
+        "answer": 94.3388,
+        "services": 100.0,
+        "kps": null,
+        "constraints": null,
+        "keyword": 53.8796
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-69",
+      "b": "sap-345",
+      "score": 88.2041,
+      "level": "LIKELY_DUPLICATE",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 81.5833,
+        "answer": 90.9277,
+        "services": 100.0,
+        "kps": null,
+        "constraints": 100.0,
+        "keyword": 40.0534
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-246",
+      "b": "sap-367",
+      "score": 85.1689,
+      "level": "SAME_TOPIC",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 86.0054,
+        "answer": 85.7233,
+        "services": 100.0,
+        "kps": null,
+        "constraints": null,
+        "keyword": 36.4091
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-187",
+      "b": "sap-505",
+      "score": 83.4816,
+      "level": "SAME_TOPIC",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 90.2872,
+        "answer": 93.7223,
+        "services": 100.0,
+        "kps": null,
+        "constraints": 50.0,
+        "keyword": 49.0344
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-306",
+      "b": "sap-510",
+      "score": 82.8511,
+      "level": "SAME_TOPIC",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 82.3469,
+        "answer": 91.5891,
+        "services": 83.3333,
+        "kps": null,
+        "constraints": null,
+        "keyword": 38.6856
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-233",
+      "b": "sap-367",
+      "score": 82.1738,
+      "level": "SAME_TOPIC",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 85.3723,
+        "answer": 81.7438,
+        "services": 100.0,
+        "kps": null,
+        "constraints": null,
+        "keyword": 17.8643
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-356",
+      "b": "sap-423",
+      "score": 79.7874,
+      "level": "SAME_TOPIC",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 82.2984,
+        "answer": 87.0544,
+        "services": null,
+        "kps": null,
+        "constraints": null,
+        "keyword": 28.9413
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-233",
+      "b": "sap-246",
+      "score": 78.4013,
+      "level": "SAME_TOPIC",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 79.9741,
+        "answer": 78.1993,
+        "services": 100.0,
+        "kps": null,
+        "constraints": null,
+        "keyword": 10.797
+      },
+      "conflicts": []
+    },
+    {
+      "a": "sap-51",
+      "b": "sap-495",
+      "score": 78.2995,
+      "level": "SAME_TOPIC",
+      "penalty": 0.0,
+      "dims": {
+        "stem": 79.8747,
+        "answer": 66.5341,
+        "services": 100.0,
+        "kps": null,
+        "constraints": 100.0,
+        "keyword": 5.425
+      },
+      "conflicts": []
+    }
+  ]
+}

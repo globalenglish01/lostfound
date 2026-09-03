@@ -1,0 +1,580 @@
+{
+  "_comment": "题库查重领域的术语词典。两个轴必须分开，合并就毁了区分度：services 是粗粒度高召回，concepts 是细粒度有区分度。",
+  "_trap": "「Amazon S3」和「Amazon S3 跨区域复制」不是同一个概念。按子串合并知识点，等于把最有区分度的信号抹平——和失物系统里单字「包」误命中「包装」是同一类错误。所以只归并**真同义**（去掉 AWS/Amazon 前缀后完全相同），不做包含式合并。",
+  "vendor_prefixes": [
+    "aws",
+    "amazon",
+    "亚马逊"
+  ],
+  "services": {
+    "S3": [
+      "s3",
+      "amazon s3",
+      "simple storage service",
+      "简单存储服务",
+      "对象存储"
+    ],
+    "EC2": [
+      "ec2",
+      "amazon ec2",
+      "elastic compute cloud",
+      "弹性计算"
+    ],
+    "Lambda": [
+      "lambda",
+      "aws lambda",
+      "无服务器函数"
+    ],
+    "RDS": [
+      "rds",
+      "amazon rds",
+      "relational database service",
+      "关系型数据库服务"
+    ],
+    "Aurora": [
+      "aurora",
+      "amazon aurora"
+    ],
+    "DynamoDB": [
+      "dynamodb",
+      "amazon dynamodb",
+      "ddb"
+    ],
+    "CloudFront": [
+      "cloudfront",
+      "amazon cloudfront",
+      "cdn"
+    ],
+    "Route53": [
+      "route 53",
+      "route53",
+      "amazon route 53"
+    ],
+    "VPC": [
+      "vpc",
+      "amazon vpc",
+      "virtual private cloud",
+      "虚拟私有云"
+    ],
+    "DirectConnect": [
+      "direct connect",
+      "dx",
+      "aws direct connect",
+      "专线"
+    ],
+    "TransitGateway": [
+      "transit gateway",
+      "tgw",
+      "中转网关"
+    ],
+    "PrivateLink": [
+      "privatelink",
+      "private link",
+      "aws privatelink",
+      "vpc 端点",
+      "vpc endpoint",
+      "接口端点"
+    ],
+    "Organizations": [
+      "organizations",
+      "aws organizations",
+      "组织"
+    ],
+    "SCP": [
+      "scp",
+      "服务控制策略",
+      "service control policy"
+    ],
+    "IAM": [
+      "iam",
+      "aws iam",
+      "identity and access management",
+      "身份与访问管理"
+    ],
+    "ControlTower": [
+      "control tower",
+      "aws control tower"
+    ],
+    "CloudFormation": [
+      "cloudformation",
+      "aws cloudformation",
+      "cfn"
+    ],
+    "StackSets": [
+      "stacksets",
+      "stack sets",
+      "cloudformation stacksets"
+    ],
+    "CDK": [
+      "cdk",
+      "aws cdk"
+    ],
+    "ECS": [
+      "ecs",
+      "amazon ecs",
+      "elastic container service"
+    ],
+    "EKS": [
+      "eks",
+      "amazon eks",
+      "elastic kubernetes service",
+      "kubernetes"
+    ],
+    "Fargate": [
+      "fargate",
+      "aws fargate"
+    ],
+    "ECR": [
+      "ecr",
+      "amazon ecr",
+      "容器镜像仓库"
+    ],
+    "SQS": [
+      "sqs",
+      "amazon sqs",
+      "简单队列服务"
+    ],
+    "SNS": [
+      "sns",
+      "amazon sns",
+      "简单通知服务"
+    ],
+    "EventBridge": [
+      "eventbridge",
+      "amazon eventbridge",
+      "cloudwatch events"
+    ],
+    "Kinesis": [
+      "kinesis",
+      "amazon kinesis"
+    ],
+    "StepFunctions": [
+      "step functions",
+      "stepfunctions",
+      "aws step functions"
+    ],
+    "APIGateway": [
+      "api gateway",
+      "apigateway",
+      "amazon api gateway"
+    ],
+    "ALB": [
+      "alb",
+      "application load balancer",
+      "应用负载均衡器",
+      "应用程序负载均衡器"
+    ],
+    "NLB": [
+      "nlb",
+      "network load balancer",
+      "网络负载均衡器"
+    ],
+    "AutoScaling": [
+      "auto scaling",
+      "autoscaling",
+      "自动扩展",
+      "弹性伸缩",
+      "应用程序自动扩展"
+    ],
+    "CloudWatch": [
+      "cloudwatch",
+      "amazon cloudwatch"
+    ],
+    "CloudTrail": [
+      "cloudtrail",
+      "aws cloudtrail"
+    ],
+    "Config": [
+      "aws config"
+    ],
+    "GuardDuty": [
+      "guardduty",
+      "amazon guardduty"
+    ],
+    "SecurityHub": [
+      "security hub",
+      "securityhub",
+      "aws security hub"
+    ],
+    "Macie": [
+      "macie",
+      "amazon macie"
+    ],
+    "Inspector": [
+      "inspector",
+      "amazon inspector"
+    ],
+    "Detective": [
+      "detective",
+      "amazon detective"
+    ],
+    "KMS": [
+      "kms",
+      "aws kms",
+      "key management service",
+      "密钥管理服务"
+    ],
+    "ACM": [
+      "acm",
+      "aws certificate manager",
+      "certificate manager",
+      "证书管理器"
+    ],
+    "SecretsManager": [
+      "secrets manager",
+      "secretsmanager",
+      "aws secrets manager"
+    ],
+    "WAF": [
+      "waf",
+      "aws waf"
+    ],
+    "Shield": [
+      "shield",
+      "aws shield"
+    ],
+    "EFS": [
+      "efs",
+      "amazon efs",
+      "elastic file system"
+    ],
+    "FSx": [
+      "fsx",
+      "amazon fsx"
+    ],
+    "EBS": [
+      "ebs",
+      "amazon ebs",
+      "elastic block store"
+    ],
+    "StorageGateway": [
+      "storage gateway",
+      "aws storage gateway",
+      "文件网关"
+    ],
+    "Backup": [
+      "aws backup"
+    ],
+    "Glacier": [
+      "glacier",
+      "s3 glacier",
+      "深度归档"
+    ],
+    "DataSync": [
+      "datasync",
+      "aws datasync"
+    ],
+    "Snowball": [
+      "snowball",
+      "aws snowball",
+      "snow family"
+    ],
+    "DMS": [
+      "dms",
+      "aws dms",
+      "database migration service",
+      "数据库迁移服务"
+    ],
+    "SCT": [
+      "sct",
+      "schema conversion tool"
+    ],
+    "MGN": [
+      "mgn",
+      "application migration service",
+      "应用程序迁移服务"
+    ],
+    "Athena": [
+      "athena",
+      "amazon athena"
+    ],
+    "Glue": [
+      "glue",
+      "aws glue"
+    ],
+    "Redshift": [
+      "redshift",
+      "amazon redshift"
+    ],
+    "EMR": [
+      "emr",
+      "amazon emr"
+    ],
+    "QuickSight": [
+      "quicksight",
+      "amazon quicksight"
+    ],
+    "ElastiCache": [
+      "elasticache",
+      "amazon elasticache",
+      "redis",
+      "memcached"
+    ],
+    "OpenSearch": [
+      "opensearch",
+      "amazon opensearch",
+      "elasticsearch"
+    ],
+    "Cognito": [
+      "cognito",
+      "amazon cognito"
+    ],
+    "SSO": [
+      "iam identity center",
+      "aws sso",
+      "single sign-on",
+      "单点登录"
+    ],
+    "Outposts": [
+      "outposts",
+      "aws outposts"
+    ],
+    "GlobalAccelerator": [
+      "global accelerator",
+      "aws global accelerator"
+    ],
+    "SystemsManager": [
+      "systems manager",
+      "ssm",
+      "aws systems manager"
+    ],
+    "ServiceCatalog": [
+      "service catalog",
+      "aws service catalog"
+    ],
+    "TrustedAdvisor": [
+      "trusted advisor",
+      "aws trusted advisor"
+    ],
+    "CostExplorer": [
+      "cost explorer",
+      "成本浏览器",
+      "cost and usage report",
+      "cur"
+    ],
+    "Budgets": [
+      "aws budgets",
+      "预算"
+    ],
+    "Batch": [
+      "aws batch"
+    ],
+    "AppSync": [
+      "appsync",
+      "aws appsync"
+    ],
+    "Amplify": [
+      "amplify",
+      "aws amplify"
+    ],
+    "Textract": [
+      "textract",
+      "amazon textract"
+    ],
+    "Comprehend": [
+      "comprehend",
+      "amazon comprehend"
+    ],
+    "SageMaker": [
+      "sagemaker",
+      "amazon sagemaker"
+    ],
+    "Transfer": [
+      "transfer family",
+      "aws transfer"
+    ],
+    "MQ": [
+      "amazon mq"
+    ],
+    "MSK": [
+      "msk",
+      "amazon msk",
+      "kafka"
+    ],
+    "Neptune": [
+      "neptune",
+      "amazon neptune"
+    ],
+    "DocumentDB": [
+      "documentdb",
+      "amazon documentdb"
+    ],
+    "Timestream": [
+      "timestream",
+      "amazon timestream"
+    ],
+    "Lightsail": [
+      "lightsail",
+      "amazon lightsail"
+    ],
+    "WorkSpaces": [
+      "workspaces",
+      "amazon workspaces"
+    ],
+    "AppStream": [
+      "appstream",
+      "amazon appstream"
+    ]
+  },
+  "_constraints_note": "约束 / 优化目标是判别两题是否同一考点的**核心特征**。场景一样、服务一样，但一个求成本最优、一个求最小停机，就是两道不同的题。",
+  "constraints": {
+    "cost": [
+      "成本优化",
+      "成本效益",
+      "最低成本",
+      "成本最低",
+      "最具成本效益",
+      "降低成本",
+      "节约成本",
+      "最小化成本",
+      "cost-effective",
+      "lowest cost",
+      "成本"
+    ],
+    "performance": [
+      "性能优化",
+      "最高性能",
+      "低延迟",
+      "延迟最低",
+      "吞吐量",
+      "性能",
+      "加速",
+      "latency"
+    ],
+    "availability": [
+      "高可用",
+      "高可用性",
+      "可用性",
+      "故障转移",
+      "多可用区",
+      "容错",
+      "弹性",
+      "high availability",
+      "failover"
+    ],
+    "durability": [
+      "持久性",
+      "数据持久",
+      "不丢数据",
+      "durability"
+    ],
+    "downtime": [
+      "最小停机",
+      "停机时间",
+      "零停机",
+      "近乎零停机",
+      "不中断",
+      "minimal downtime",
+      "cutover"
+    ],
+    "ops_overhead": [
+      "运营开销",
+      "运维开销",
+      "管理开销",
+      "最少的运营开销",
+      "最小运维",
+      "无服务器",
+      "托管服务",
+      "operational overhead",
+      "least operational"
+    ],
+    "code_change": [
+      "无需更改代码",
+      "最少代码更改",
+      "不修改应用",
+      "最小改动",
+      "no code change",
+      "minimal changes"
+    ],
+    "migration_effort": [
+      "迁移工作量",
+      "最小迁移",
+      "最少工作量",
+      "migration effort",
+      "lift and shift"
+    ],
+    "security": [
+      "安全",
+      "加密",
+      "合规",
+      "最小权限",
+      "审计",
+      "security",
+      "compliance",
+      "least privilege"
+    ],
+    "scalability": [
+      "可扩展",
+      "可扩展性",
+      "弹性扩展",
+      "自动扩展",
+      "scalability",
+      "scale"
+    ],
+    "dr": [
+      "灾难恢复",
+      "灾备",
+      "rpo",
+      "rto",
+      "disaster recovery"
+    ],
+    "speed_to_implement": [
+      "最快",
+      "尽快",
+      "最短时间",
+      "立即",
+      "fastest",
+      "immediately"
+    ],
+    "scope_new": [
+      "所有新的",
+      "新创建的",
+      "新建的",
+      "未来创建",
+      "以后创建",
+      "新增的",
+      "newly created",
+      "all new",
+      "future"
+    ],
+    "scope_existing": [
+      "现有的",
+      "已有的",
+      "已存在",
+      "已经创建",
+      "存量",
+      "目前的卷",
+      "existing",
+      "already created",
+      "in place"
+    ]
+  },
+  "_kp_synonyms": "只归并真同义：去掉 AWS/Amazon 前缀后完全相同的才算。绝不做包含式合并。",
+  "kp_manual_synonyms": {
+    "成本优化": [
+      "成本效益",
+      "成本效率",
+      "费用优化"
+    ],
+    "高可用性": [
+      "高可用"
+    ],
+    "运营开销": [
+      "运维开销",
+      "管理开销"
+    ],
+    "无服务器架构": [
+      "无服务器",
+      "serverless"
+    ],
+    "灾难恢复": [
+      "灾备",
+      "容灾"
+    ],
+    "自动扩展": [
+      "弹性伸缩",
+      "自动伸缩"
+    ]
+  },
+  "_scope_note": "「加密所有新建的 EBS 卷」和「加密所有已有的 EBS 卷」是两道不同的题：前者用 EBS 默认加密 / SCP，后者要做快照-复制-替换。这是 AWS 考试最经典的一类陷阱对，必须当硬约束拦住。"
+}

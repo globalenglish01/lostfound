@@ -1,0 +1,8397 @@
+{
+  "total": 524,
+  "kept": 523,
+  "threshold": 95.0,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+  "questions": [
+    {
+      "qid": "sap-84",
+      "source_no": "84",
+      "title": "AWS SAP-C02 真题 #84",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "ControlTower",
+        "IAM",
+        "Organizations",
+        "StackSets"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-1",
+      "source_no": "1",
+      "title": "AWS SAP-C02 真题 #1",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "EC2",
+        "Route53",
+        "TransitGateway",
+        "VPC"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-10",
+      "source_no": "10",
+      "title": "AWS SAP-C02 真题 #10",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFront",
+        "CloudWatch",
+        "EC2",
+        "Lambda",
+        "RDS",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "scope_existing",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-100",
+      "source_no": "100",
+      "title": "AWS SAP-C02 真题 #100",
+      "answer": [],
+      "services": [
+        "EventBridge",
+        "Lambda",
+        "SNS",
+        "SQS",
+        "StepFunctions"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-101",
+      "source_no": "101",
+      "title": "AWS SAP-C02 真题 #101",
+      "answer": [],
+      "services": [
+        "IAM",
+        "KMS",
+        "Organizations",
+        "QuickSight",
+        "S3",
+        "SCP"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-102",
+      "source_no": "102",
+      "title": "AWS SAP-C02 真题 #102",
+      "answer": [],
+      "services": [
+        "DMS",
+        "DataSync",
+        "RDS",
+        "S3",
+        "SCT",
+        "Snowball"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-103",
+      "source_no": "103",
+      "title": "AWS SAP-C02 真题 #103",
+      "answer": [],
+      "services": [
+        "IAM",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-104",
+      "source_no": "104",
+      "title": "AWS SAP-C02 真题 #104",
+      "answer": [],
+      "services": [],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-105",
+      "source_no": "105",
+      "title": "AWS SAP-C02 真题 #105",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudWatch",
+        "EBS",
+        "EC2",
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": [
+        "availability",
+        "performance",
+        "scalability",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-106",
+      "source_no": "106",
+      "title": "AWS SAP-C02 真题 #106",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "ECR",
+        "ECS",
+        "EKS",
+        "Fargate",
+        "Lambda"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-107",
+      "source_no": "107",
+      "title": "AWS SAP-C02 真题 #107",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "GlobalAccelerator",
+        "Lambda",
+        "Route53",
+        "SQS"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-108",
+      "source_no": "108",
+      "title": "AWS SAP-C02 真题 #108",
+      "answer": [],
+      "services": [
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-109",
+      "source_no": "109",
+      "title": "AWS SAP-C02 真题 #109",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudWatch",
+        "EC2"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-11",
+      "source_no": "11",
+      "title": "AWS SAP-C02 真题 #11",
+      "answer": [],
+      "services": [
+        "Organizations",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-110",
+      "source_no": "110",
+      "title": "AWS SAP-C02 真题 #110",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Config",
+        "EventBridge",
+        "IAM",
+        "KMS",
+        "Lambda",
+        "Organizations",
+        "WAF"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-111",
+      "source_no": "111",
+      "title": "AWS SAP-C02 真题 #111",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "IAM",
+        "KMS",
+        "Lambda",
+        "S3",
+        "SecretsManager",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-112",
+      "source_no": "112",
+      "title": "AWS SAP-C02 真题 #112",
+      "answer": [],
+      "services": [
+        "Config",
+        "EC2",
+        "IAM"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-113",
+      "source_no": "113",
+      "title": "AWS SAP-C02 真题 #113",
+      "answer": [],
+      "services": [
+        "Config",
+        "EC2",
+        "IAM",
+        "Inspector",
+        "Organizations",
+        "SCP",
+        "SecurityHub"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-114",
+      "source_no": "114",
+      "title": "AWS SAP-C02 真题 #114",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "AutoScaling",
+        "Kinesis",
+        "Lambda",
+        "Neptune",
+        "OpenSearch",
+        "QuickSight"
+      ],
+      "constraints": [
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-115",
+      "source_no": "115",
+      "title": "AWS SAP-C02 真题 #115",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Detective",
+        "EC2",
+        "IAM",
+        "Kinesis",
+        "VPC"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-116",
+      "source_no": "116",
+      "title": "AWS SAP-C02 真题 #116",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "TransitGateway",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-117",
+      "source_no": "117",
+      "title": "AWS SAP-C02 真题 #117",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "CloudWatch",
+        "ECS",
+        "EventBridge",
+        "Fargate",
+        "IAM",
+        "SNS",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-118",
+      "source_no": "118",
+      "title": "AWS SAP-C02 真题 #118",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "Cognito",
+        "ControlTower",
+        "IAM",
+        "Organizations",
+        "SSO",
+        "SecurityHub",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-119",
+      "source_no": "119",
+      "title": "AWS SAP-C02 真题 #119",
+      "answer": [],
+      "services": [
+        "EC2",
+        "EventBridge",
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-12",
+      "source_no": "12",
+      "title": "AWS SAP-C02 真题 #12",
+      "answer": [],
+      "services": [
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-120",
+      "source_no": "120",
+      "title": "AWS SAP-C02 真题 #120",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Lambda"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-121",
+      "source_no": "121",
+      "title": "AWS SAP-C02 真题 #121",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EC2",
+        "NLB",
+        "VPC"
+      ],
+      "constraints": [
+        "performance",
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-122",
+      "source_no": "122",
+      "title": "AWS SAP-C02 真题 #122",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Fargate",
+        "Glue",
+        "Lambda",
+        "QuickSight",
+        "Redshift",
+        "S3",
+        "Snowball",
+        "Transfer"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-123",
+      "source_no": "123",
+      "title": "AWS SAP-C02 真题 #123",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-124",
+      "source_no": "124",
+      "title": "AWS SAP-C02 真题 #124",
+      "answer": [],
+      "services": [
+        "Config",
+        "EC2",
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-125",
+      "source_no": "125",
+      "title": "AWS SAP-C02 真题 #125",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "ElastiCache",
+        "RDS"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-126",
+      "source_no": "126",
+      "title": "AWS SAP-C02 真题 #126",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-127",
+      "source_no": "127",
+      "title": "AWS SAP-C02 真题 #127",
+      "answer": [],
+      "services": [
+        "EC2",
+        "ECS",
+        "EKS",
+        "Fargate"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-128",
+      "source_no": "128",
+      "title": "AWS SAP-C02 真题 #128",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "EC2",
+        "IAM",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-129",
+      "source_no": "129",
+      "title": "AWS SAP-C02 真题 #129",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "DynamoDB",
+        "EMR",
+        "IAM",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-13",
+      "source_no": "13",
+      "title": "AWS SAP-C02 真题 #13",
+      "answer": [],
+      "services": [
+        "EC2",
+        "EventBridge",
+        "Inspector",
+        "QuickSight",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-130",
+      "source_no": "130",
+      "title": "AWS SAP-C02 真题 #130",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "EBS",
+        "EC2",
+        "SystemsManager",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-131",
+      "source_no": "131",
+      "title": "AWS SAP-C02 真题 #131",
+      "answer": [],
+      "services": [
+        "ControlTower",
+        "EC2",
+        "IAM",
+        "Lambda",
+        "Organizations",
+        "RDS",
+        "SCP",
+        "SecretsManager",
+        "TransitGateway",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-132",
+      "source_no": "132",
+      "title": "AWS SAP-C02 真题 #132",
+      "answer": [],
+      "services": [
+        "EC2",
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-133",
+      "source_no": "133",
+      "title": "AWS SAP-C02 真题 #133",
+      "answer": [],
+      "services": [
+        "Lambda",
+        "S3",
+        "SNS",
+        "SQS"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-134",
+      "source_no": "134",
+      "title": "AWS SAP-C02 真题 #134",
+      "answer": [],
+      "services": [
+        "Batch",
+        "CloudWatch",
+        "EC2",
+        "EventBridge",
+        "Fargate",
+        "Lambda",
+        "StepFunctions"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-135",
+      "source_no": "135",
+      "title": "AWS SAP-C02 真题 #135",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "DMS",
+        "DynamoDB",
+        "S3"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-136",
+      "source_no": "136",
+      "title": "AWS SAP-C02 真题 #136",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "AutoScaling",
+        "DocumentDB",
+        "EC2"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-137",
+      "source_no": "137",
+      "title": "AWS SAP-C02 真题 #137",
+      "answer": [],
+      "services": [
+        "IAM",
+        "KMS",
+        "S3"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-138",
+      "source_no": "138",
+      "title": "AWS SAP-C02 真题 #138",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "Batch",
+        "DataSync",
+        "DirectConnect",
+        "EC2",
+        "ECR",
+        "Lambda",
+        "S3",
+        "Snowball",
+        "StepFunctions",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-139",
+      "source_no": "139",
+      "title": "AWS SAP-C02 真题 #139",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EBS",
+        "EC2",
+        "EFS",
+        "FSx"
+      ],
+      "constraints": [
+        "availability",
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-14",
+      "source_no": "14",
+      "title": "AWS SAP-C02 真题 #14",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "EventBridge",
+        "Lambda",
+        "S3",
+        "SNS",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-140",
+      "source_no": "140",
+      "title": "AWS SAP-C02 真题 #140",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-141",
+      "source_no": "141",
+      "title": "AWS SAP-C02 真题 #141",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudWatch",
+        "EC2",
+        "SQS"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-142",
+      "source_no": "142",
+      "title": "AWS SAP-C02 真题 #142",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "EC2",
+        "Lambda",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-143",
+      "source_no": "143",
+      "title": "AWS SAP-C02 真题 #143",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "GlobalAccelerator",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-144",
+      "source_no": "144",
+      "title": "AWS SAP-C02 真题 #144",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "EventBridge",
+        "FSx",
+        "Lambda",
+        "StepFunctions",
+        "WorkSpaces"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-145",
+      "source_no": "145",
+      "title": "AWS SAP-C02 真题 #145",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EC2",
+        "EFS",
+        "Lambda",
+        "S3",
+        "SNS",
+        "SQS",
+        "Transfer"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-146",
+      "source_no": "146",
+      "title": "AWS SAP-C02 真题 #146",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "DataSync",
+        "ECS",
+        "Fargate"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-147",
+      "source_no": "147",
+      "title": "AWS SAP-C02 真题 #147",
+      "answer": [],
+      "services": [
+        "Athena",
+        "AutoScaling",
+        "EMR",
+        "Fargate",
+        "Glue",
+        "Lambda",
+        "S3",
+        "SQS"
+      ],
+      "constraints": [
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-148",
+      "source_no": "148",
+      "title": "AWS SAP-C02 真题 #148",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "EC2",
+        "SCT"
+      ],
+      "constraints": [
+        "availability",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-149",
+      "source_no": "149",
+      "title": "AWS SAP-C02 真题 #149",
+      "answer": [],
+      "services": [
+        "IAM"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-15",
+      "source_no": "15",
+      "title": "AWS SAP-C02 真题 #15",
+      "answer": [],
+      "services": [
+        "EC2",
+        "RDS",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-150",
+      "source_no": "150",
+      "title": "AWS SAP-C02 真题 #150",
+      "answer": [],
+      "services": [
+        "DynamoDB"
+      ],
+      "constraints": [
+        "availability",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-151",
+      "source_no": "151",
+      "title": "AWS SAP-C02 真题 #151",
+      "answer": [],
+      "services": [
+        "ALB",
+        "EC2",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-152",
+      "source_no": "152",
+      "title": "AWS SAP-C02 真题 #152",
+      "answer": [],
+      "services": [
+        "EC2",
+        "EKS",
+        "Fargate",
+        "RDS"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-153",
+      "source_no": "153",
+      "title": "AWS SAP-C02 真题 #153",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "CloudFront",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-154",
+      "source_no": "154",
+      "title": "AWS SAP-C02 真题 #154",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-155",
+      "source_no": "155",
+      "title": "AWS SAP-C02 真题 #155",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "DynamoDB",
+        "GlobalAccelerator",
+        "Lambda",
+        "NLB",
+        "Route53"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-156",
+      "source_no": "156",
+      "title": "AWS SAP-C02 真题 #156",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "ECR",
+        "ECS",
+        "Fargate",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-157",
+      "source_no": "157",
+      "title": "AWS SAP-C02 真题 #157",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Kinesis",
+        "Lambda",
+        "S3",
+        "SageMaker",
+        "Snowball"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-158",
+      "source_no": "158",
+      "title": "AWS SAP-C02 真题 #158",
+      "answer": [],
+      "services": [],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-159",
+      "source_no": "159",
+      "title": "AWS SAP-C02 真题 #159",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudWatch",
+        "EC2",
+        "Lambda",
+        "Route53",
+        "Shield",
+        "WAF"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-16",
+      "source_no": "16",
+      "title": "AWS SAP-C02 真题 #16",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "EC2",
+        "EFS",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-160",
+      "source_no": "160",
+      "title": "AWS SAP-C02 真题 #160",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DynamoDB",
+        "Route53"
+      ],
+      "constraints": [
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-161",
+      "source_no": "161",
+      "title": "AWS SAP-C02 真题 #161",
+      "answer": [],
+      "services": [
+        "ALB",
+        "DirectConnect",
+        "EC2",
+        "NLB"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-162",
+      "source_no": "162",
+      "title": "AWS SAP-C02 真题 #162",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFront",
+        "EC2",
+        "WAF"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-163",
+      "source_no": "163",
+      "title": "AWS SAP-C02 真题 #163",
+      "answer": [],
+      "services": [
+        "ElastiCache",
+        "SecretsManager",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-164",
+      "source_no": "164",
+      "title": "AWS SAP-C02 真题 #164",
+      "answer": [],
+      "services": [
+        "EC2"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-165",
+      "source_no": "165",
+      "title": "AWS SAP-C02 真题 #165",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "EC2",
+        "FSx",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-166",
+      "source_no": "166",
+      "title": "AWS SAP-C02 真题 #166",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "EventBridge",
+        "Lambda",
+        "SNS",
+        "SQS"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-167",
+      "source_no": "167",
+      "title": "AWS SAP-C02 真题 #167",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFront",
+        "EC2",
+        "GlobalAccelerator",
+        "NLB",
+        "VPC",
+        "WAF"
+      ],
+      "constraints": [
+        "availability",
+        "ops_overhead",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-168",
+      "source_no": "168",
+      "title": "AWS SAP-C02 真题 #168",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Config",
+        "ControlTower",
+        "EBS",
+        "Organizations",
+        "SCP",
+        "StackSets"
+      ],
+      "constraints": [
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-169",
+      "source_no": "169",
+      "title": "AWS SAP-C02 真题 #169",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Backup",
+        "CloudFront",
+        "EBS",
+        "EC2",
+        "GlobalAccelerator",
+        "RDS",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-17",
+      "source_no": "17",
+      "title": "AWS SAP-C02 真题 #17",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-170",
+      "source_no": "170",
+      "title": "AWS SAP-C02 真题 #170",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "EC2",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-171",
+      "source_no": "171",
+      "title": "AWS SAP-C02 真题 #171",
+      "answer": [],
+      "services": [
+        "Backup",
+        "EventBridge",
+        "S3",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-172",
+      "source_no": "172",
+      "title": "AWS SAP-C02 真题 #172",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "EC2",
+        "IAM",
+        "NLB",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-173",
+      "source_no": "173",
+      "title": "AWS SAP-C02 真题 #173",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "Config",
+        "EventBridge",
+        "IAM",
+        "S3",
+        "SNS"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-174",
+      "source_no": "174",
+      "title": "AWS SAP-C02 真题 #174",
+      "answer": [],
+      "services": [
+        "DMS",
+        "MGN"
+      ],
+      "constraints": [
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-175",
+      "source_no": "175",
+      "title": "AWS SAP-C02 真题 #175",
+      "answer": [],
+      "services": [
+        "Backup",
+        "EBS",
+        "EFS",
+        "EKS",
+        "S3"
+      ],
+      "constraints": [
+        "performance",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-176",
+      "source_no": "176",
+      "title": "AWS SAP-C02 真题 #176",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "SNS"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-177",
+      "source_no": "177",
+      "title": "AWS SAP-C02 真题 #177",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "CloudWatch",
+        "EventBridge",
+        "Lambda",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-178",
+      "source_no": "178",
+      "title": "AWS SAP-C02 真题 #178",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "IAM",
+        "Redshift",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-179",
+      "source_no": "179",
+      "title": "AWS SAP-C02 真题 #179",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "DynamoDB",
+        "EC2",
+        "EventBridge",
+        "Lambda",
+        "SNS",
+        "SQS"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-18",
+      "source_no": "18",
+      "title": "AWS SAP-C02 真题 #18",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EBS",
+        "EC2",
+        "ECS",
+        "EFS",
+        "Lambda",
+        "S3",
+        "SQS"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-180",
+      "source_no": "180",
+      "title": "AWS SAP-C02 真题 #180",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "AutoScaling",
+        "CloudFront",
+        "EC2",
+        "ECS",
+        "Fargate",
+        "Kinesis",
+        "Lambda",
+        "SQS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-181",
+      "source_no": "181",
+      "title": "AWS SAP-C02 真题 #181",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Organizations",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-182",
+      "source_no": "182",
+      "title": "AWS SAP-C02 真题 #182",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "EBS",
+        "KMS",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-183",
+      "source_no": "183",
+      "title": "AWS SAP-C02 真题 #183",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "ECS",
+        "Fargate",
+        "Lambda",
+        "WAF"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-184",
+      "source_no": "184",
+      "title": "AWS SAP-C02 真题 #184",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DynamoDB",
+        "ElastiCache",
+        "Route53"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-185",
+      "source_no": "185",
+      "title": "AWS SAP-C02 真题 #185",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "IAM",
+        "Lambda",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-186",
+      "source_no": "186",
+      "title": "AWS SAP-C02 真题 #186",
+      "answer": [],
+      "services": [
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-187",
+      "source_no": "187",
+      "title": "AWS SAP-C02 真题 #187",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "DocumentDB",
+        "EC2",
+        "EKS",
+        "Lambda",
+        "S3",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-188",
+      "source_no": "188",
+      "title": "AWS SAP-C02 真题 #188",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "Outposts",
+        "Snowball"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-189",
+      "source_no": "189",
+      "title": "AWS SAP-C02 真题 #189",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFront",
+        "DynamoDB",
+        "ECS",
+        "ElastiCache",
+        "Route53",
+        "WAF"
+      ],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-19",
+      "source_no": "19",
+      "title": "AWS SAP-C02 真题 #19",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "CloudFormation",
+        "CloudFront",
+        "CloudWatch",
+        "Lambda"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-190",
+      "source_no": "190",
+      "title": "AWS SAP-C02 真题 #190",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "EC2",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "ops_overhead",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-191",
+      "source_no": "191",
+      "title": "AWS SAP-C02 真题 #191",
+      "answer": [],
+      "services": [
+        "EBS",
+        "EC2",
+        "ECS",
+        "EFS",
+        "FSx",
+        "Fargate",
+        "IAM"
+      ],
+      "constraints": [
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-192",
+      "source_no": "192",
+      "title": "AWS SAP-C02 真题 #192",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "Batch",
+        "EC2",
+        "Route53"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-193",
+      "source_no": "193",
+      "title": "AWS SAP-C02 真题 #193",
+      "answer": [],
+      "services": [
+        "Backup",
+        "DataSync",
+        "EC2",
+        "FSx",
+        "WorkSpaces"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-194",
+      "source_no": "194",
+      "title": "AWS SAP-C02 真题 #194",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "GlobalAccelerator",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-195",
+      "source_no": "195",
+      "title": "AWS SAP-C02 真题 #195",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "DynamoDB",
+        "EC2",
+        "ElastiCache",
+        "OpenSearch"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-196",
+      "source_no": "196",
+      "title": "AWS SAP-C02 真题 #196",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Athena",
+        "CloudFront",
+        "EC2",
+        "ECS",
+        "Lambda",
+        "QuickSight",
+        "Redshift",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-197",
+      "source_no": "197",
+      "title": "AWS SAP-C02 真题 #197",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "EventBridge",
+        "S3",
+        "SNS",
+        "Timestream"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-198",
+      "source_no": "198",
+      "title": "AWS SAP-C02 真题 #198",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "EC2",
+        "VPC"
+      ],
+      "constraints": [
+        "cost",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-199",
+      "source_no": "199",
+      "title": "AWS SAP-C02 真题 #199",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "Config",
+        "GuardDuty",
+        "Organizations",
+        "SecurityHub",
+        "Shield",
+        "WAF"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-2",
+      "source_no": "2",
+      "title": "AWS SAP-C02 真题 #2",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "DynamoDB",
+        "Lambda",
+        "Route53"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-20",
+      "source_no": "20",
+      "title": "AWS SAP-C02 真题 #20",
+      "answer": [],
+      "services": [
+        "EBS",
+        "EC2",
+        "EFS",
+        "Glacier",
+        "PrivateLink",
+        "S3",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-200",
+      "source_no": "200",
+      "title": "AWS SAP-C02 真题 #200",
+      "answer": [],
+      "services": [
+        "IAM",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-201",
+      "source_no": "201",
+      "title": "AWS SAP-C02 真题 #201",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "RDS",
+        "SecretsManager",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-202",
+      "source_no": "202",
+      "title": "AWS SAP-C02 真题 #202",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "Backup",
+        "EC2",
+        "RDS",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-203",
+      "source_no": "203",
+      "title": "AWS SAP-C02 真题 #203",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "DataSync",
+        "DirectConnect",
+        "MGN",
+        "S3",
+        "Snowball"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-204",
+      "source_no": "204",
+      "title": "AWS SAP-C02 真题 #204",
+      "answer": [],
+      "services": [
+        "Backup",
+        "CloudFormation",
+        "DataSync",
+        "EBS",
+        "EC2",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "cost",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-205",
+      "source_no": "205",
+      "title": "AWS SAP-C02 真题 #205",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "KMS",
+        "S3"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-206",
+      "source_no": "206",
+      "title": "AWS SAP-C02 真题 #206",
+      "answer": [],
+      "services": [
+        "IAM",
+        "KMS",
+        "Lambda",
+        "RDS",
+        "SecretsManager",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-207",
+      "source_no": "207",
+      "title": "AWS SAP-C02 真题 #207",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Athena",
+        "Aurora",
+        "AutoScaling",
+        "DMS",
+        "DynamoDB",
+        "EC2",
+        "EKS",
+        "Lambda",
+        "NLB",
+        "RDS",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-208",
+      "source_no": "208",
+      "title": "AWS SAP-C02 真题 #208",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "CloudFront",
+        "EKS",
+        "GlobalAccelerator",
+        "Route53"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-209",
+      "source_no": "209",
+      "title": "AWS SAP-C02 真题 #209",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "DynamoDB",
+        "EC2",
+        "GlobalAccelerator",
+        "Lambda",
+        "NLB",
+        "Route53"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-21",
+      "source_no": "21",
+      "title": "AWS SAP-C02 真题 #21",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations",
+        "SSO"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-210",
+      "source_no": "210",
+      "title": "AWS SAP-C02 真题 #210",
+      "answer": [],
+      "services": [
+        "EC2",
+        "EventBridge",
+        "KMS",
+        "Lambda",
+        "SecretsManager",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "downtime",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-211",
+      "source_no": "211",
+      "title": "AWS SAP-C02 真题 #211",
+      "answer": [],
+      "services": [
+        "MGN",
+        "QuickSight",
+        "Redshift",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-212",
+      "source_no": "212",
+      "title": "AWS SAP-C02 真题 #212",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DataSync",
+        "DirectConnect",
+        "Lambda",
+        "RDS",
+        "SNS",
+        "SQS",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-213",
+      "source_no": "213",
+      "title": "AWS SAP-C02 真题 #213",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "Backup",
+        "CloudWatch",
+        "EC2",
+        "EFS"
+      ],
+      "constraints": [
+        "downtime",
+        "ops_overhead",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-214",
+      "source_no": "214",
+      "title": "AWS SAP-C02 真题 #214",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "DynamoDB",
+        "EC2",
+        "Lambda",
+        "Neptune",
+        "RDS",
+        "SCT",
+        "SecretsManager",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-215",
+      "source_no": "215",
+      "title": "AWS SAP-C02 真题 #215",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "DirectConnect",
+        "TransitGateway",
+        "VPC"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-216",
+      "source_no": "216",
+      "title": "AWS SAP-C02 真题 #216",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "Organizations",
+        "TransitGateway",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-217",
+      "source_no": "217",
+      "title": "AWS SAP-C02 真题 #217",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudWatch",
+        "EC2",
+        "Inspector",
+        "Kinesis",
+        "Lambda",
+        "WAF"
+      ],
+      "constraints": [
+        "availability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-218",
+      "source_no": "218",
+      "title": "AWS SAP-C02 真题 #218",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "EC2",
+        "GlobalAccelerator",
+        "IAM",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-219",
+      "source_no": "219",
+      "title": "AWS SAP-C02 真题 #219",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "CloudWatch",
+        "Config",
+        "EC2",
+        "Organizations",
+        "S3",
+        "SCP",
+        "SNS"
+      ],
+      "constraints": [
+        "security",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-22",
+      "source_no": "22",
+      "title": "AWS SAP-C02 真题 #22",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "DynamoDB",
+        "Lambda"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-220",
+      "source_no": "220",
+      "title": "AWS SAP-C02 真题 #220",
+      "answer": [],
+      "services": [
+        "Kinesis"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-221",
+      "source_no": "221",
+      "title": "AWS SAP-C02 真题 #221",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudWatch",
+        "EC2",
+        "Lambda",
+        "Organizations",
+        "S3"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-222",
+      "source_no": "222",
+      "title": "AWS SAP-C02 真题 #222",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudFormation",
+        "CloudWatch",
+        "EC2",
+        "Lambda",
+        "SNS",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-223",
+      "source_no": "223",
+      "title": "AWS SAP-C02 真题 #223",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudWatch",
+        "ECS",
+        "Fargate",
+        "NLB"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-224",
+      "source_no": "224",
+      "title": "AWS SAP-C02 真题 #224",
+      "answer": [],
+      "services": [
+        "EC2",
+        "ECR",
+        "ECS",
+        "EventBridge",
+        "Lambda",
+        "SNS",
+        "SQS",
+        "StepFunctions"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-225",
+      "source_no": "225",
+      "title": "AWS SAP-C02 真题 #225",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Fargate",
+        "Lambda",
+        "Organizations"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-226",
+      "source_no": "226",
+      "title": "AWS SAP-C02 真题 #226",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Budgets",
+        "CloudWatch",
+        "ControlTower",
+        "EventBridge",
+        "Organizations",
+        "S3",
+        "SNS",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-227",
+      "source_no": "227",
+      "title": "AWS SAP-C02 真题 #227",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "EC2",
+        "S3"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-228",
+      "source_no": "228",
+      "title": "AWS SAP-C02 真题 #228",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "EBS",
+        "EC2",
+        "ECS",
+        "EFS",
+        "EKS",
+        "ElastiCache",
+        "Fargate",
+        "SQS"
+      ],
+      "constraints": [
+        "availability",
+        "durability",
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-229",
+      "source_no": "229",
+      "title": "AWS SAP-C02 真题 #229",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "EC2",
+        "RDS",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "downtime"
+      ]
+    },
+    {
+      "qid": "sap-23",
+      "source_no": "23",
+      "title": "AWS SAP-C02 真题 #23",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EBS",
+        "EC2",
+        "FSx",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "cost",
+        "performance",
+        "scalability",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-230",
+      "source_no": "230",
+      "title": "AWS SAP-C02 真题 #230",
+      "answer": [],
+      "services": [
+        "NLB",
+        "Organizations",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-231",
+      "source_no": "231",
+      "title": "AWS SAP-C02 真题 #231",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "FSx",
+        "S3",
+        "StorageGateway",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-232",
+      "source_no": "232",
+      "title": "AWS SAP-C02 真题 #232",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "VPC"
+      ],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-233",
+      "source_no": "233",
+      "title": "AWS SAP-C02 真题 #233",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-234",
+      "source_no": "234",
+      "title": "AWS SAP-C02 真题 #234",
+      "answer": [],
+      "services": [
+        "CDK",
+        "CloudFormation",
+        "DataSync",
+        "EC2",
+        "EFS",
+        "FSx",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "dr",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-235",
+      "source_no": "235",
+      "title": "AWS SAP-C02 真题 #235",
+      "answer": [],
+      "services": [
+        "EBS",
+        "EC2",
+        "EFS",
+        "FSx"
+      ],
+      "constraints": [
+        "availability",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-236",
+      "source_no": "236",
+      "title": "AWS SAP-C02 真题 #236",
+      "answer": [],
+      "services": [
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-237",
+      "source_no": "237",
+      "title": "AWS SAP-C02 真题 #237",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Kinesis",
+        "Lambda",
+        "MSK",
+        "NLB",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-238",
+      "source_no": "238",
+      "title": "AWS SAP-C02 真题 #238",
+      "answer": [],
+      "services": [
+        "Backup",
+        "EC2",
+        "EFS",
+        "Lambda",
+        "RDS",
+        "SNS"
+      ],
+      "constraints": [
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-239",
+      "source_no": "239",
+      "title": "AWS SAP-C02 真题 #239",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "EMR",
+        "Kinesis",
+        "Lambda",
+        "RDS",
+        "Redshift",
+        "S3",
+        "SQS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-24",
+      "source_no": "24",
+      "title": "AWS SAP-C02 真题 #24",
+      "answer": [],
+      "services": [
+        "ALB",
+        "EC2",
+        "ECS",
+        "NLB"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-240",
+      "source_no": "240",
+      "title": "AWS SAP-C02 真题 #240",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-241",
+      "source_no": "241",
+      "title": "AWS SAP-C02 真题 #241",
+      "answer": [],
+      "services": [
+        "Glue",
+        "Kinesis",
+        "MQ",
+        "MSK",
+        "S3",
+        "SageMaker"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-242",
+      "source_no": "242",
+      "title": "AWS SAP-C02 真题 #242",
+      "answer": [],
+      "services": [
+        "IAM",
+        "KMS",
+        "Lambda",
+        "Macie",
+        "SecretsManager"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-243",
+      "source_no": "243",
+      "title": "AWS SAP-C02 真题 #243",
+      "answer": [],
+      "services": [
+        "PrivateLink",
+        "S3",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-244",
+      "source_no": "244",
+      "title": "AWS SAP-C02 真题 #244",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudWatch",
+        "EC2",
+        "Kinesis",
+        "Lambda",
+        "S3",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-245",
+      "source_no": "245",
+      "title": "AWS SAP-C02 真题 #245",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations",
+        "S3",
+        "SCP"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-246",
+      "source_no": "246",
+      "title": "AWS SAP-C02 真题 #246",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-247",
+      "source_no": "247",
+      "title": "AWS SAP-C02 真题 #247",
+      "answer": [],
+      "services": [
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-248",
+      "source_no": "248",
+      "title": "AWS SAP-C02 真题 #248",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "ECS",
+        "WAF"
+      ],
+      "constraints": [
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-249",
+      "source_no": "249",
+      "title": "AWS SAP-C02 真题 #249",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EBS",
+        "EC2",
+        "NLB",
+        "Route53",
+        "S3",
+        "Transfer",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-25",
+      "source_no": "25",
+      "title": "AWS SAP-C02 真题 #25",
+      "answer": [],
+      "services": [
+        "EC2"
+      ],
+      "constraints": [
+        "availability",
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-250",
+      "source_no": "250",
+      "title": "AWS SAP-C02 真题 #250",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2"
+      ],
+      "constraints": [
+        "availability",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-251",
+      "source_no": "251",
+      "title": "AWS SAP-C02 真题 #251",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "CloudFront",
+        "WAF"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-252",
+      "source_no": "252",
+      "title": "AWS SAP-C02 真题 #252",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "EventBridge",
+        "Kinesis",
+        "Lambda",
+        "OpenSearch",
+        "Redshift",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-253",
+      "source_no": "253",
+      "title": "AWS SAP-C02 真题 #253",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudWatch",
+        "EC2",
+        "NLB"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-254",
+      "source_no": "254",
+      "title": "AWS SAP-C02 真题 #254",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "DynamoDB",
+        "ElastiCache"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-255",
+      "source_no": "255",
+      "title": "AWS SAP-C02 真题 #255",
+      "answer": [],
+      "services": [
+        "EC2",
+        "NLB",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-256",
+      "source_no": "256",
+      "title": "AWS SAP-C02 真题 #256",
+      "answer": [],
+      "services": [
+        "Glacier",
+        "KMS",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-257",
+      "source_no": "257",
+      "title": "AWS SAP-C02 真题 #257",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "ElastiCache",
+        "Lambda",
+        "S3",
+        "SQS"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-258",
+      "source_no": "258",
+      "title": "AWS SAP-C02 真题 #258",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Amplify",
+        "AppSync",
+        "AutoScaling",
+        "CloudFront",
+        "Cognito",
+        "EC2",
+        "Lambda",
+        "MGN",
+        "S3",
+        "SSO"
+      ],
+      "constraints": [
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-259",
+      "source_no": "259",
+      "title": "AWS SAP-C02 真题 #259",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudWatch",
+        "EC2",
+        "S3"
+      ],
+      "constraints": [
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-26",
+      "source_no": "26",
+      "title": "AWS SAP-C02 真题 #26",
+      "answer": [],
+      "services": [
+        "AppSync",
+        "CloudFormation",
+        "EventBridge",
+        "Lambda",
+        "RDS",
+        "S3",
+        "SecretsManager",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-260",
+      "source_no": "260",
+      "title": "AWS SAP-C02 真题 #260",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "CloudFront",
+        "Lambda",
+        "S3",
+        "WAF"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-261",
+      "source_no": "261",
+      "title": "AWS SAP-C02 真题 #261",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations",
+        "SSO"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-262",
+      "source_no": "262",
+      "title": "AWS SAP-C02 真题 #262",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudTrail",
+        "CloudWatch",
+        "EC2",
+        "ECS",
+        "Lambda"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-263",
+      "source_no": "263",
+      "title": "AWS SAP-C02 真题 #263",
+      "answer": [],
+      "services": [
+        "EC2",
+        "EMR"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-264",
+      "source_no": "264",
+      "title": "AWS SAP-C02 真题 #264",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudWatch",
+        "EC2",
+        "Lambda",
+        "NLB",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-265",
+      "source_no": "265",
+      "title": "AWS SAP-C02 真题 #265",
+      "answer": [],
+      "services": [
+        "Organizations"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-266",
+      "source_no": "266",
+      "title": "AWS SAP-C02 真题 #266",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "Lambda",
+        "S3",
+        "StepFunctions"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-267",
+      "source_no": "267",
+      "title": "AWS SAP-C02 真题 #267",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "EventBridge",
+        "Lambda"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-268",
+      "source_no": "268",
+      "title": "AWS SAP-C02 真题 #268",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudWatch",
+        "EC2"
+      ],
+      "constraints": [
+        "availability",
+        "downtime",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-269",
+      "source_no": "269",
+      "title": "AWS SAP-C02 真题 #269",
+      "answer": [],
+      "services": [
+        "Budgets",
+        "CloudFormation",
+        "EC2",
+        "IAM",
+        "Organizations",
+        "PrivateLink",
+        "S3",
+        "SCP",
+        "VPC"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-27",
+      "source_no": "27",
+      "title": "AWS SAP-C02 真题 #27",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "AutoScaling",
+        "DynamoDB",
+        "GlobalAccelerator",
+        "Lambda",
+        "NLB"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-270",
+      "source_no": "270",
+      "title": "AWS SAP-C02 真题 #270",
+      "answer": [],
+      "services": [
+        "ControlTower",
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-271",
+      "source_no": "271",
+      "title": "AWS SAP-C02 真题 #271",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "AppSync",
+        "EC2",
+        "ECS",
+        "EKS",
+        "Glacier",
+        "Lambda",
+        "Lightsail",
+        "MQ",
+        "OpenSearch",
+        "S3",
+        "SQS",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-272",
+      "source_no": "272",
+      "title": "AWS SAP-C02 真题 #272",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "EC2",
+        "RDS",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-273",
+      "source_no": "273",
+      "title": "AWS SAP-C02 真题 #273",
+      "answer": [],
+      "services": [
+        "Config",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-274",
+      "source_no": "274",
+      "title": "AWS SAP-C02 真题 #274",
+      "answer": [],
+      "services": [
+        "Lambda",
+        "S3",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "security",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-275",
+      "source_no": "275",
+      "title": "AWS SAP-C02 真题 #275",
+      "answer": [],
+      "services": [
+        "DMS",
+        "RDS",
+        "Route53",
+        "SCT",
+        "VPC"
+      ],
+      "constraints": [
+        "downtime"
+      ]
+    },
+    {
+      "qid": "sap-276",
+      "source_no": "276",
+      "title": "AWS SAP-C02 真题 #276",
+      "answer": [],
+      "services": [
+        "SQS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-277",
+      "source_no": "277",
+      "title": "AWS SAP-C02 真题 #277",
+      "answer": [],
+      "services": [
+        "Lambda",
+        "SNS",
+        "StepFunctions"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-278",
+      "source_no": "278",
+      "title": "AWS SAP-C02 真题 #278",
+      "answer": [],
+      "services": [
+        "EC2",
+        "EventBridge",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-279",
+      "source_no": "279",
+      "title": "AWS SAP-C02 真题 #279",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "EC2",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-28",
+      "source_no": "28",
+      "title": "AWS SAP-C02 真题 #28",
+      "answer": [],
+      "services": [
+        "ACM",
+        "ALB",
+        "APIGateway",
+        "CloudFront",
+        "EC2",
+        "Lambda",
+        "Route53"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-280",
+      "source_no": "280",
+      "title": "AWS SAP-C02 真题 #280",
+      "answer": [],
+      "services": [
+        "AppStream",
+        "AutoScaling",
+        "Cognito",
+        "EC2",
+        "ECS",
+        "Fargate",
+        "WorkSpaces"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-281",
+      "source_no": "281",
+      "title": "AWS SAP-C02 真题 #281",
+      "answer": [],
+      "services": [
+        "Athena",
+        "EMR",
+        "Glue",
+        "Redshift",
+        "S3"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-282",
+      "source_no": "282",
+      "title": "AWS SAP-C02 真题 #282",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Config",
+        "DynamoDB",
+        "Lambda",
+        "Organizations",
+        "RDS",
+        "SCP"
+      ],
+      "constraints": [
+        "cost",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-283",
+      "source_no": "283",
+      "title": "AWS SAP-C02 真题 #283",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "PrivateLink",
+        "S3",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-284",
+      "source_no": "284",
+      "title": "AWS SAP-C02 真题 #284",
+      "answer": [],
+      "services": [
+        "DynamoDB"
+      ],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-285",
+      "source_no": "285",
+      "title": "AWS SAP-C02 真题 #285",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "AppSync",
+        "CloudFront",
+        "DynamoDB",
+        "Lambda"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-286",
+      "source_no": "286",
+      "title": "AWS SAP-C02 真题 #286",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "IAM",
+        "Organizations",
+        "S3",
+        "SCP",
+        "StackSets",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-287",
+      "source_no": "287",
+      "title": "AWS SAP-C02 真题 #287",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "Route53"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-288",
+      "source_no": "288",
+      "title": "AWS SAP-C02 真题 #288",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFront",
+        "CloudWatch",
+        "DynamoDB",
+        "EBS",
+        "EC2",
+        "EFS",
+        "EventBridge",
+        "S3",
+        "SNS",
+        "SQS"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-289",
+      "source_no": "289",
+      "title": "AWS SAP-C02 真题 #289",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "RDS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-29",
+      "source_no": "29",
+      "title": "AWS SAP-C02 真题 #29",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Lambda",
+        "Organizations",
+        "S3",
+        "TrustedAdvisor",
+        "VPC"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-290",
+      "source_no": "290",
+      "title": "AWS SAP-C02 真题 #290",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EBS",
+        "EC2",
+        "EFS",
+        "Fargate",
+        "NLB",
+        "S3",
+        "Transfer",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-291",
+      "source_no": "291",
+      "title": "AWS SAP-C02 真题 #291",
+      "answer": [],
+      "services": [
+        "Batch",
+        "EBS",
+        "EC2",
+        "EventBridge",
+        "Kinesis",
+        "Lambda",
+        "NLB",
+        "Redshift",
+        "S3"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-292",
+      "source_no": "292",
+      "title": "AWS SAP-C02 真题 #292",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "EC2",
+        "EFS",
+        "FSx",
+        "MGN",
+        "Transfer",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "ops_overhead",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-293",
+      "source_no": "293",
+      "title": "AWS SAP-C02 真题 #293",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "VPC"
+      ],
+      "constraints": [
+        "scalability",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-294",
+      "source_no": "294",
+      "title": "AWS SAP-C02 真题 #294",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-295",
+      "source_no": "295",
+      "title": "AWS SAP-C02 真题 #295",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-296",
+      "source_no": "296",
+      "title": "AWS SAP-C02 真题 #296",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Aurora",
+        "Backup",
+        "CloudFormation",
+        "CloudFront",
+        "DMS",
+        "DynamoDB",
+        "ECS",
+        "EventBridge",
+        "Lambda",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-297",
+      "source_no": "297",
+      "title": "AWS SAP-C02 真题 #297",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "Lambda"
+      ],
+      "constraints": [
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-298",
+      "source_no": "298",
+      "title": "AWS SAP-C02 真题 #298",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-299",
+      "source_no": "299",
+      "title": "AWS SAP-C02 真题 #299",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "AutoScaling",
+        "DocumentDB",
+        "DynamoDB",
+        "EC2",
+        "ECS",
+        "GuardDuty",
+        "Lambda",
+        "Neptune",
+        "SystemsManager",
+        "VPC"
+      ],
+      "constraints": [
+        "scalability",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-3",
+      "source_no": "3",
+      "title": "AWS SAP-C02 真题 #3",
+      "answer": [],
+      "services": [
+        "Config",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-30",
+      "source_no": "30",
+      "title": "AWS SAP-C02 真题 #30",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Organizations",
+        "SCP",
+        "ServiceCatalog",
+        "TransitGateway",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-300",
+      "source_no": "300",
+      "title": "AWS SAP-C02 真题 #300",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudWatch",
+        "MGN",
+        "S3"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-301",
+      "source_no": "301",
+      "title": "AWS SAP-C02 真题 #301",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "Lambda",
+        "VPC",
+        "WAF"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-302",
+      "source_no": "302",
+      "title": "AWS SAP-C02 真题 #302",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "DirectConnect",
+        "EC2",
+        "EFS",
+        "FSx",
+        "MGN",
+        "S3",
+        "Snowball"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-303",
+      "source_no": "303",
+      "title": "AWS SAP-C02 真题 #303",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "ECS",
+        "KMS",
+        "Lambda"
+      ],
+      "constraints": [
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-304",
+      "source_no": "304",
+      "title": "AWS SAP-C02 真题 #304",
+      "answer": [],
+      "services": [
+        "Route53",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-305",
+      "source_no": "305",
+      "title": "AWS SAP-C02 真题 #305",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "EMR",
+        "Lambda",
+        "Redshift"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-306",
+      "source_no": "306",
+      "title": "AWS SAP-C02 真题 #306",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudTrail",
+        "CloudWatch",
+        "IAM",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-307",
+      "source_no": "307",
+      "title": "AWS SAP-C02 真题 #307",
+      "answer": [],
+      "services": [
+        "ECR",
+        "EventBridge",
+        "IAM",
+        "Lambda",
+        "Organizations",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-308",
+      "source_no": "308",
+      "title": "AWS SAP-C02 真题 #308",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "EventBridge",
+        "Lambda",
+        "Organizations",
+        "RDS"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-309",
+      "source_no": "309",
+      "title": "AWS SAP-C02 真题 #309",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-31",
+      "source_no": "31",
+      "title": "AWS SAP-C02 真题 #31",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-310",
+      "source_no": "310",
+      "title": "AWS SAP-C02 真题 #310",
+      "answer": [],
+      "services": [
+        "Glacier",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "cost",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-311",
+      "source_no": "311",
+      "title": "AWS SAP-C02 真题 #311",
+      "answer": [],
+      "services": [
+        "EC2",
+        "ElastiCache",
+        "Lambda"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-312",
+      "source_no": "312",
+      "title": "AWS SAP-C02 真题 #312",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "AutoScaling",
+        "DynamoDB",
+        "EC2",
+        "GlobalAccelerator",
+        "NLB",
+        "Route53"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-313",
+      "source_no": "313",
+      "title": "AWS SAP-C02 真题 #313",
+      "answer": [],
+      "services": [
+        "NLB",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-314",
+      "source_no": "314",
+      "title": "AWS SAP-C02 真题 #314",
+      "answer": [],
+      "services": [
+        "EC2",
+        "S3"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-315",
+      "source_no": "315",
+      "title": "AWS SAP-C02 真题 #315",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "CloudFront",
+        "DMS",
+        "Lambda",
+        "RDS",
+        "Route53",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-316",
+      "source_no": "316",
+      "title": "AWS SAP-C02 真题 #316",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudFormation",
+        "EC2",
+        "EKS",
+        "Organizations",
+        "StackSets",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-317",
+      "source_no": "317",
+      "title": "AWS SAP-C02 真题 #317",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "DynamoDB",
+        "KMS",
+        "Lambda",
+        "Route53",
+        "SecretsManager"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-318",
+      "source_no": "318",
+      "title": "AWS SAP-C02 真题 #318",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "DocumentDB",
+        "EC2",
+        "ElastiCache",
+        "Kinesis",
+        "NLB",
+        "Neptune",
+        "RDS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-319",
+      "source_no": "319",
+      "title": "AWS SAP-C02 真题 #319",
+      "answer": [],
+      "services": [
+        "EC2",
+        "IAM",
+        "SSO",
+        "SystemsManager",
+        "VPC"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-32",
+      "source_no": "32",
+      "title": "AWS SAP-C02 真题 #32",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "EC2",
+        "IAM",
+        "Organizations",
+        "S3",
+        "SCP"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-320",
+      "source_no": "320",
+      "title": "AWS SAP-C02 真题 #320",
+      "answer": [],
+      "services": [
+        "Config",
+        "EBS",
+        "EventBridge",
+        "Lambda",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "scope_new",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-321",
+      "source_no": "321",
+      "title": "AWS SAP-C02 真题 #321",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "EC2",
+        "IAM",
+        "Lambda",
+        "SecretsManager",
+        "SystemsManager"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-322",
+      "source_no": "322",
+      "title": "AWS SAP-C02 真题 #322",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "EC2",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-323",
+      "source_no": "323",
+      "title": "AWS SAP-C02 真题 #323",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DynamoDB",
+        "Kinesis",
+        "MSK",
+        "Redshift"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-324",
+      "source_no": "324",
+      "title": "AWS SAP-C02 真题 #324",
+      "answer": [],
+      "services": [
+        "DocumentDB",
+        "DynamoDB",
+        "EC2",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-325",
+      "source_no": "325",
+      "title": "AWS SAP-C02 真题 #325",
+      "answer": [],
+      "services": [
+        "DMS",
+        "DirectConnect",
+        "DocumentDB",
+        "EC2",
+        "Glue"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-326",
+      "source_no": "326",
+      "title": "AWS SAP-C02 真题 #326",
+      "answer": [],
+      "services": [
+        "EC2"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-327",
+      "source_no": "327",
+      "title": "AWS SAP-C02 真题 #327",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "ElastiCache",
+        "RDS"
+      ],
+      "constraints": [
+        "dr",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-328",
+      "source_no": "328",
+      "title": "AWS SAP-C02 真题 #328",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Config",
+        "ControlTower",
+        "EC2",
+        "Organizations",
+        "RDS",
+        "SCP",
+        "StackSets",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-329",
+      "source_no": "329",
+      "title": "AWS SAP-C02 真题 #329",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "EC2",
+        "EFS",
+        "Lambda",
+        "S3",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-33",
+      "source_no": "33",
+      "title": "AWS SAP-C02 真题 #33",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "AutoScaling",
+        "EC2",
+        "EKS",
+        "Lambda",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-330",
+      "source_no": "330",
+      "title": "AWS SAP-C02 真题 #330",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "AppSync",
+        "Aurora",
+        "DynamoDB",
+        "EC2",
+        "Lambda",
+        "NLB"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-331",
+      "source_no": "331",
+      "title": "AWS SAP-C02 真题 #331",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "DirectConnect",
+        "EC2",
+        "EFS",
+        "Lambda",
+        "PrivateLink",
+        "S3",
+        "StorageGateway",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_new"
+      ]
+    },
+    {
+      "qid": "sap-332",
+      "source_no": "332",
+      "title": "AWS SAP-C02 真题 #332",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFront",
+        "ECS",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-333",
+      "source_no": "333",
+      "title": "AWS SAP-C02 真题 #333",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFormation",
+        "EC2",
+        "ECR",
+        "ECS",
+        "RDS",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-334",
+      "source_no": "334",
+      "title": "AWS SAP-C02 真题 #334",
+      "answer": [],
+      "services": [
+        "Config",
+        "ControlTower",
+        "IAM",
+        "Organizations",
+        "SCP",
+        "SSO"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-335",
+      "source_no": "335",
+      "title": "AWS SAP-C02 真题 #335",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "AutoScaling",
+        "CloudFront",
+        "DirectConnect",
+        "EC2",
+        "RDS",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-336",
+      "source_no": "336",
+      "title": "AWS SAP-C02 真题 #336",
+      "answer": [],
+      "services": [
+        "EC2",
+        "S3",
+        "ServiceCatalog"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-337",
+      "source_no": "337",
+      "title": "AWS SAP-C02 真题 #337",
+      "answer": [],
+      "services": [
+        "Backup",
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-338",
+      "source_no": "338",
+      "title": "AWS SAP-C02 真题 #338",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "ControlTower",
+        "IAM",
+        "Kinesis",
+        "Lambda",
+        "SQS"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-339",
+      "source_no": "339",
+      "title": "AWS SAP-C02 真题 #339",
+      "answer": [],
+      "services": [
+        "DMS",
+        "DirectConnect",
+        "RDS",
+        "Snowball"
+      ],
+      "constraints": [
+        "downtime"
+      ]
+    },
+    {
+      "qid": "sap-34",
+      "source_no": "34",
+      "title": "AWS SAP-C02 真题 #34",
+      "answer": [],
+      "services": [
+        "CostExplorer",
+        "Organizations",
+        "QuickSight"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-340",
+      "source_no": "340",
+      "title": "AWS SAP-C02 真题 #340",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Organizations",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-341",
+      "source_no": "341",
+      "title": "AWS SAP-C02 真题 #341",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "ECS",
+        "Fargate",
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-342",
+      "source_no": "342",
+      "title": "AWS SAP-C02 真题 #342",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "AutoScaling",
+        "EBS",
+        "EC2",
+        "ECS",
+        "EFS",
+        "Fargate",
+        "Lambda",
+        "RDS",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-343",
+      "source_no": "343",
+      "title": "AWS SAP-C02 真题 #343",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "CloudWatch",
+        "IAM",
+        "Lambda"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-344",
+      "source_no": "344",
+      "title": "AWS SAP-C02 真题 #344",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudFormation",
+        "EC2",
+        "S3"
+      ],
+      "constraints": [
+        "downtime",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-345",
+      "source_no": "345",
+      "title": "AWS SAP-C02 真题 #345",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EC2",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-346",
+      "source_no": "346",
+      "title": "AWS SAP-C02 真题 #346",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DynamoDB",
+        "EC2",
+        "ECS",
+        "EventBridge",
+        "Fargate",
+        "MSK",
+        "RDS",
+        "SNS",
+        "SQS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-347",
+      "source_no": "347",
+      "title": "AWS SAP-C02 真题 #347",
+      "answer": [],
+      "services": [
+        "EC2"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-348",
+      "source_no": "348",
+      "title": "AWS SAP-C02 真题 #348",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2"
+      ],
+      "constraints": [
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-349",
+      "source_no": "349",
+      "title": "AWS SAP-C02 真题 #349",
+      "answer": [],
+      "services": [
+        "PrivateLink",
+        "S3",
+        "SageMaker",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-35",
+      "source_no": "35",
+      "title": "AWS SAP-C02 真题 #35",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "DirectConnect",
+        "EFS",
+        "FSx",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "availability",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-350",
+      "source_no": "350",
+      "title": "AWS SAP-C02 真题 #350",
+      "answer": [],
+      "services": [
+        "Backup",
+        "EBS",
+        "EC2",
+        "EventBridge",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-351",
+      "source_no": "351",
+      "title": "AWS SAP-C02 真题 #351",
+      "answer": [],
+      "services": [
+        "EC2",
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-352",
+      "source_no": "352",
+      "title": "AWS SAP-C02 真题 #352",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "EventBridge",
+        "S3",
+        "Transfer"
+      ],
+      "constraints": [
+        "performance",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-353",
+      "source_no": "353",
+      "title": "AWS SAP-C02 真题 #353",
+      "answer": [],
+      "services": [
+        "Inspector"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-354",
+      "source_no": "354",
+      "title": "AWS SAP-C02 真题 #354",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "AutoScaling",
+        "EC2",
+        "RDS",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-355",
+      "source_no": "355",
+      "title": "AWS SAP-C02 真题 #355",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EBS",
+        "EC2",
+        "ECS",
+        "EFS",
+        "EKS",
+        "Fargate",
+        "S3"
+      ],
+      "constraints": [
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-356",
+      "source_no": "356",
+      "title": "AWS SAP-C02 真题 #356",
+      "answer": [],
+      "services": [],
+      "constraints": []
+    },
+    {
+      "qid": "sap-357",
+      "source_no": "357",
+      "title": "AWS SAP-C02 真题 #357",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "Organizations",
+        "S3",
+        "SNS"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-358",
+      "source_no": "358",
+      "title": "AWS SAP-C02 真题 #358",
+      "answer": [],
+      "services": [
+        "EC2"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-359",
+      "source_no": "359",
+      "title": "AWS SAP-C02 真题 #359",
+      "answer": [],
+      "services": [
+        "Backup",
+        "DataSync",
+        "DirectConnect",
+        "S3",
+        "Snowball"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-36",
+      "source_no": "36",
+      "title": "AWS SAP-C02 真题 #36",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "Lambda",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-360",
+      "source_no": "360",
+      "title": "AWS SAP-C02 真题 #360",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Config",
+        "EMR",
+        "IAM",
+        "S3",
+        "ServiceCatalog"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-361",
+      "source_no": "361",
+      "title": "AWS SAP-C02 真题 #361",
+      "answer": [],
+      "services": [
+        "ALB",
+        "EC2",
+        "NLB",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-362",
+      "source_no": "362",
+      "title": "AWS SAP-C02 真题 #362",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudTrail",
+        "DynamoDB",
+        "EventBridge",
+        "Lambda",
+        "QuickSight",
+        "S3"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-363",
+      "source_no": "363",
+      "title": "AWS SAP-C02 真题 #363",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFormation",
+        "EC2"
+      ],
+      "constraints": [
+        "downtime",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-364",
+      "source_no": "364",
+      "title": "AWS SAP-C02 真题 #364",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-365",
+      "source_no": "365",
+      "title": "AWS SAP-C02 真题 #365",
+      "answer": [],
+      "services": [
+        "EC2",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-366",
+      "source_no": "366",
+      "title": "AWS SAP-C02 真题 #366",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "EC2",
+        "NLB",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-367",
+      "source_no": "367",
+      "title": "AWS SAP-C02 真题 #367",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-368",
+      "source_no": "368",
+      "title": "AWS SAP-C02 真题 #368",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "EC2",
+        "EKS",
+        "Fargate",
+        "Kinesis",
+        "MSK",
+        "RDS",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-369",
+      "source_no": "369",
+      "title": "AWS SAP-C02 真题 #369",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "FSx"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-37",
+      "source_no": "37",
+      "title": "AWS SAP-C02 真题 #37",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "AutoScaling",
+        "CloudFormation",
+        "EC2",
+        "ECS",
+        "NLB",
+        "RDS",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-370",
+      "source_no": "370",
+      "title": "AWS SAP-C02 真题 #370",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "ControlTower",
+        "EBS",
+        "EC2",
+        "EventBridge",
+        "Organizations"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-371",
+      "source_no": "371",
+      "title": "AWS SAP-C02 真题 #371",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Cognito",
+        "EC2",
+        "IAM",
+        "SSO"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-372",
+      "source_no": "372",
+      "title": "AWS SAP-C02 真题 #372",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-373",
+      "source_no": "373",
+      "title": "AWS SAP-C02 真题 #373",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations",
+        "SCP",
+        "TrustedAdvisor"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-375",
+      "source_no": "375",
+      "title": "AWS SAP-C02 真题 #375",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "VPC"
+      ],
+      "constraints": [
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-376",
+      "source_no": "376",
+      "title": "AWS SAP-C02 真题 #376",
+      "answer": [],
+      "services": [
+        "EventBridge",
+        "Glacier",
+        "Lambda",
+        "S3",
+        "SQS",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-377",
+      "source_no": "377",
+      "title": "AWS SAP-C02 真题 #377",
+      "answer": [],
+      "services": [
+        "Budgets",
+        "EC2",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-378",
+      "source_no": "378",
+      "title": "AWS SAP-C02 真题 #378",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "CloudFront",
+        "Cognito",
+        "Lambda",
+        "S3",
+        "Transfer"
+      ],
+      "constraints": [
+        "performance",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-379",
+      "source_no": "379",
+      "title": "AWS SAP-C02 真题 #379",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "IAM",
+        "Lambda",
+        "Organizations",
+        "RDS",
+        "SCP",
+        "SecretsManager"
+      ],
+      "constraints": [
+        "cost",
+        "scope_existing",
+        "scope_new",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-38",
+      "source_no": "38",
+      "title": "AWS SAP-C02 真题 #38",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Organizations",
+        "SNS",
+        "StackSets"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-380",
+      "source_no": "380",
+      "title": "AWS SAP-C02 真题 #380",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "EventBridge",
+        "Lambda",
+        "SQS"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-381",
+      "source_no": "381",
+      "title": "AWS SAP-C02 真题 #381",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "AutoScaling",
+        "CloudFront",
+        "CloudTrail",
+        "CloudWatch",
+        "EC2",
+        "Kinesis"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-382",
+      "source_no": "382",
+      "title": "AWS SAP-C02 真题 #382",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "DynamoDB",
+        "EC2",
+        "Lambda",
+        "SQS"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-383",
+      "source_no": "383",
+      "title": "AWS SAP-C02 真题 #383",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "EC2"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-384",
+      "source_no": "384",
+      "title": "AWS SAP-C02 真题 #384",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudFront",
+        "EC2",
+        "GlobalAccelerator",
+        "NLB"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-385",
+      "source_no": "385",
+      "title": "AWS SAP-C02 真题 #385",
+      "answer": [],
+      "services": [
+        "EC2",
+        "IAM",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-386",
+      "source_no": "386",
+      "title": "AWS SAP-C02 真题 #386",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "IAM",
+        "Organizations",
+        "S3",
+        "SCP",
+        "ServiceCatalog"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-387",
+      "source_no": "387",
+      "title": "AWS SAP-C02 真题 #387",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Kinesis",
+        "Lambda",
+        "Redshift",
+        "S3",
+        "WAF"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-388",
+      "source_no": "388",
+      "title": "AWS SAP-C02 真题 #388",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EC2",
+        "Shield",
+        "WAF"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-389",
+      "source_no": "389",
+      "title": "AWS SAP-C02 真题 #389",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "FSx",
+        "PrivateLink",
+        "S3",
+        "Transfer",
+        "TransitGateway",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "scope_new",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-39",
+      "source_no": "39",
+      "title": "AWS SAP-C02 真题 #39",
+      "answer": [],
+      "services": [],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-390",
+      "source_no": "390",
+      "title": "AWS SAP-C02 真题 #390",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "RDS"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-391",
+      "source_no": "391",
+      "title": "AWS SAP-C02 真题 #391",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-392",
+      "source_no": "392",
+      "title": "AWS SAP-C02 真题 #392",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Aurora",
+        "ElastiCache",
+        "Lambda"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-393",
+      "source_no": "393",
+      "title": "AWS SAP-C02 真题 #393",
+      "answer": [],
+      "services": [
+        "DMS",
+        "DataSync",
+        "DirectConnect",
+        "KMS",
+        "PrivateLink",
+        "RDS",
+        "S3",
+        "Snowball",
+        "VPC"
+      ],
+      "constraints": [
+        "downtime",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-394",
+      "source_no": "394",
+      "title": "AWS SAP-C02 真题 #394",
+      "answer": [],
+      "services": [
+        "EBS",
+        "EC2",
+        "EFS",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "availability",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-395",
+      "source_no": "395",
+      "title": "AWS SAP-C02 真题 #395",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Aurora",
+        "Lambda"
+      ],
+      "constraints": [
+        "dr",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-396",
+      "source_no": "396",
+      "title": "AWS SAP-C02 真题 #396",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "DynamoDB",
+        "EC2",
+        "ElastiCache",
+        "Route53"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-397",
+      "source_no": "397",
+      "title": "AWS SAP-C02 真题 #397",
+      "answer": [],
+      "services": [
+        "Lambda",
+        "MQ",
+        "S3",
+        "SNS",
+        "SQS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-398",
+      "source_no": "398",
+      "title": "AWS SAP-C02 真题 #398",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "OpenSearch",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-399",
+      "source_no": "399",
+      "title": "AWS SAP-C02 真题 #399",
+      "answer": [],
+      "services": [
+        "EC2",
+        "ECS",
+        "IAM"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-4",
+      "source_no": "4",
+      "title": "AWS SAP-C02 真题 #4",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "AutoScaling",
+        "EC2",
+        "NLB"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-40",
+      "source_no": "40",
+      "title": "AWS SAP-C02 真题 #40",
+      "answer": [],
+      "services": [
+        "ALB",
+        "EC2",
+        "EFS",
+        "S3",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-400",
+      "source_no": "400",
+      "title": "AWS SAP-C02 真题 #400",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "Lambda",
+        "Neptune",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-401",
+      "source_no": "401",
+      "title": "AWS SAP-C02 真题 #401",
+      "answer": [],
+      "services": [
+        "EC2",
+        "FSx",
+        "Glacier",
+        "Outposts",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-402",
+      "source_no": "402",
+      "title": "AWS SAP-C02 真题 #402",
+      "answer": [],
+      "services": [
+        "AppStream",
+        "VPC",
+        "WorkSpaces"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-403",
+      "source_no": "403",
+      "title": "AWS SAP-C02 真题 #403",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "Lambda"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-404",
+      "source_no": "404",
+      "title": "AWS SAP-C02 真题 #404",
+      "answer": [],
+      "services": [
+        "ECS",
+        "Fargate",
+        "Kinesis",
+        "Lambda",
+        "MSK",
+        "SNS",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-405",
+      "source_no": "405",
+      "title": "AWS SAP-C02 真题 #405",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EKS"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-406",
+      "source_no": "406",
+      "title": "AWS SAP-C02 真题 #406",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "DynamoDB",
+        "ECS",
+        "EventBridge",
+        "Fargate",
+        "Lambda",
+        "RDS",
+        "Route53"
+      ],
+      "constraints": [
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-407",
+      "source_no": "407",
+      "title": "AWS SAP-C02 真题 #407",
+      "answer": [],
+      "services": [
+        "Budgets",
+        "CostExplorer",
+        "Detective",
+        "EC2",
+        "Organizations",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-408",
+      "source_no": "408",
+      "title": "AWS SAP-C02 真题 #408",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "EC2",
+        "ECS",
+        "Kinesis",
+        "Lambda",
+        "SQS",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-409",
+      "source_no": "409",
+      "title": "AWS SAP-C02 真题 #409",
+      "answer": [],
+      "services": [
+        "KMS",
+        "Lambda",
+        "RDS",
+        "S3",
+        "SecretsManager",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-41",
+      "source_no": "41",
+      "title": "AWS SAP-C02 真题 #41",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "DynamoDB"
+      ],
+      "constraints": [
+        "cost",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-410",
+      "source_no": "410",
+      "title": "AWS SAP-C02 真题 #410",
+      "answer": [],
+      "services": [
+        "Config",
+        "ControlTower",
+        "EC2",
+        "Lambda",
+        "Organizations",
+        "SCP",
+        "SystemsManager"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-411",
+      "source_no": "411",
+      "title": "AWS SAP-C02 真题 #411",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Amplify",
+        "Cognito",
+        "ECS",
+        "Fargate",
+        "IAM",
+        "SSO"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-412",
+      "source_no": "412",
+      "title": "AWS SAP-C02 真题 #412",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "IAM"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-413",
+      "source_no": "413",
+      "title": "AWS SAP-C02 真题 #413",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-414",
+      "source_no": "414",
+      "title": "AWS SAP-C02 真题 #414",
+      "answer": [],
+      "services": [
+        "Lambda",
+        "StepFunctions"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-415",
+      "source_no": "415",
+      "title": "AWS SAP-C02 真题 #415",
+      "answer": [],
+      "services": [
+        "SNS"
+      ],
+      "constraints": [
+        "downtime"
+      ]
+    },
+    {
+      "qid": "sap-416",
+      "source_no": "416",
+      "title": "AWS SAP-C02 真题 #416",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudWatch",
+        "CostExplorer",
+        "DynamoDB",
+        "EventBridge",
+        "Lambda"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-417",
+      "source_no": "417",
+      "title": "AWS SAP-C02 真题 #417",
+      "answer": [],
+      "services": [
+        "Config",
+        "GuardDuty",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-418",
+      "source_no": "418",
+      "title": "AWS SAP-C02 真题 #418",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "CloudFront",
+        "CloudTrail",
+        "Lambda",
+        "WAF"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-419",
+      "source_no": "419",
+      "title": "AWS SAP-C02 真题 #419",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Config",
+        "ControlTower",
+        "Detective",
+        "Organizations",
+        "SecurityHub",
+        "StackSets"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-42",
+      "source_no": "42",
+      "title": "AWS SAP-C02 真题 #42",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "EFS",
+        "Lambda",
+        "MQ",
+        "S3",
+        "SQS"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-420",
+      "source_no": "420",
+      "title": "AWS SAP-C02 真题 #420",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "Kinesis",
+        "S3",
+        "Snowball"
+      ],
+      "constraints": [
+        "performance",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-421",
+      "source_no": "421",
+      "title": "AWS SAP-C02 真题 #421",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "AutoScaling",
+        "CloudWatch",
+        "DynamoDB",
+        "Lambda"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-422",
+      "source_no": "422",
+      "title": "AWS SAP-C02 真题 #422",
+      "answer": [],
+      "services": [
+        "ALB",
+        "EBS",
+        "EC2",
+        "ECS",
+        "EFS",
+        "EKS",
+        "FSx",
+        "Fargate",
+        "NLB",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-423",
+      "source_no": "423",
+      "title": "AWS SAP-C02 真题 #423",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "MGN"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-424",
+      "source_no": "424",
+      "title": "AWS SAP-C02 真题 #424",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "CloudWatch",
+        "Lambda",
+        "RDS",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-425",
+      "source_no": "425",
+      "title": "AWS SAP-C02 真题 #425",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "EC2",
+        "FSx",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-426",
+      "source_no": "426",
+      "title": "AWS SAP-C02 真题 #426",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "CloudFront",
+        "DynamoDB",
+        "ECS",
+        "EKS",
+        "Lambda",
+        "Route53"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-427",
+      "source_no": "427",
+      "title": "AWS SAP-C02 真题 #427",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "EC2",
+        "Lambda",
+        "SecretsManager",
+        "Shield",
+        "SystemsManager",
+        "WAF"
+      ],
+      "constraints": [
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-428",
+      "source_no": "428",
+      "title": "AWS SAP-C02 真题 #428",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-429",
+      "source_no": "429",
+      "title": "AWS SAP-C02 真题 #429",
+      "answer": [],
+      "services": [
+        "Backup",
+        "CloudFormation",
+        "DataSync",
+        "EBS",
+        "EC2",
+        "FSx",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "dr",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-43",
+      "source_no": "43",
+      "title": "AWS SAP-C02 真题 #43",
+      "answer": [],
+      "services": [
+        "Glacier",
+        "OpenSearch",
+        "S3"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-430",
+      "source_no": "430",
+      "title": "AWS SAP-C02 真题 #430",
+      "answer": [],
+      "services": [
+        "Athena",
+        "EC2",
+        "Kinesis",
+        "Lambda",
+        "S3",
+        "VPC"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-431",
+      "source_no": "431",
+      "title": "AWS SAP-C02 真题 #431",
+      "answer": [],
+      "services": [
+        "EC2",
+        "NLB",
+        "VPC"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-432",
+      "source_no": "432",
+      "title": "AWS SAP-C02 真题 #432",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "EC2",
+        "ECR",
+        "ECS",
+        "EKS",
+        "RDS"
+      ],
+      "constraints": [
+        "migration_effort"
+      ]
+    },
+    {
+      "qid": "sap-433",
+      "source_no": "433",
+      "title": "AWS SAP-C02 真题 #433",
+      "answer": [],
+      "services": [
+        "ALB",
+        "DynamoDB",
+        "EC2",
+        "ECS",
+        "ElastiCache",
+        "Fargate",
+        "Lambda",
+        "RDS",
+        "Redshift"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-434",
+      "source_no": "434",
+      "title": "AWS SAP-C02 真题 #434",
+      "answer": [],
+      "services": [
+        "EC2",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-435",
+      "source_no": "435",
+      "title": "AWS SAP-C02 真题 #435",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-436",
+      "source_no": "436",
+      "title": "AWS SAP-C02 真题 #436",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "EBS",
+        "EC2",
+        "EFS",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-437",
+      "source_no": "437",
+      "title": "AWS SAP-C02 真题 #437",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "AutoScaling",
+        "EC2",
+        "VPC"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-438",
+      "source_no": "438",
+      "title": "AWS SAP-C02 真题 #438",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFront",
+        "CloudWatch",
+        "EC2",
+        "Lambda",
+        "RDS",
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "scope_existing",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-439",
+      "source_no": "439",
+      "title": "AWS SAP-C02 真题 #439",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "MGN",
+        "Organizations"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-44",
+      "source_no": "44",
+      "title": "AWS SAP-C02 真题 #44",
+      "answer": [],
+      "services": [
+        "Config",
+        "EC2",
+        "EventBridge",
+        "Lambda",
+        "Organizations",
+        "SCP",
+        "SNS",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-440",
+      "source_no": "440",
+      "title": "AWS SAP-C02 真题 #440",
+      "answer": [],
+      "services": [
+        "NLB",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-441",
+      "source_no": "441",
+      "title": "AWS SAP-C02 真题 #441",
+      "answer": [],
+      "services": [
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-442",
+      "source_no": "442",
+      "title": "AWS SAP-C02 真题 #442",
+      "answer": [],
+      "services": [
+        "Route53"
+      ],
+      "constraints": [
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-443",
+      "source_no": "443",
+      "title": "AWS SAP-C02 真题 #443",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Aurora",
+        "Kinesis",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-444",
+      "source_no": "444",
+      "title": "AWS SAP-C02 真题 #444",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudWatch",
+        "EC2",
+        "ElastiCache",
+        "RDS",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-445",
+      "source_no": "445",
+      "title": "AWS SAP-C02 真题 #445",
+      "answer": [],
+      "services": [
+        "EKS",
+        "Outposts"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-446",
+      "source_no": "446",
+      "title": "AWS SAP-C02 真题 #446",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "Organizations",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-447",
+      "source_no": "447",
+      "title": "AWS SAP-C02 真题 #447",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "CloudWatch"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-448",
+      "source_no": "448",
+      "title": "AWS SAP-C02 真题 #448",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "EBS",
+        "EFS",
+        "FSx"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-449",
+      "source_no": "449",
+      "title": "AWS SAP-C02 真题 #449",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "EBS",
+        "EC2",
+        "FSx",
+        "S3",
+        "Snowball"
+      ],
+      "constraints": [
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-45",
+      "source_no": "45",
+      "title": "AWS SAP-C02 真题 #45",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "AutoScaling",
+        "EC2",
+        "ECS",
+        "Fargate",
+        "Lambda"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-450",
+      "source_no": "450",
+      "title": "AWS SAP-C02 真题 #450",
+      "answer": [],
+      "services": [
+        "Athena",
+        "IAM",
+        "Lambda",
+        "Organizations",
+        "S3"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-451",
+      "source_no": "451",
+      "title": "AWS SAP-C02 真题 #451",
+      "answer": [],
+      "services": [
+        "DirectConnect"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-452",
+      "source_no": "452",
+      "title": "AWS SAP-C02 真题 #452",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "DMS",
+        "DynamoDB",
+        "S3"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-453",
+      "source_no": "453",
+      "title": "AWS SAP-C02 真题 #453",
+      "answer": [],
+      "services": [
+        "Backup",
+        "EC2",
+        "EFS",
+        "IAM",
+        "KMS"
+      ],
+      "constraints": [
+        "dr",
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-454",
+      "source_no": "454",
+      "title": "AWS SAP-C02 真题 #454",
+      "answer": [],
+      "services": [
+        "IAM",
+        "S3"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-455",
+      "source_no": "455",
+      "title": "AWS SAP-C02 真题 #455",
+      "answer": [],
+      "services": [
+        "EC2",
+        "ECS",
+        "EKS",
+        "Fargate"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-456",
+      "source_no": "456",
+      "title": "AWS SAP-C02 真题 #456",
+      "answer": [],
+      "services": [
+        "Batch",
+        "EC2",
+        "EKS",
+        "Lambda",
+        "S3",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-457",
+      "source_no": "457",
+      "title": "AWS SAP-C02 真题 #457",
+      "answer": [],
+      "services": [
+        "DataSync",
+        "DirectConnect",
+        "EC2",
+        "Glacier",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-458",
+      "source_no": "458",
+      "title": "AWS SAP-C02 真题 #458",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "Lambda"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-459",
+      "source_no": "459",
+      "title": "AWS SAP-C02 真题 #459",
+      "answer": [],
+      "services": [
+        "Cognito",
+        "IAM"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-46",
+      "source_no": "46",
+      "title": "AWS SAP-C02 真题 #46",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Glue",
+        "QuickSight",
+        "S3"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-460",
+      "source_no": "460",
+      "title": "AWS SAP-C02 真题 #460",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "EC2",
+        "EFS",
+        "Lambda",
+        "Neptune",
+        "S3",
+        "SQS"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-461",
+      "source_no": "461",
+      "title": "AWS SAP-C02 真题 #461",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "AutoScaling",
+        "EBS",
+        "EC2",
+        "EFS",
+        "ElastiCache",
+        "NLB",
+        "RDS"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-462",
+      "source_no": "462",
+      "title": "AWS SAP-C02 真题 #462",
+      "answer": [],
+      "services": [
+        "ALB",
+        "DynamoDB",
+        "EC2",
+        "ElastiCache",
+        "Lambda",
+        "RDS",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-463",
+      "source_no": "463",
+      "title": "AWS SAP-C02 真题 #463",
+      "answer": [],
+      "services": [
+        "ALB",
+        "DirectConnect",
+        "NLB",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-464",
+      "source_no": "464",
+      "title": "AWS SAP-C02 真题 #464",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "IAM",
+        "Lambda",
+        "Organizations",
+        "SCP"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-465",
+      "source_no": "465",
+      "title": "AWS SAP-C02 真题 #465",
+      "answer": [],
+      "services": [
+        "EventBridge",
+        "Lambda",
+        "Organizations",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-466",
+      "source_no": "466",
+      "title": "AWS SAP-C02 真题 #466",
+      "answer": [],
+      "services": [
+        "EC2",
+        "MGN",
+        "VPC"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-467",
+      "source_no": "467",
+      "title": "AWS SAP-C02 真题 #467",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudFront",
+        "EC2",
+        "Route53"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-468",
+      "source_no": "468",
+      "title": "AWS SAP-C02 真题 #468",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Lambda",
+        "S3",
+        "VPC"
+      ],
+      "constraints": [
+        "performance",
+        "security",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-469",
+      "source_no": "469",
+      "title": "AWS SAP-C02 真题 #469",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-47",
+      "source_no": "47",
+      "title": "AWS SAP-C02 真题 #47",
+      "answer": [],
+      "services": [
+        "Lambda",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-470",
+      "source_no": "470",
+      "title": "AWS SAP-C02 真题 #470",
+      "answer": [],
+      "services": [
+        "ACM",
+        "WorkSpaces"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-471",
+      "source_no": "471",
+      "title": "AWS SAP-C02 真题 #471",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "NLB",
+        "Organizations",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-472",
+      "source_no": "472",
+      "title": "AWS SAP-C02 真题 #472",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Lambda",
+        "RDS",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "dr"
+      ]
+    },
+    {
+      "qid": "sap-473",
+      "source_no": "473",
+      "title": "AWS SAP-C02 真题 #473",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "CloudWatch",
+        "ElastiCache",
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-474",
+      "source_no": "474",
+      "title": "AWS SAP-C02 真题 #474",
+      "answer": [],
+      "services": [
+        "AppStream",
+        "Aurora",
+        "AutoScaling",
+        "EC2",
+        "ECS",
+        "EKS",
+        "EventBridge",
+        "Fargate",
+        "Neptune",
+        "Redshift",
+        "SNS",
+        "SQS"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-475",
+      "source_no": "475",
+      "title": "AWS SAP-C02 真题 #475",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "EventBridge",
+        "Lambda",
+        "Organizations",
+        "SCP",
+        "SystemsManager"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-476",
+      "source_no": "476",
+      "title": "AWS SAP-C02 真题 #476",
+      "answer": [],
+      "services": [
+        "EC2",
+        "VPC",
+        "WorkSpaces"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-478",
+      "source_no": "478",
+      "title": "AWS SAP-C02 真题 #478",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "EC2",
+        "ECR",
+        "EKS",
+        "Inspector",
+        "SecurityHub"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-479",
+      "source_no": "479",
+      "title": "AWS SAP-C02 真题 #479",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "ECS",
+        "EKS"
+      ],
+      "constraints": [
+        "availability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-48",
+      "source_no": "48",
+      "title": "AWS SAP-C02 真题 #48",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Aurora",
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-480",
+      "source_no": "480",
+      "title": "AWS SAP-C02 真题 #480",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "EC2",
+        "IAM"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-481",
+      "source_no": "481",
+      "title": "AWS SAP-C02 真题 #481",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "AutoScaling",
+        "CloudFront",
+        "EC2",
+        "GlobalAccelerator",
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": [
+        "availability",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-482",
+      "source_no": "482",
+      "title": "AWS SAP-C02 真题 #482",
+      "answer": [],
+      "services": [
+        "IAM",
+        "S3",
+        "SecretsManager",
+        "Transfer"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-483",
+      "source_no": "483",
+      "title": "AWS SAP-C02 真题 #483",
+      "answer": [],
+      "services": [
+        "EC2",
+        "ElastiCache",
+        "RDS",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-484",
+      "source_no": "484",
+      "title": "AWS SAP-C02 真题 #484",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudWatch",
+        "CostExplorer",
+        "Organizations",
+        "QuickSight",
+        "S3"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-485",
+      "source_no": "485",
+      "title": "AWS SAP-C02 真题 #485",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "DynamoDB",
+        "Kinesis",
+        "Lambda",
+        "SQS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-486",
+      "source_no": "486",
+      "title": "AWS SAP-C02 真题 #486",
+      "answer": [],
+      "services": [
+        "Route53",
+        "WorkSpaces"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-487",
+      "source_no": "487",
+      "title": "AWS SAP-C02 真题 #487",
+      "answer": [],
+      "services": [
+        "QuickSight"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-488",
+      "source_no": "488",
+      "title": "AWS SAP-C02 真题 #488",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "EC2",
+        "GuardDuty",
+        "Inspector",
+        "Lambda",
+        "WAF"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-489",
+      "source_no": "489",
+      "title": "AWS SAP-C02 真题 #489",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "IAM",
+        "Lambda",
+        "RDS",
+        "SecretsManager"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-49",
+      "source_no": "49",
+      "title": "AWS SAP-C02 真题 #49",
+      "answer": [],
+      "services": [
+        "ACM",
+        "ALB",
+        "CloudFront",
+        "EC2",
+        "NLB"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-490",
+      "source_no": "490",
+      "title": "AWS SAP-C02 真题 #490",
+      "answer": [],
+      "services": [
+        "PrivateLink",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-491",
+      "source_no": "491",
+      "title": "AWS SAP-C02 真题 #491",
+      "answer": [],
+      "services": [
+        "Lambda"
+      ],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-492",
+      "source_no": "492",
+      "title": "AWS SAP-C02 真题 #492",
+      "answer": [],
+      "services": [
+        "EC2",
+        "IAM",
+        "PrivateLink",
+        "VPC"
+      ],
+      "constraints": [
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-493",
+      "source_no": "493",
+      "title": "AWS SAP-C02 真题 #493",
+      "answer": [],
+      "services": [
+        "Amplify",
+        "CDK",
+        "CloudFormation",
+        "CloudWatch",
+        "EC2",
+        "EventBridge",
+        "Lambda",
+        "S3",
+        "SNS"
+      ],
+      "constraints": [
+        "scope_existing",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-494",
+      "source_no": "494",
+      "title": "AWS SAP-C02 真题 #494",
+      "answer": [],
+      "services": [
+        "Backup",
+        "FSx",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-495",
+      "source_no": "495",
+      "title": "AWS SAP-C02 真题 #495",
+      "answer": [],
+      "services": [
+        "KMS",
+        "S3"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-496",
+      "source_no": "496",
+      "title": "AWS SAP-C02 真题 #496",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EC2",
+        "S3"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-497",
+      "source_no": "497",
+      "title": "AWS SAP-C02 真题 #497",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Athena",
+        "AutoScaling",
+        "DMS",
+        "DirectConnect",
+        "DynamoDB",
+        "EC2",
+        "EventBridge",
+        "Glue",
+        "Lambda",
+        "RDS",
+        "Redshift",
+        "S3",
+        "SCT",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "scalability",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-498",
+      "source_no": "498",
+      "title": "AWS SAP-C02 真题 #498",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "EC2",
+        "EFS",
+        "Lambda",
+        "S3",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-499",
+      "source_no": "499",
+      "title": "AWS SAP-C02 真题 #499",
+      "answer": [],
+      "services": [
+        "Glacier",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-5",
+      "source_no": "5",
+      "title": "AWS SAP-C02 真题 #5",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "CloudFront",
+        "Lambda"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-50",
+      "source_no": "50",
+      "title": "AWS SAP-C02 真题 #50",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "AutoScaling",
+        "DMS",
+        "EC2",
+        "Kinesis",
+        "Lambda",
+        "NLB",
+        "RDS"
+      ],
+      "constraints": [
+        "downtime",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-500",
+      "source_no": "500",
+      "title": "AWS SAP-C02 真题 #500",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Aurora",
+        "CloudFront",
+        "Inspector",
+        "Lambda",
+        "RDS",
+        "Redshift",
+        "S3",
+        "Shield",
+        "WAF"
+      ],
+      "constraints": [
+        "cost",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-501",
+      "source_no": "501",
+      "title": "AWS SAP-C02 真题 #501",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2"
+      ],
+      "constraints": [
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-502",
+      "source_no": "502",
+      "title": "AWS SAP-C02 真题 #502",
+      "answer": [],
+      "services": [
+        "DMS",
+        "DataSync",
+        "RDS",
+        "SCT"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-503",
+      "source_no": "503",
+      "title": "AWS SAP-C02 真题 #503",
+      "answer": [],
+      "services": [
+        "ALB",
+        "EBS",
+        "EC2",
+        "EFS",
+        "EventBridge",
+        "Lambda",
+        "S3",
+        "Snowball"
+      ],
+      "constraints": [
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-504",
+      "source_no": "504",
+      "title": "AWS SAP-C02 真题 #504",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "DynamoDB",
+        "EC2",
+        "EFS",
+        "EKS",
+        "Lambda",
+        "NLB",
+        "RDS",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-505",
+      "source_no": "505",
+      "title": "AWS SAP-C02 真题 #505",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "DocumentDB",
+        "EC2",
+        "EKS",
+        "Lambda",
+        "S3",
+        "StepFunctions"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-506",
+      "source_no": "506",
+      "title": "AWS SAP-C02 真题 #506",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "AutoScaling",
+        "Lambda",
+        "SQS",
+        "WAF"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-507",
+      "source_no": "507",
+      "title": "AWS SAP-C02 真题 #507",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "DynamoDB",
+        "EBS",
+        "EC2",
+        "EFS",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-508",
+      "source_no": "508",
+      "title": "AWS SAP-C02 真题 #508",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudFormation",
+        "EC2",
+        "S3"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-509",
+      "source_no": "509",
+      "title": "AWS SAP-C02 真题 #509",
+      "answer": [],
+      "services": [
+        "ACM",
+        "ALB",
+        "CloudFormation",
+        "DynamoDB",
+        "EC2",
+        "Route53"
+      ],
+      "constraints": [
+        "dr",
+        "ops_overhead",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-51",
+      "source_no": "51",
+      "title": "AWS SAP-C02 真题 #51",
+      "answer": [],
+      "services": [
+        "KMS",
+        "S3"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-510",
+      "source_no": "510",
+      "title": "AWS SAP-C02 真题 #510",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudTrail",
+        "CloudWatch",
+        "EMR",
+        "IAM",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-511",
+      "source_no": "511",
+      "title": "AWS SAP-C02 真题 #511",
+      "answer": [],
+      "services": [
+        "EC2",
+        "ECS",
+        "EFS",
+        "EventBridge",
+        "Fargate",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-512",
+      "source_no": "512",
+      "title": "AWS SAP-C02 真题 #512",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "EBS",
+        "EC2",
+        "Kinesis",
+        "Lambda",
+        "S3",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-513",
+      "source_no": "513",
+      "title": "AWS SAP-C02 真题 #513",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Organizations"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-515",
+      "source_no": "515",
+      "title": "AWS SAP-C02 真题 #515",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "EFS",
+        "FSx"
+      ],
+      "constraints": [
+        "security",
+        "speed_to_implement"
+      ]
+    },
+    {
+      "qid": "sap-516",
+      "source_no": "516",
+      "title": "AWS SAP-C02 真题 #516",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "CloudTrail",
+        "CloudWatch",
+        "Organizations",
+        "StackSets"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-517",
+      "source_no": "517",
+      "title": "AWS SAP-C02 真题 #517",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "IAM",
+        "Lambda",
+        "SSO"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-518",
+      "source_no": "518",
+      "title": "AWS SAP-C02 真题 #518",
+      "answer": [],
+      "services": [
+        "Config",
+        "EBS",
+        "EC2",
+        "KMS",
+        "SCP"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-519",
+      "source_no": "519",
+      "title": "AWS SAP-C02 真题 #519",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "Config",
+        "EC2",
+        "ECS",
+        "Fargate",
+        "Lambda",
+        "SNS"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-52",
+      "source_no": "52",
+      "title": "AWS SAP-C02 真题 #52",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudFront",
+        "EC2",
+        "GlobalAccelerator",
+        "Route53"
+      ],
+      "constraints": [
+        "availability",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-520",
+      "source_no": "520",
+      "title": "AWS SAP-C02 真题 #520",
+      "answer": [],
+      "services": [
+        "GuardDuty",
+        "Inspector",
+        "Lambda",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-521",
+      "source_no": "521",
+      "title": "AWS SAP-C02 真题 #521",
+      "answer": [],
+      "services": [
+        "EC2",
+        "PrivateLink",
+        "S3",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-522",
+      "source_no": "522",
+      "title": "AWS SAP-C02 真题 #522",
+      "answer": [],
+      "services": [
+        "Organizations",
+        "VPC"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-523",
+      "source_no": "523",
+      "title": "AWS SAP-C02 真题 #523",
+      "answer": [],
+      "services": [
+        "Athena",
+        "CloudTrail",
+        "CloudWatch",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-524",
+      "source_no": "524",
+      "title": "AWS SAP-C02 真题 #524",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "DynamoDB",
+        "EC2",
+        "EventBridge",
+        "Lambda",
+        "QuickSight",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-525",
+      "source_no": "525",
+      "title": "AWS SAP-C02 真题 #525",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EC2",
+        "NLB"
+      ],
+      "constraints": [
+        "cost",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-526",
+      "source_no": "526",
+      "title": "AWS SAP-C02 真题 #526",
+      "answer": [],
+      "services": [
+        "Kinesis",
+        "Lambda",
+        "S3",
+        "Timestream"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-527",
+      "source_no": "527",
+      "title": "AWS SAP-C02 真题 #527",
+      "answer": [],
+      "services": [
+        "EC2",
+        "PrivateLink",
+        "S3",
+        "VPC"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-528",
+      "source_no": "528",
+      "title": "AWS SAP-C02 真题 #528",
+      "answer": [],
+      "services": [
+        "DMS",
+        "EKS",
+        "RDS"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-529",
+      "source_no": "529",
+      "title": "AWS SAP-C02 真题 #529",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "ECS",
+        "PrivateLink",
+        "S3",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "performance",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-53",
+      "source_no": "53",
+      "title": "AWS SAP-C02 真题 #53",
+      "answer": [],
+      "services": [
+        "Config",
+        "Lambda",
+        "Organizations",
+        "S3",
+        "SNS",
+        "VPC"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-54",
+      "source_no": "54",
+      "title": "AWS SAP-C02 真题 #54",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "CloudFront",
+        "CloudWatch",
+        "EventBridge",
+        "Lambda",
+        "S3",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-55",
+      "source_no": "55",
+      "title": "AWS SAP-C02 真题 #55",
+      "answer": [],
+      "services": [
+        "Budgets",
+        "EC2",
+        "ECS",
+        "IAM",
+        "RDS",
+        "VPC"
+      ],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-56",
+      "source_no": "56",
+      "title": "AWS SAP-C02 真题 #56",
+      "answer": [],
+      "services": [
+        "ALB",
+        "EC2",
+        "GlobalAccelerator",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-57",
+      "source_no": "57",
+      "title": "AWS SAP-C02 真题 #57",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations",
+        "S3",
+        "SCP"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-59",
+      "source_no": "59",
+      "title": "AWS SAP-C02 真题 #59",
+      "answer": [],
+      "services": [
+        "IAM",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-6",
+      "source_no": "6",
+      "title": "AWS SAP-C02 真题 #6",
+      "answer": [],
+      "services": [
+        "IAM",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-60",
+      "source_no": "60",
+      "title": "AWS SAP-C02 真题 #60",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Lambda",
+        "Route53"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-61",
+      "source_no": "61",
+      "title": "AWS SAP-C02 真题 #61",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EC2",
+        "NLB",
+        "Route53",
+        "S3",
+        "StorageGateway",
+        "Transfer",
+        "VPC"
+      ],
+      "constraints": [
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-62",
+      "source_no": "62",
+      "title": "AWS SAP-C02 真题 #62",
+      "answer": [],
+      "services": [
+        "Backup",
+        "DataSync",
+        "EC2",
+        "FSx",
+        "IAM",
+        "S3",
+        "StorageGateway",
+        "SystemsManager"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-63",
+      "source_no": "63",
+      "title": "AWS SAP-C02 真题 #63",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "EC2",
+        "ECR",
+        "ECS",
+        "EFS",
+        "Fargate",
+        "Lambda",
+        "RDS",
+        "S3",
+        "StepFunctions"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-64",
+      "source_no": "64",
+      "title": "AWS SAP-C02 真题 #64",
+      "answer": [],
+      "services": [
+        "Config",
+        "ControlTower",
+        "Organizations",
+        "RDS",
+        "SCP"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-65",
+      "source_no": "65",
+      "title": "AWS SAP-C02 真题 #65",
+      "answer": [],
+      "services": [
+        "CloudWatch",
+        "Config",
+        "EC2",
+        "IAM",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-66",
+      "source_no": "66",
+      "title": "AWS SAP-C02 真题 #66",
+      "answer": [],
+      "services": [
+        "Budgets",
+        "IAM",
+        "Lambda",
+        "Organizations",
+        "SCP",
+        "SNS"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-67",
+      "source_no": "67",
+      "title": "AWS SAP-C02 真题 #67",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "Lambda",
+        "Organizations"
+      ],
+      "constraints": [
+        "downtime"
+      ]
+    },
+    {
+      "qid": "sap-68",
+      "source_no": "68",
+      "title": "AWS SAP-C02 真题 #68",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "CloudWatch",
+        "EC2",
+        "ECS",
+        "Fargate",
+        "Lambda",
+        "S3",
+        "SQS"
+      ],
+      "constraints": [
+        "availability",
+        "cost",
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-69",
+      "source_no": "69",
+      "title": "AWS SAP-C02 真题 #69",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "EC2",
+        "Route53",
+        "VPC"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-7",
+      "source_no": "7",
+      "title": "AWS SAP-C02 真题 #7",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "AutoScaling",
+        "EC2",
+        "ECR",
+        "ECS",
+        "EKS",
+        "Fargate",
+        "Lambda"
+      ],
+      "constraints": [
+        "cost",
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-70",
+      "source_no": "70",
+      "title": "AWS SAP-C02 真题 #70",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Organizations",
+        "SSO"
+      ],
+      "constraints": [
+        "cost",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-71",
+      "source_no": "71",
+      "title": "AWS SAP-C02 真题 #71",
+      "answer": [],
+      "services": [
+        "Route53",
+        "S3"
+      ],
+      "constraints": [
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-72",
+      "source_no": "72",
+      "title": "AWS SAP-C02 真题 #72",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Aurora",
+        "DMS",
+        "RDS",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "scope_existing"
+      ]
+    },
+    {
+      "qid": "sap-73",
+      "source_no": "73",
+      "title": "AWS SAP-C02 真题 #73",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "AutoScaling",
+        "EC2",
+        "Lambda",
+        "MQ",
+        "NLB"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-74",
+      "source_no": "74",
+      "title": "AWS SAP-C02 真题 #74",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "IAM",
+        "S3"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-75",
+      "source_no": "75",
+      "title": "AWS SAP-C02 真题 #75",
+      "answer": [],
+      "services": [
+        "DynamoDB",
+        "RDS",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-76",
+      "source_no": "76",
+      "title": "AWS SAP-C02 真题 #76",
+      "answer": [],
+      "services": [
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-77",
+      "source_no": "77",
+      "title": "AWS SAP-C02 真题 #77",
+      "answer": [],
+      "services": [
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-78",
+      "source_no": "78",
+      "title": "AWS SAP-C02 真题 #78",
+      "answer": [],
+      "services": [
+        "EC2",
+        "IAM"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-79",
+      "source_no": "79",
+      "title": "AWS SAP-C02 真题 #79",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Organizations",
+        "QuickSight"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-8",
+      "source_no": "8",
+      "title": "AWS SAP-C02 真题 #8",
+      "answer": [],
+      "services": [
+        "ALB",
+        "AutoScaling",
+        "CloudWatch",
+        "EC2",
+        "GlobalAccelerator",
+        "Lambda",
+        "RDS",
+        "Route53",
+        "S3",
+        "SNS"
+      ],
+      "constraints": [
+        "availability",
+        "dr",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-80",
+      "source_no": "80",
+      "title": "AWS SAP-C02 真题 #80",
+      "answer": [],
+      "services": [
+        "ALB",
+        "Aurora",
+        "DynamoDB",
+        "EC2",
+        "Kinesis",
+        "Lambda",
+        "RDS"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-81",
+      "source_no": "81",
+      "title": "AWS SAP-C02 真题 #81",
+      "answer": [],
+      "services": [
+        "APIGateway",
+        "Aurora",
+        "CloudFront",
+        "GlobalAccelerator",
+        "Lambda",
+        "RDS",
+        "S3"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "performance"
+      ]
+    },
+    {
+      "qid": "sap-82",
+      "source_no": "82",
+      "title": "AWS SAP-C02 真题 #82",
+      "answer": [],
+      "services": [
+        "CloudFront",
+        "EC2",
+        "EFS",
+        "S3"
+      ],
+      "constraints": [
+        "availability",
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-83",
+      "source_no": "83",
+      "title": "AWS SAP-C02 真题 #83",
+      "answer": [],
+      "services": [
+        "QuickSight",
+        "S3",
+        "TrustedAdvisor"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-86",
+      "source_no": "86",
+      "title": "AWS SAP-C02 真题 #86",
+      "answer": [],
+      "services": [
+        "EC2",
+        "Route53",
+        "S3",
+        "SystemsManager"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-87",
+      "source_no": "87",
+      "title": "AWS SAP-C02 真题 #87",
+      "answer": [],
+      "services": [
+        "Aurora",
+        "EC2",
+        "VPC"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-88",
+      "source_no": "88",
+      "title": "AWS SAP-C02 真题 #88",
+      "answer": [],
+      "services": [
+        "Budgets",
+        "CostExplorer",
+        "Lambda",
+        "Organizations",
+        "SNS"
+      ],
+      "constraints": [
+        "cost"
+      ]
+    },
+    {
+      "qid": "sap-89",
+      "source_no": "89",
+      "title": "AWS SAP-C02 真题 #89",
+      "answer": [],
+      "services": [
+        "CloudFormation",
+        "Config",
+        "EBS",
+        "IAM",
+        "RDS"
+      ],
+      "constraints": []
+    },
+    {
+      "qid": "sap-9",
+      "source_no": "9",
+      "title": "AWS SAP-C02 真题 #9",
+      "answer": [],
+      "services": [
+        "AutoScaling",
+        "EC2",
+        "ElastiCache",
+        "RDS"
+      ],
+      "constraints": [
+        "availability",
+        "downtime",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-90",
+      "source_no": "90",
+      "title": "AWS SAP-C02 真题 #90",
+      "answer": [],
+      "services": [
+        "CloudTrail",
+        "CloudWatch",
+        "EC2",
+        "VPC"
+      ],
+      "constraints": [
+        "availability"
+      ]
+    },
+    {
+      "qid": "sap-91",
+      "source_no": "91",
+      "title": "AWS SAP-C02 真题 #91",
+      "answer": [],
+      "services": [
+        "KMS",
+        "Organizations",
+        "S3"
+      ],
+      "constraints": [
+        "performance",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-92",
+      "source_no": "92",
+      "title": "AWS SAP-C02 真题 #92",
+      "answer": [],
+      "services": [
+        "Athena",
+        "Glue",
+        "Redshift",
+        "S3"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-93",
+      "source_no": "93",
+      "title": "AWS SAP-C02 真题 #93",
+      "answer": [],
+      "services": [
+        "DirectConnect",
+        "S3",
+        "Snowball",
+        "StorageGateway"
+      ],
+      "constraints": [
+        "cost",
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-94",
+      "source_no": "94",
+      "title": "AWS SAP-C02 真题 #94",
+      "answer": [],
+      "services": [
+        "Comprehend",
+        "DynamoDB",
+        "EC2",
+        "EKS",
+        "ElastiCache",
+        "Lambda",
+        "RDS",
+        "S3",
+        "SNS",
+        "SageMaker",
+        "StepFunctions",
+        "Textract"
+      ],
+      "constraints": [
+        "ops_overhead"
+      ]
+    },
+    {
+      "qid": "sap-95",
+      "source_no": "95",
+      "title": "AWS SAP-C02 真题 #95",
+      "answer": [],
+      "services": [
+        "ALB",
+        "APIGateway",
+        "AutoScaling",
+        "EC2",
+        "EKS",
+        "Lambda",
+        "MQ",
+        "SQS"
+      ],
+      "constraints": [
+        "ops_overhead",
+        "scalability"
+      ]
+    },
+    {
+      "qid": "sap-96",
+      "source_no": "96",
+      "title": "AWS SAP-C02 真题 #96",
+      "answer": [],
+      "services": [
+        "IAM",
+        "KMS",
+        "S3"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-97",
+      "source_no": "97",
+      "title": "AWS SAP-C02 真题 #97",
+      "answer": [],
+      "services": [
+        "ALB",
+        "CloudWatch",
+        "EC2",
+        "WAF"
+      ],
+      "constraints": [
+        "security"
+      ]
+    },
+    {
+      "qid": "sap-98",
+      "source_no": "98",
+      "title": "AWS SAP-C02 真题 #98",
+      "answer": [],
+      "services": [
+        "IAM",
+        "Lambda",
+        "Organizations",
+        "SNS"
+      ],
+      "constraints": [
+        "security"
+      ]
+    }
+  ]
+}
