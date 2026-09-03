@@ -224,6 +224,65 @@ docker compose exec api python -m scripts.eval_images
 
 ---
 
+## The same engine, a second domain: exam-question deduplication
+
+The scoring core is domain-agnostic. `compute_score()` takes explicit
+`weights` / `dimensions` / `level_config`, so swapping domains means swapping the
+dimensions and the hard constraints — not rewriting the engine.
+
+| | Lost & found | Exam questions |
+|---|---|---|
+| Decides | Are these the same physical object? | Are these the same exam point? |
+| Dimensions | category / attribute / location / time / distinctive / semantic / keyword / image | stem / options / services / knowledge-points / **optimisation goal** / keyword |
+| Hard constraints | IMEI, serial, model conflict | **how many to select**, **mutually exclusive goals**, disjoint services |
+| The invariant | iPhone 15 Pro ≠ Pro Max | same scenario + same services ≠ same question |
+
+```bash
+python -m scripts.dedup_questions --sapc02 SAPC02_Chinese.txt
+python -m scripts.align_bilingual  --zh SAPC02_Chinese.txt --en SAPC02_English.txt
+```
+
+### Results on 524 real AWS SAP-C02 questions
+
+| | |
+|---|---|
+| Questions after dedup | **523** |
+| True duplicates | **1 pair** (#84/#85 — stem and options identical word for word) |
+| Same exam point, different wording | **9 pairs — kept, not merged** |
+
+Those 9 pairs are the actually useful output. Deduplication is not the point;
+**surfacing that one exam point was asked in several different ways is.** If you only
+ever memorised one phrasing, a reworded question in the real exam will not register.
+
+### Cross-language alignment, 523 pairs, question numbers never used
+
+| Stage | Top-1 |
+|---|---|
+| Vectors only | 78.4% |
+| + structured rerank | 88.0% |
+| + global one-to-one assignment | **97.1%** |
+
+The last step matters more than it looks: matching two translations of one exam is a
+**bipartite assignment** problem, not 523 independent retrievals. Taking `argmax`
+per question throws away the constraint that each question maps to exactly one
+counterpart — worth 9.1 points on its own.
+
+### Thresholds were calibrated, not guessed
+
+I hand-checked all 9 clusters the first run produced at threshold 82: **one was a real
+duplicate, four were wrong.** The worst was #320 (encrypt all **new** EBS volumes) vs
+#370 (encrypt all **existing** ones) — completely different solutions, a classic AWS
+exam trap. Merging them deletes an exam point.
+
+So: a `new vs existing` mutually-exclusive constraint was added, and the merge
+threshold moved to 95 — the one true duplicate scores 100, the runner-up only 91.6,
+and there is a clear gap between them. **Better to miss a merge than to make a wrong one.**
+
+Full analysis: [docs/QUESTION_DEDUP.md](docs/QUESTION_DEDUP.md),
+[docs/BILINGUAL_ALIGN.md](docs/BILINGUAL_ALIGN.md).
+
+---
+
 ## Invariants locked down by tests
 
 | Invariant | Test |
@@ -338,7 +397,13 @@ lostfound/
 │   ├── seed_corpus.py      Generate distractor corpus for evaluation
 │   ├── eval_synonyms.py    Adversarial synonym evaluation
 │   ├── reembed.py          Embedding model migration
-│   └── reextract.py        Re-run the AI understanding layer
+│   ├── reextract.py        Re-run the AI understanding layer
+│   ├── dedup_questions.py  Exam-question deduplication
+│   └── align_bilingual.py  Cross-language alignment
+├── domain/questionbank/    Second domain — same engine, different dimensions
+│   ├── sapc02.py           Parse the exam bank from PDF-extracted text
+│   ├── features.py         Question-equivalence dimensions + hard constraints
+│   └── dedup.py            Blocking → scoring → clustering
 └── backend/app/
     ├── ai/                 Extraction, normalization, three prompts, providers
     ├── matching/           retrieval → conflicts → features → scoring → engine
@@ -354,7 +419,8 @@ lostfound/
 | V1.5 | Zero-shot classification, multilingual vectors, adversarial evaluation | Done |
 | V2 | Hybrid retrieval, match scoring, auto-recommendation, explanations | Done |
 | V3 | Images / cross-modal search (image→image 100%, text→image 85.7%) | Done |
-| V4 | Feedback loop → learning-to-rank | `training-pairs` exports today; needs ~10k confirmations |
+| V4 | Second domain: exam-question dedup + cross-language alignment | Done |
+| V5 | Feedback loop → learning-to-rank | `training-pairs` exports today; needs ~10k confirmations |
 
 ## License
 

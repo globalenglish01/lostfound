@@ -214,6 +214,60 @@ docker compose exec api python -m scripts.eval_images
 
 ---
 
+## 同一个引擎，第二个领域：题库查重
+
+打分内核与领域无关。`compute_score()` 接受显式的 `weights` / `dimensions` /
+`level_config`，换个领域只需要换维度和硬约束，引擎本身一行不用改。
+
+| | 失物 | 题库 |
+|---|---|---|
+| 判定 | 是不是同一件物品 | 是不是同一个考点 |
+| 维度 | 类别/属性/地点/时间/特征/语义/关键词/图像 | 题干/选项/服务/知识点/**优化目标**/关键词 |
+| 硬约束 | IMEI、序列号、型号冲突 | **要求选几项**、**优化目标互斥**、服务不相交 |
+| 铁律 | iPhone 15 Pro ≠ Pro Max | 同场景同服务 ≠ 同一道题 |
+
+```bash
+python -m scripts.dedup_questions --sapc02 SAPC02_Chinese.txt
+python -m scripts.align_bilingual  --zh SAPC02_Chinese.txt --en SAPC02_English.txt
+```
+
+### 524 道 AWS SAP-C02 真题上的结果
+
+| | |
+|---|---|
+| 去重后独立考题 | **523** |
+| 真重复 | **1 组**（#84/#85，题干与选项逐字相同） |
+| 同考点不同问法 | **9 对 —— 保留，不合并** |
+
+那 9 对才是真正有用的产出。**去重不是目的，把「同一个考点被换了几种问法」摆出来才是。**
+只记住其中一种说法，考场上换个问法就不认得了。
+
+### 跨语言对齐，523 对，全程不看题号
+
+| 阶段 | Top1 |
+|---|---|
+| 仅向量 | 78.4% |
+| + 结构化重排 | 88.0% |
+| + 全局一一指派 | **97.1%** |
+
+最后一步比看上去重要：同一场考试的两个译本对齐是**二分图指派**问题，
+不是 523 次独立检索。每道题各自取 argmax，等于扔掉「每道题只对应一道」这个强约束
+—— 光这一步就值 9.1 个点。
+
+### 阈值是核验出来的，不是拍的
+
+初版阈值 82 跑出 9 组，我逐组人工核对：**只有 1 组是真重复，4 组是误判。**
+最危险的是 #320（加密所有**新建**的 EBS 卷）vs #370（加密所有**已有**的卷）——
+解法完全不同，是 AWS 考试的经典陷阱对，合并掉等于删掉一个考点。
+
+于是加了「新建 vs 存量」互斥硬约束，并把合并门槛提到 95：
+唯一的真重复得 100 分，第二名只有 91.6，中间有明显断层。**宁可漏合，也不能合错。**
+
+完整分析：[docs/QUESTION_DEDUP.md](docs/QUESTION_DEDUP.md)、
+[docs/BILINGUAL_ALIGN.md](docs/BILINGUAL_ALIGN.md)。
+
+---
+
 ## 被测试锁死的不变量
 
 | 不变量 | 测试 |
@@ -323,7 +377,13 @@ lostfound/
 │   ├── seed_corpus.py      生成评测用的干扰语料
 │   ├── eval_synonyms.py    同义表达对抗评测
 │   ├── reembed.py          向量模型迁移
-│   └── reextract.py        重跑 AI 理解层
+│   ├── reextract.py        重跑 AI 理解层
+│   ├── dedup_questions.py  题库查重
+│   └── align_bilingual.py  中英文跨语言对齐
+├── domain/questionbank/    第二个领域 —— 同一引擎，不同维度
+│   ├── sapc02.py           从 PDF 原文解析题库
+│   ├── features.py         题目等价维度 + 硬约束
+│   └── dedup.py            分块召回 → 打分 → 聚类
 └── backend/app/
     ├── ai/                 抽取、标准化、三个 Prompt、Provider
     ├── matching/           retrieval → conflicts → features → scoring → engine
@@ -339,7 +399,8 @@ lostfound/
 | V1.5 | 零样本分类、多语言向量、对抗评测 | 已完成 |
 | V2 | 混合检索、匹配评分、自动推荐、匹配解释 | 已完成 |
 | V3 | 图片 / 跨模态检索（图→图 100%，文→图 85.7%） | 已完成 |
-| V4 | 反馈闭环 → Learning-to-Rank | `training-pairs` 已可导出，待积累约 1 万条确认数据 |
+| V4 | 第二个领域：题库查重 + 跨语言对齐 | 已完成 |
+| V5 | 反馈闭环 → Learning-to-Rank | `training-pairs` 已可导出，待积累约 1 万条确认数据 |
 
 ## 许可证
 
