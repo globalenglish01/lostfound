@@ -218,3 +218,76 @@ def test_report_renders_without_crashing(tmp_path):
     assert "同一考点的不同问法" in text
     assert "#1" in text and "#2" in text          # 复习清单里两道题都在
     assert (tmp_path / "kept.json").exists()
+
+
+# ---------------------------------------------------------------------------
+# 考纲覆盖分析
+# ---------------------------------------------------------------------------
+
+def _tiny_blueprint():
+    from domain.questionbank.coverage import Blueprint
+    bp = Blueprint()
+    for kb, (task, dom) in {
+        "T1.1.K1": ("T1.1", "D1"), "T1.1.K2": ("T1.1", "D1"),
+        "T2.1.K1": ("T2.1", "D2"), "T2.1.K2": ("T2.1", "D2"),
+    }.items():
+        bp.kb_title[kb] = f"topic {kb}"
+        bp.kb_task[kb] = task
+        bp.kb_task_title[kb] = f"task {task}"
+        bp.kb_domain[kb] = dom
+    bp.domain_title.update({"D1": "Domain 1", "D2": "Domain 2"})
+    return bp
+
+
+def test_blind_spots_are_reported():
+    """题池够不到的考点必须被识别出来——这是「刷题就能过」的前提检查。"""
+    from domain.questionbank.coverage import analyze
+
+    bp = _tiny_blueprint()
+    pool = {"q1": {"T1.1.K1"}, "q2": {"T1.1.K2", "T2.1.K1"}}   # T2.1.K2 无人覆盖
+    rep = analyze(bp, pool)
+    assert rep.blind == ["T2.1.K2"]
+    assert set(rep.reachable) == {"T1.1.K1", "T1.1.K2", "T2.1.K1"}
+    assert rep.by_domain["D2"] == (1, 2)
+    assert 0.2 < rep.blind_ratio < 0.3
+
+
+def test_greedy_covers_every_reachable_target():
+    from domain.questionbank.coverage import analyze, coverage_of, greedy_select
+
+    bp = _tiny_blueprint()
+    pool = {"q1": {"T1.1.K1", "T1.1.K2"}, "q2": {"T1.1.K1"},
+            "q3": {"T2.1.K1"}, "q4": {"T2.1.K1", "T1.1.K2"}}
+    rep = analyze(bp, pool)
+    chosen = greedy_select(pool, rep.reachable, k=1)
+    cov = coverage_of(pool, chosen)
+    assert all(cov[t] >= 1 for t in rep.reachable)
+    assert len(chosen) <= len(pool)
+
+
+def test_k_times_coverage():
+    from domain.questionbank.coverage import coverage_of, greedy_select
+
+    pool = {f"q{i}": {"A", "B"} for i in range(5)}
+    chosen = greedy_select(pool, ["A", "B"], k=3)
+    cov = coverage_of(pool, chosen)
+    assert cov["A"] >= 3 and cov["B"] >= 3
+
+
+def test_must_include_survives_optimization():
+    """「同考点不同问法」的配对在覆盖意义上冗余，但必须强制留下。"""
+    from domain.questionbank.coverage import greedy_select
+
+    pool = {"big": {"A", "B", "C"}, "pair1": {"A"}, "pair2": {"A"}, "other": {"C"}}
+    chosen = greedy_select(pool, ["A", "B", "C"], k=1,
+                           must_include={"pair1", "pair2"})
+    assert "pair1" in chosen and "pair2" in chosen
+
+
+def test_greedy_stops_when_pool_cannot_satisfy():
+    """题池满足不了的需求不能让贪心死循环。"""
+    from domain.questionbank.coverage import greedy_select
+
+    pool = {"q1": {"A"}}
+    chosen = greedy_select(pool, ["A", "Z"], k=2)      # Z 无人覆盖，A 只有一道题
+    assert chosen == ["q1"]

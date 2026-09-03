@@ -209,6 +209,11 @@ def write_json(res: DedupResult, kept_path: Path, detail_path: Path) -> None:
             }
             for c in res.duplicate_clusters
         ],
+        # 同考点不同问法：下游的覆盖优化要靠它强制保留这些配对
+        "topic_pairs": [
+            {"a": p.a, "b": p.b, "score": p.score, "level": p.level, "dims": p.dims}
+            for p in res.topic_pairs
+        ],
         "pairs": [
             {"a": p.a, "b": p.b, "score": p.score, "level": p.level,
              "penalty": p.penalty, "dims": p.dims, "conflicts": p.conflicts}
